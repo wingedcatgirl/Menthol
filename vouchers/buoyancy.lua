@@ -2,7 +2,12 @@ SMODS.Voucher{
     key = "buoyancy",
     config = {
         luck = 1,
-        odds = 3
+        odds = 3,
+    },
+    atlas = "vouchers",
+    pos = {
+        x = 0,
+        y = 0,
     },
     loc_vars = function (self, info_queue, voucher)
         local luck, odds = SMODS.get_probability_vars(voucher, voucher.ability.luck, voucher.ability.odds, "minty_buoyant", false)
@@ -24,6 +29,41 @@ SMODS.Voucher{
                 end
                 return nil, true
             end
+        end
+    end
+}
+
+SMODS.Voucher{
+    key = "treading",
+    config = {
+        req = 0,
+        regain = 1
+    },
+    atlas = "vouchers",
+    pos = {
+        x = 0,
+        y = 1,
+    },
+    loc_vars = function (self, info_queue, voucher)
+        return {
+            vars = {
+                voucher.ability.req <= 1 and voucher.ability.req or "at most "..voucher.ability.req, --Todo probably localizify this idk
+                voucher.ability.regain,
+                voucher.ability.req ~= 1 and "s" or "",
+                voucher.ability.regain ~= 1 and "s" or "",
+            }
+        }
+    end,
+    calculate = function (self, voucher, context)
+        if context.after and G.GAME.current_round.discards_left <= voucher.ability.req then
+            return {
+                func = function ()
+                    MINTY.event(function ()
+                        ease_discard(voucher.ability.regain)
+                        return true
+                    end)
+                end
+            }
         end
     end
 }

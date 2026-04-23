@@ -233,6 +233,7 @@ local files = {
     } },
     { name = "vouchers", contents = {
         { name = "topplepaws" },
+        { name = "buoyancy" },
         { name = "treasure" },
     } },
     { name = "modifiers", contents = {

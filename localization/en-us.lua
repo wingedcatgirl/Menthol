@@ -2669,6 +2669,24 @@ return {
 					"of {C:mult}6{} or more cards",
 				}
 			},
+			v_minty_buoyancy = {
+				name = "Buoyancy",
+				text = {
+					"When playing hand with",
+					"discards remaining,",
+					"played cards have a",
+					"{C:green}#1# in #2#{} chance to",
+					"return to deck"
+				},
+			},
+			v_minty_treading = {
+				name = "Treading Water",
+				text = {
+					"When playing hand with",
+					"#1# discard#3# remaining,",
+					"gain #2# discard#4#"
+				}
+			},
 			["v_minty_treasure"] = {
 				["name"] = "Treasure",
 				["text"] = {
