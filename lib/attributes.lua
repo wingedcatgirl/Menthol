@@ -1,3 +1,5 @@
+if not SMODS.Attribute then return nil end
+
 SMODS.Attribute{ --Cards with the Spread mechanic
     key = "spread_this_like_wildfire"
 }

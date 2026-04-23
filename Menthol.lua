@@ -198,6 +198,7 @@ local files = {
         { name = "grin", },
         { name = "gleam" },
         { name = "geologist" },
+        { name = "headband" },
         { name = "magnet" },
     } },
     { name = "spectrals", contents = {
@@ -250,6 +251,7 @@ local files = {
         { name = "counterfeit" }, --Stickers
         { name = "hooked" },
         { name = "pirated" },
+        { name = "catears" },
     } },
     { name = "backs", contents = {
         { name = "treat" },

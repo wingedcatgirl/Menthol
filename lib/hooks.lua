@@ -35,6 +35,29 @@ function Card:set_base(card, initial, manual_sprites)
     setbaseref(self, card, initial, manual_sprites)
 end
 
+local draw = draw_card
+function draw_card(from, to, percent, dir, sort, card, delay, mute, stay_flipped, vol, discarded_only)
+    local args = {
+        from = from,
+        to = to,
+        stay_flipped = stay_flipped,
+        card = card
+    }
+    SMODS.calculate_context{
+        minty_card_is_drawing = true,
+        draw_args = args
+    }
+
+    draw(args.from, args.to, percent, dir, sort, args.card, delay, mute, args.stay_flipped, vol, discarded_only)
+end
+
+local hasatt = Card.has_attribute
+function Card:has_attribute(attribute)
+    if attribute == "kity" and self.ability.minty_cat_ears then return true end
+
+    return hasatt(self, attribute)
+end
+
 ---Slapdash patch for #CA7CA7 stake name; replaces "<hash>" with "#"
 local oldparser = loc_parse_string
 loc_parse_string = function (line)

@@ -25,7 +25,7 @@ SMODS.Consumable{
         return {
             key = key,
             vars = {
-                self.config.max_highlighted,
+                card.ability.max_highlighted,
                 s,
                 a,
                 localize{type = 'name_text', set = 'Other', key = "minty_stone_cards"}

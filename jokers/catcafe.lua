@@ -38,9 +38,7 @@ SMODS.Joker {
             }
         }
     end,
-    in_pool = function (self, args) --Make this artificially rarer until we have more kity jokers to power it
-        if next(SMODS.find_mod("vallkarri")) then return true end -- UNLESS ☝️ we have another kity mod to make up the numbers
-        if pseudorandom("catcafechance") > 1/3 then return false end
+    in_pool = function (self, args)
         return true
     end,
     calculate = function(self, card, context)
@@ -51,9 +49,10 @@ SMODS.Joker {
         end
 
         if context.other_joker and context.other_joker:is_kity() then
+            
             return {
-                    chips = card.ability.extra.chips,
-                    card = context.other_joker
+                chips = card.ability.extra.chips,
+                juice_card = context.other_card
             }
         end
     end

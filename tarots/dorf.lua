@@ -17,7 +17,7 @@ SMODS.Consumable{
 		info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.enh_conv]
 		local key = self.key
         local plural = false
-        if self.config.max_highlighted ~= 1 then plural = true end
+        if card.ability.max_highlighted ~= 1 then plural = true end
         local s = plural and "s" or ""
         local a = plural and "" or "a "
         if MINTY.config.flavor_text then
@@ -26,7 +26,7 @@ SMODS.Consumable{
         return {
             key = key,
             vars = {
-                self.config.max_highlighted,
+                card.ability.max_highlighted,
                 s,
                 a,
             }

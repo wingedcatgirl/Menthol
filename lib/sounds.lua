@@ -38,6 +38,21 @@ SMODS.Sound{
     path = "DRIVING IN MY CAR.ogg"
 }
 
+SMODS.Sound{
+    key = "meow1",
+    path = "meow 1.ogg"
+}
+
+SMODS.Sound{
+    key = "meow2",
+    path = "meow 2.ogg"
+}
+
+SMODS.Sound{
+    key = "meow3",
+    path = "meow 3.ogg"
+}
+
 do --Buttload of meme sounds grabbed from https://thirtydollar.website/ and also video games
     local path = SMODS.current_mod.path.."assets/sounds/thirty dollar memes"
     local info = NFS.getDirectoryItemsInfo(path)

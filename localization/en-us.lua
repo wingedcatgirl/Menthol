@@ -119,6 +119,7 @@ return {
 			["minty_counterfeit"] = "Counterfeit",
 			["minty_hooked"] = "Hooked",
 			minty_pirated = "Pirated",
+			minty_cat_ears = "Cat Ears",
 			["k_minty_challenge"] = "Challenge",
 			["k_minty_special"] = "Special",
 			minty_drained = "Drained",
@@ -2118,6 +2119,23 @@ return {
 					'{C:inactive,s:0.8}to fuel your cats\' active lifestyles!{}',
 				},
 			},
+			["c_minty_headband"] = {
+				["name"] = "The Headband",
+				["text"] = {
+					"Applies {C:spectral}Cat Ears{} to",
+					"#2##1# selected Joker#3#"
+				},
+			},
+			["c_minty_headband_flavor"] = {
+				["name"] = "The Headband",
+				["text"] = {
+					"Applies {C:spectral}Cat Ears{} to",
+					"#2##1# selected Joker#3#",
+					" ",
+					"{C:inactive,s:0.8}Add some striped socks and estrogen and",
+					"{C:inactive,s:0.8}you'll be ready to make your own mod :3"
+				},
+			},
 		},
 		["Spectral"] = {
 			["c_minty_6years"] = {
@@ -3024,6 +3042,13 @@ return {
 				["text"] = {
 					"Acquired {C:attention}illegally{}",
 					"{C:mult}There may be consequences...{}"
+				}
+			},
+			["minty_cat_ears"] = {
+				["name"] = "Cat Ears",
+				["text"] = {
+					"Counts as a",
+					"{C:spectral}Kity{} Joker"
 				}
 			},
 			["gemslot_catseye"] = {
