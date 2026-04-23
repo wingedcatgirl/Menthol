@@ -38,17 +38,17 @@ SMODS.Sound{
     path = "DRIVING IN MY CAR.ogg"
 }
 
-SMODS.Sound{
+SMODS.Sound{ --https://freesound.org/people/skymary/sounds/412017/
     key = "meow1",
     path = "meow 1.ogg"
 }
 
-SMODS.Sound{
+SMODS.Sound{ --https://freesound.org/people/FreqWincy/sounds/703921/
     key = "meow2",
     path = "meow 2.ogg"
 }
 
-SMODS.Sound{
+SMODS.Sound{ --https://freesound.org/people/FreqWincy/sounds/703921/ x2 combob
     key = "meow3",
     path = "meow 3.ogg"
 }
