@@ -54,6 +54,7 @@ SMODS.Voucher{
             }
         }
     end,
+    requires = {"v_minty_buoyancy"},
     calculate = function (self, voucher, context)
         if context.after and G.GAME.current_round.discards_left <= voucher.ability.req then
             return {
