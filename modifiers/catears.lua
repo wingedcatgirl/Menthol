@@ -17,5 +17,12 @@ SMODS.Sticker{
     end,
     calculate = function (self, card, context)
         --Calculation is done in Card:has_attribute; see hooks.lua
-    end
+    end,
+    draw = function(self, card) --Lifted and edited from Paperback's paperclips. Could probably put this on the vremade wiki tbh
+        local y_offset = (card.T.y / 95) * -15 * card.T.scale
+        G.shared_stickers[self.key].role.draw_major = card
+        G.shared_stickers[self.key]:draw_shader('dissolve', nil, nil, nil, card.children.center, nil, nil, nil, y_offset)
+        --G.shared_stickers[self.key]:draw_shader('voucher', nil, card.ARGS.send_to_shader, nil, card.children.center, nil, nil, nil, y_offset)
+    end,
+
 }
