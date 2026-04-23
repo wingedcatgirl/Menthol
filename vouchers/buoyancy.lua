@@ -13,12 +13,16 @@ SMODS.Voucher{
         }
     end,
     calculate = function (self, voucher, context)
-        if context.minty_card_is_drawing then
-            if context.draw_args.from == G.play and context.draw_args.to == G.discard then
+        if context.stay_flipped and (G.GAME.current_round.discards_left > 0) then
+            if context.from_area == G.play and context.to_area == G.discard then
                 if SMODS.pseudorandom_probability(voucher, "minty_buoyant", voucher.ability.luck, voucher.ability.odds) then
-                    context.draw_args.to = G.deck
-                    return nil, true
+                    return {
+                        modify = {
+                            to_area = G.deck
+                        }
+                    }
                 end
+                return nil, true
             end
         end
     end
