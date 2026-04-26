@@ -1,4 +1,9 @@
-FusionJokers.fusions:add_fusion("j_campfire", nil, false, "j_madness", nil, false, "j_minty_wildfire", 12)
+FusionJokers.fusions:register_fusion{
+  jokers = {
+    { name = "j_campfire" },
+    { name = "j_madness" },
+  }, cost = 12, result_joker = "j_minty_wildfire"
+}
 
 SMODS.Joker {
     key = "wildfire",

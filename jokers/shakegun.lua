@@ -1,4 +1,9 @@
-FusionJokers.fusions:add_fusion("j_splash", nil, false, "j_minty_cakegun", "shots", true, "j_minty_shakegun", 10)
+FusionJokers.fusions:register_fusion{
+  jokers = {
+    { name = "j_splash" },
+    { name = "j_minty_cakegun", carry_stat = "shots" },
+  }, cost = 10, result_joker = "j_minty_shakegun"
+}
 
 SMODS.Joker {
     key = "shakegun",

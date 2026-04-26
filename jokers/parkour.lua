@@ -1,4 +1,9 @@
-FusionJokers.fusions:add_fusion("j_shortcut", nil, false, "j_runner", "chips", true, "j_minty_parkour", 12)
+FusionJokers.fusions:register_fusion{
+  jokers = {
+    { name = "j_shortcut" },
+    { name = "j_runner", carry_stat = "chips" },
+  }, cost = 12, result_joker = "j_minty_parkour"
+}
 
 SMODS.Joker {
     key = "parkour",

@@ -1,4 +1,9 @@
-FusionJokers.fusions:add_fusion("j_minty_ascetic", nil, false, "j_minty_sabertooth", nil, false, "j_minty_ninethlion", 12)
+FusionJokers.fusions:register_fusion{
+  jokers = {
+    { name = "j_minty_ascetic" },
+    { name = "j_minty_sabertooth" },
+  }, cost = 12, result_joker = "j_minty_ninethlion"
+}
 local ortalab = next(SMODS.find_mod("ortalab"))
 
 SMODS.Joker {

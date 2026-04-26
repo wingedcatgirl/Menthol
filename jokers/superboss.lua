@@ -1,4 +1,9 @@
-FusionJokers.fusions:add_fusion("j_minty_flexweirdo", nil, false, "j_minty_shadowcrystal", nil, false, "j_minty_superboss", 12)
+FusionJokers.fusions:register_fusion{
+  jokers = {
+    { name = "j_minty_flexweirdo" },
+    { name = "j_minty_shadowcrystal" },
+  }, cost = 12, result_joker = "j_minty_superboss"
+}
 
 SMODS.Joker {
     key = "superboss",

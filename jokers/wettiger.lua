@@ -1,4 +1,9 @@
-FusionJokers.fusions:add_fusion("j_splash", nil, false, "j_minty_slowtiger", "mult", true, "j_minty_wettiger", 6)
+FusionJokers.fusions:register_fusion{
+  jokers = {
+    { name = "j_splash" },
+    { name = "j_minty_slowtiger", carry_stat = "mult" },
+  }, cost = 6, result_joker = "j_minty_wettiger"
+}
 
 SMODS.Joker {
     key = "wettiger",

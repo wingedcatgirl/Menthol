@@ -1,4 +1,9 @@
-FusionJokers.fusions:add_fusion("j_minty_hedonist", nil, false, "j_minty_claw", nil, false, "j_minty_threecats", 12)
+FusionJokers.fusions:register_fusion{
+  jokers = {
+    { name = "j_minty_hedonist" },
+    { name = "j_minty_claw" },
+  }, cost = 12, result_joker = "j_minty_threecats"
+}
 
 SMODS.Joker {
     dependencies = "FusionJokers",
