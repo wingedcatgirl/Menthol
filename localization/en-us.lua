@@ -2687,6 +2687,20 @@ return {
 					"gain #2# discard#4#"
 				}
 			},
+			v_minty_suggestion = {
+				name = "Suggestion",
+				text = {
+					"{C:green}#1#%{} of Jokers in",
+					"the Shop have {C:stake_minty_catcat}Cat Ears"
+				}
+			},
+			v_minty_mandate = {
+				name = "Mandate",
+				text = {
+					"{C:green}All{} Jokers in the",
+					"Shop have {C:stake_minty_catcat}Cat Ears"
+				},
+			},
 			["v_minty_treasure"] = {
 				["name"] = "Treasure",
 				["text"] = {
