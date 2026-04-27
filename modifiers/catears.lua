@@ -19,6 +19,8 @@ SMODS.Sticker{
         --Calculation is done in Card:has_attribute; see hooks.lua
     end,
     draw = function(self, card) --Lifted and edited from Paperback's paperclips. Could probably put this on the vremade wiki tbh
+        local scalefac = 95
+        local px_offset = -15
         if type(card.debug) == "number" then
             px_offset = card.debug
         end
