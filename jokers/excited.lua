@@ -105,15 +105,16 @@ SMODS.Joker {
 				or context.open_booster
 			)
 			and not context.retrigger_joker
+            and not context.create_shop_card
 			and not context.blueprint
 		then
-            --[[
+            --[[]]
             for k,v in pairs(context) do
                 if v == true then
                     MINTY.say(k, "TRACE")
                 end
             end
-            ]]
+            --]]
             if not SMODS.pseudorandom_probability(card, "minty_excited", 1, card.ability.extra.odds, "minty_excited") then
                 SMODS.scale_card(card, {
                     ref_table = card.ability.extra,
