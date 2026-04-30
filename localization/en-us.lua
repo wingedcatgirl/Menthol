@@ -1876,6 +1876,13 @@ return {
 					"are debuffed",
 				},
 			},
+			bl_minty_clowder = {
+				name = "The Clowder",
+				text = {
+					"Non-Kity Jokers",
+					"are debuffed"
+				}
+			},
 			["bl_minty_thetree"] = {
 				["name"] = "The Tree",
 				["text"] = {
