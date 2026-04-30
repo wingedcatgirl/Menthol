@@ -43,6 +43,7 @@ SMODS.Voucher{
     loc_vars = function (self, info_queue, voucher)
         info_queue[#info_queue+1] = {set = "Other", key = "minty_cat_ears"}
     end,
+    requires = {"v_minty_suggestion"},
     redeem = function (self, voucher)
         if not next(SMODS.find_card(self.key)) then
             G.GAME.banned_keys = G.GAME.banned_keys or {}
