@@ -39,11 +39,14 @@ SMODS.Joker {
             local cards = {}
             local suits = 0
             local wilds = 0
+            local unknown
             for i,v in ipairs(G.hand.cards) do
-                if not card.highlighted then
-                    if SMODS.has_any_suit(v) then
+                if not v.highlighted then
+                    if v.facing == "back" then
+                        unknown = true
+                    elseif SMODS.has_any_suit(v) then
                         wilds = wilds + 1
-                    elseif not SMODS.has_no_suit(v) then
+                    elseif not SMODS.has_no_suit(v) and not card.ability.minty_hooked then
                         cards[#cards+1] = v
                     end
                 end
@@ -59,6 +62,10 @@ SMODS.Joker {
                 if not next(cards) then break end
             end
             estimate = 1+((suits + wilds) * card.ability.extra.xmult)
+            if G.GAME.blind and G.GAME.blind.name == "The Hook" and not G.GAME.blind.disabled then
+                unknown = true
+            end
+            if unknown then estimate = estimate.."?" end
         end
         return {
             key = key,
@@ -85,10 +92,12 @@ SMODS.Joker {
             local suits = 0
             local wilds = 0
             for i,v in ipairs(G.hand.cards) do
-                if SMODS.has_any_suit(v) then
-                    wilds = wilds + 1
-                elseif not SMODS.has_no_suit(v) then
-                    cards[#cards+1] = v
+                if not v.highlighted then
+                    if SMODS.has_any_suit(v) then
+                        wilds = wilds + 1
+                    elseif not SMODS.has_no_suit(v) and not card.ability.minty_hooked then
+                        cards[#cards+1] = v
+                    end
                 end
             end
             for k,v in pairs(SMODS.Suits) do --This can break in cases of suit patches or similar. Too bad!
