@@ -77,6 +77,8 @@ return {
 			["v_minty_blackjack"] = "Hand must total #1# (is #2#)",
 			["v_minty_forbidden_hand"] = "Hands containing #1# are forbidden",
 			["v_minty_not_permitted_hand"] = "#1# is not a permitted hand (see challenge info)",
+			v_minty_plusplaylimit = "+#1# play size",
+			v_minty_plusdisclimit = "+#1# discard size"
 		},
 		["v_text"] = {
 			["ch_c_all_minty_counterfeit"] = {

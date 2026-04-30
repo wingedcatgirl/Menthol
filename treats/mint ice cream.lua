@@ -43,5 +43,12 @@ SMODS.Consumable{
     end,
     use = function (self, card, area, copier)
         SMODS.change_play_limit(card.ability.consumeable.play_limit)
+        delay(1)
+        SMODS.calculate_effect({message = localize{type = "variable", key = "v_minty_plusplaylimit", vars = {card.ability.play_limit}}}, card)
+        MINTY.event(function ()
+            play_sound('highlight2', 0.685, 0.2)
+            play_sound('generic1')
+            return true
+        end)
     end
 }

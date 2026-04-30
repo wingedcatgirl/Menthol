@@ -43,5 +43,12 @@ SMODS.Consumable{
     end,
     use = function (self, card, area, copier)
         SMODS.change_discard_limit(card.ability.consumeable.discard_limit)
+        delay(1)
+        SMODS.calculate_effect({message = localize{type = "variable", key = "v_minty_plusdisclimit", vars = {card.ability.discard_limit}}}, card)
+        MINTY.event(function ()
+            play_sound('highlight2', 0.685, 0.2)
+            play_sound('generic1')
+            return true
+        end)
     end
 }

@@ -47,11 +47,17 @@ SMODS.Consumable{
         return false
     end,
     use = function (self, card, area, copier)
-        for i,v in ipairs(G.jokers.highlighted) do
-            if not v.edition then
-                v:set_edition("e_negative")
-                v:juice_up(0.3,0.3)
-            end
-        end
+        delay(1)
+        SMODS.calculate_effect({message = "Negative!", func = function ()
+            MINTY.event(function ()
+                for i,v in ipairs(G.jokers.highlighted) do
+                    if not v.edition then
+                        v:set_edition("e_negative")
+                        v:juice_up(0.3,0.3)
+                    end
+                end
+                return true
+            end)
+        end, delay = 0.5}, card)
     end
 }

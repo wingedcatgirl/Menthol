@@ -48,6 +48,7 @@ SMODS.Consumable{
     end,
     use = function (self, card, area, copier)
         local ante = G.GAME.round_resets.ante or 1
-        ease_dollars(card.ability.consumeable.dollars_base + (card.ability.consumeable.dollars_rate * ante))
+        delay(1)
+        SMODS.calculate_effect({dollars = card.ability.consumeable.dollars_base + (card.ability.consumeable.dollars_rate * ante)}, card)
     end
 }
