@@ -12,5 +12,11 @@ SMODS.Blind{
     --]]
     recalc_debuff = function (self, card, from_blind)
         if card.config.center.set == "Joker" and not card:is_kity() then return true end
+    end,
+    in_pool = function (self)
+        for i,v in ipairs(G.jokers.cards) do
+            if v:is_kity() then return true end
+        end
+        return false
     end
 }
