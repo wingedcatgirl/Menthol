@@ -14,6 +14,7 @@ SMODS.Blind{
         if card.config.center.set == "Joker" and not card:is_kity() then return true end
     end,
     in_pool = function (self)
+        if not G.jokers then return false end
         for i,v in ipairs(G.jokers.cards) do
             if v:is_kity() then return true end
         end
