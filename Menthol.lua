@@ -6,6 +6,7 @@ SMODS.current_mod.debug_info = {}
 
 local fujo = SMODS.find_mod("FusionJokers")[1]
 local bunco = SMODS.find_mod("Bunco")[1]
+local exactly_talisman = not not (next(SMODS.find_mod("Talisman")) and not next(SMODS.find_mod("Amulet")))
 
 if fujo and not fujo.version then
     SMODS.current_mod.debug_info = {
@@ -22,6 +23,12 @@ if bunco then --Not sure this one actually works, but worth putting it in just t
         SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "Please update to the version JumboCarrot is maintaining, located here:"
         SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "https://github.com/jumbocarrot0/Bunco"
     end
+end
+
+if exactly_talisman then
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "Talisman has been superceded and is likely to cause crashes"
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "Please update to Amulet, located here:"
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "https://github.com/frostice482/amulet"
 end
 
 if not SMODS.current_mod.lovely then
