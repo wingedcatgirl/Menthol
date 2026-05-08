@@ -27,13 +27,17 @@ SMODS.Joker {
         "mult", "scaling", "meta"
     },
     check_for_unlock = function (self, args)
-        if args.type == 'win_custom' and G.SETTINGS.language ~= "en-us" and G.SETTINGS.language ~= "suitnames_en" then
+        local lang = G.SETTINGS.language
+        local en = lang:lower():find("^en%W") or lang:lower():find("%Wen$")
+        if args.type == 'win_custom' and not en then
             unlock_card(self)
             return true
         end
     end,
     in_pool = function (self, args) --Spawn chance reduced by 1/3 if this run has only been played in US English
-        if G and (G.SETTINGS.language ~= "en-us" and G.SETTINGS.language ~= "suitnames_en") then return true end
+        local lang = G.SETTINGS.language
+        local en = lang:lower():find("^en%W") or lang:lower():find("%Wen$")
+        if G and not en then return true end
         local count = 0
         if G and G.GAME and G.GAME.languageEgg then
             for _ in pairs(G.GAME.languageEgg) do count = count + 1 end
@@ -78,7 +82,8 @@ SMODS.Joker {
 
         if context.end_of_round and context.cardarea == G.jokers then
             local lang = G.SETTINGS.language
-            if lang == "suitnames_en" then lang = "en-us" end
+            local en = lang:lower():find("^en%W") or lang:lower():find("%Wen$")
+            if en then lang = "en-us" end
             if not G.GAME.languageEgg[lang] then
                 return {
                     message = localize('k_upgrade_ex'),

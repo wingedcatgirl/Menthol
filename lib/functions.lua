@@ -684,7 +684,8 @@ end
 function SMODS.current_mod.reset_game_globals(init)
     G.GAME.languageEgg = G.GAME.languageEgg or {}
     local lang = G.SETTINGS.language
-    if lang == "suitnames_en" then lang = "en-us" end
+    local en = lang:lower():find("^en%W") or lang:lower():find("%Wen$")
+    if en then lang = "en-us" end
     G.GAME.languageEgg[lang] = true
 
     if init or not G.GAME.starting_params.minty_three_lock then
