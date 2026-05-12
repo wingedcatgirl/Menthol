@@ -29,17 +29,48 @@ SMODS.Consumable {
 		end
 	end,
 	in_pool = function (self, args)
-		local kitypool = MINTY.kity_pool(true, "minty_wand")
-		return kitypool and kitypool[1] and kitypool[1] ~= "j_lucky_cat"
+		return true
 	end,
 	use = function(self, card, area, copier)
-		local key = pseudorandom_element(MINTY.kity_pool(true, "minty_wand"), "minty_wand")
 		G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
 			play_sound('timpani')
 			SMODS.add_card({
-				key = key,
+				attributes = {"kity"},
 				area = G.jokers,
 				key_append = "minty_wand",
+				rarity = 4,
+				filter = function (pool)
+					print(pool)
+					local gold_available, catcat_available = MINTY.at_least_stake(G.GAME.stake, "stake_gold"), MINTY.at_least_stake(G.GAME.stake, "stake_minty_catcat")
+					if not (gold_available or catcat_available) then return pool end
+					local needs_gold, needs_catcat = {}, {}
+					for i,v in ipairs(pool) do
+						local key = v.key
+						local not_gold, not_catcat = true, true
+						local function getwinsbykey()
+							return G.PROFILES[G.SETTINGS.profile].joker_usage[key].wins_by_key
+						end
+						local wbk = pcall(getwinsbykey) or {}
+
+						for kk,vv in pairs(wbk) do
+							if gold_available and not_gold and MINTY.at_least_stake(kk, "stake_gold") then
+								not_gold = false
+							end
+							if catcat_available and not_catcat and MINTY.at_least_stake(kk, "stake_minty_catcat") then
+								not_catcat = false
+							end
+						end
+						if gold_available and not_gold then
+							needs_gold[#needs_gold+1] = v
+						end
+						if catcat_available and not_catcat then
+							needs_catcat[#needs_catcat+1] = v
+						end
+					end
+					local basket = SMODS.merge_lists(gold_available and #needs_gold > 0 and needs_gold or {}, catcat_available and #needs_catcat > 0 and needs_catcat or {})
+
+					return #basket > 0 and basket or pool
+				end
 			})
 			return true end }))
 		delay(0.6)

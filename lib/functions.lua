@@ -146,62 +146,6 @@ function Card:is_kity()
     return minty_kity or valkitty or yahicat
 end
 
-MINTY.kity_pool = function(legend, source)
-	local stake_index = G.GAME.stake or 1
-	local stake_key = SMODS.stake_from_index(stake_index)
-    local stake_check = MINTY.at_least_stake(G.GAME.stake, "stake_gold") or MINTY.at_least_stake(G.GAME.stake, "stake_minty_catcat")
-	local cat_basket, gold_cats, ungold_cats = {}, {}, {}
-
-	for k,v in pairs(G.P_CENTERS) do
-		local is_cat = false
-		if v.pools then
-			is_cat = v.pools.kity or v.pools.Kitties or v.pools.Cat
-		end
-        if not is_cat then goto nope end
-		local rarity_check = (legend and v.rarity == 4) or ((legend == "ignore" or not legend) and v.rarity ~= 4)
-		local pool_check = SMODS.add_to_pool(v, {source = source})
-        local dupe_check = not (next(SMODS.find_card(v.key)) and not SMODS.showman(v.key))
-        local valid = is_cat and rarity_check and pool_check and dupe_check
-		if valid then
-            cat_basket[#cat_basket+1] = k
-            if stake_check then
-                local function getwinsbykey()
-                    return G.PROFILES[G.SETTINGS.profile].joker_usage[v.key].wins_by_key
-                end
-                local wbk = pcall(getwinsbykey) or {}
-                local sticker_needed
-                if sticker_key then
-                    local gold_needed, catcat_needed, current_needed = true, true, true
-                    for kk,vv in pairs(wbk) do
-                        if gold_needed and MINTY.at_least_stake(kk, "stake_gold") then
-                            gold_needed = false
-                        end
-                        if catcat_needed and MINTY.at_least_stake(kk, "stake_minty_catcat") then
-                            catcat_needed = false
-                        end
-                        if current_needed and MINTY.at_least_stake(kk, G.GAME.stake) then
-                            current_needed = false
-                            break
-                        end
-                    end
-                    sticker_needed = current_needed and (gold_needed or catcat_needed)
-                end
-
-                if not sticker_needed then
-                    gold_cats[#gold_cats+1] = k
-                else
-                    ungold_cats[#ungold_cats+1] = k
-                end
-            end
-        end
-        ::nope::
-	end
-
-    if #cat_basket == 0 then cat_basket[#cat_basket+1] = "j_lucky_cat" end
-
-	return (legend and stake_check and (#gold_cats > 0) and (#ungold_cats > 0) and ungold_cats) or cat_basket
-end
-
 MINTY.getSpecKey = (SPECF and SPECF.getSpecKey) or function(HandName)
     MINTY.say("Using Minty's function for this")
     if not G.GAME then return "ERROR: Hands don't exist yet!" end
