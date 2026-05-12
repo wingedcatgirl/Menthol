@@ -1,9 +1,11 @@
+--Hook: Drained cards have no suit
 local nosuitref = SMODS.has_no_suit
 function SMODS.has_no_suit(card)
     if card.edition and card.edition.minty_drained then return true end
     return nosuitref(card)
 end
 
+--Hook: Treat-o-vision
 local issuitref = Card.is_suit
 function Card:is_suit(suit, bypass_debuff, flush_calc)
     if next(find_joker('Treat-o-vision')) then
@@ -14,6 +16,7 @@ function Card:is_suit(suit, bypass_debuff, flush_calc)
     return issuitref(self, suit, bypass_debuff, flush_calc)
 end
 
+--Hook: Prosopagnosia
 local isfaceref = Card.is_face
 function Card:is_face(from_boss)
     if self.debuff and not from_boss then return end
@@ -23,6 +26,7 @@ function Card:is_face(from_boss)
 	return isfaceref(self, from_boss)
 end
 
+--Hook: Run a calculation if a card tries to change suit
 local setbaseref = Card.set_base
 function Card:set_base(card, initial, manual_sprites)
     if self.playing_card and self.base then
@@ -35,6 +39,7 @@ function Card:set_base(card, initial, manual_sprites)
     setbaseref(self, card, initial, manual_sprites)
 end
 
+--Hook: Cat Ears sticker gives card the kity attribute
 local hasatt = Card.has_attribute
 function Card:has_attribute(attribute)
     if attribute == "kity" and self.ability.minty_cat_ears then return true end
@@ -58,12 +63,14 @@ loc_parse_string = function (line)
     return parsed
 end
 
+--Hook: Check infinity modifiers
 local showman = SMODS.showman
 SMODS.showman = function (key)
     if G.GAME.modifiers["minty_infinite_"..key] then return true end
     return showman(key)
 end
 
+--Hook: Calculate blind size exponents
 local gba = get_blind_amount
 get_blind_amount = function (ante)
     local amt = gba(ante)
@@ -73,6 +80,7 @@ get_blind_amount = function (ante)
     return amt
 end
 
+--Hook: Add Menthol stake colors
 local colour = loc_colour
 loc_colour = function (_c, _default)
     if not G.ARGS.LOC_COLOURS then
@@ -92,3 +100,30 @@ loc_colour = function (_c, _default)
 
     return colour(_c, _default)
 end
+
+--Hook: Mythic Rares count as Rares
+local israrity = Card.is_rarity
+function Card:is_rarity(rarity)
+    local own = self.config.center.rarity
+    if own == "minty_mythic" and (rarity == "Rare" or rarity == 3) then
+        return true
+    end
+
+    return israrity(self, rarity)
+end
+
+--Hook: Mythic Rares have a 1/8 chance to replace Rares
+--[[ --... once we invent some.
+local pollrarity = SMODS.poll_rarity
+function SMODS.poll_rarity(...)
+    local res = pollrarity(...)
+
+    if res == 3 then
+        if SMODS.pseudorandom_probability(nil, "minty_mythic_rare_poll", 1, 8, nil, true) then
+            res = "minty_mythic"
+        end
+    end
+
+    return res
+end
+--]]

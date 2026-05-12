@@ -26,3 +26,12 @@ SMODS.Gradient{
     },
     cycle = 2
 }
+
+SMODS.Gradient{
+    key = "mythic",
+    colours = {
+        G.C.RED,
+        G.C.GOLD,
+    },
+    cycle = 0.5
+}

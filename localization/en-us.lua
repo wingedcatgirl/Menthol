@@ -59,6 +59,7 @@ return {
 			["k_minty_psycube"] = "What have you done?!",
 			["k_minty_challenge"] = "Challenge",
 			["k_minty_special"] = "Special",
+			k_minty_mythic = "Mythic Rare",
 			["k_minty_hands"] = "hands per round",
 			["k_minty_size"] = "hand size",
 			["k_minty_discards"] = "discards per round",
@@ -124,6 +125,7 @@ return {
 			minty_cat_ears = "Cat Ears",
 			["k_minty_challenge"] = "Challenge",
 			["k_minty_special"] = "Special",
+			k_minty_mythic = "Mythic Rare",
 			minty_drained = "Drained",
 		},
 		["challenge_names"] = {
