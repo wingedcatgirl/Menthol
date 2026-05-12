@@ -37,7 +37,7 @@ SMODS.Attribute{ --Related to Cobalt cards (consumeable type)
     key = "cobalt"
 }
 
-SMODS.Attribute{ --Cards which modify ante
+SMODS.Attribute{ --Cards which modify ante; can be deleted when smods #1371 is merged
     key = "ante"
 }
 
