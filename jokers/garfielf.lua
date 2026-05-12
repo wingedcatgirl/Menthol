@@ -63,7 +63,7 @@ SMODS.Joker {
         }
     end,
     in_pool = function(self, args)
-        return MINTY.threeSuit_in_pool()
+        return true --MINTY.threeSuit_in_pool()
     end,
     calculate = function(self, card, context)
         if (context.joker_main and context.scoring_hand) or context.forcetrigger then
