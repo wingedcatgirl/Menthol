@@ -8,38 +8,21 @@ priority = 1
 target = '=[SMODS _ "src/utils.lua"]'
 position = "after"
 pattern = '''
-function Card:can_calculate(ignore_debuff, ignore_sliced)
-'''
-payload = '''
-ignore_debuff = ignore_debuff or not not next(SMODS.find_card("j_minty_finity_calico"))
-'''
-match_indent = true
-
-
-[[patches]]
-[patches.pattern]
-target = '=[SMODS _ "src/utils.lua"]'
-position = "after"
-pattern = '''
 card_eval_status_text(card, 'debuff')
 '''
 payload = '''
 if next(SMODS.find_card("j_minty_finity_calico")) then
-    context.no_chips = true
-    SMODS.score_card(card, context)
-    context.no_chips = nil
+    context.minty_score_debuffed_card = true
+    local othercard = context.other_card
+    context.other_card = card
+    for i,calico in ipairs(SMODS.find_card("j_minty_finity_calico")) do
+        local eff = G.P_CENTERS.j_minty_finity_calico:calculate(calico, context)
+        if eff and next(eff) then
+            SMODS.calculate_effect(eff, card)
+        end
+    end
+    context.other_card = othercard
+    context.minty_score_debuffed_card = nil
 end
-'''
-match_indent = true
-
-[[patches]]
-[patches.pattern]
-target = "functions/common_events.lua"
-position = "at"
-pattern = '''
-if chips ~= 0 then
-'''
-payload = '''
-if chips ~= 0 and not context.no_chips then
 '''
 match_indent = true

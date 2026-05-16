@@ -110,15 +110,16 @@ SMODS.Joker {
             }
         end
 
-        if context.cardarea == G.play and context.individual and context.other_card then
-            local ret = {}
-            if context.other_card.facing == "back" then
-                ret.mult = card.ability.extra.flipped_mult
-            end
-            if context.other_card.debuff then
-                ret.xmult = card.ability.extra.debuffed_xmult
-            end
-            if ret ~= {} then return ret end
+        if context.individual and context.cardarea == G.play and context.other_card.facing == "back" then
+            return {
+                mult = card.ability.extra.flipped_mult
+            }
+        end
+
+        if context.minty_score_debuffed_card and context.other_card and context.other_card.debuff then
+            return {
+                xmult = card.ability.extra.debuffed_xmult
+            }
         end
     end
 }
