@@ -112,14 +112,19 @@ function Card:is_rarity(rarity)
     return israrity(self, rarity)
 end
 
---Hook: Mythic Rares have a 1/8 chance to replace Rares
+--Hook: Mythic Rares have a chance to replace Rares, such that each individual Mythic is about half as common as each individual Rare
 --[[ --... once we invent some.
 local pollrarity = SMODS.poll_rarity
 function SMODS.poll_rarity(...)
     local res = pollrarity(...)
 
-    if res == 3 then
-        if SMODS.pseudorandom_probability(nil, "minty_mythic_rare_poll", 1, 8, nil, true) then
+    if res == 3 and #SMODS.get_clean_pool("Joker", "minty_mythic") > 0 then
+        local allowdupes = SMODS.poll_object_allow_duplicates
+        SMODS.poll_object_allow_duplicates = false
+        local rares = #SMODS.get_clean_pool("Joker", "Rare")
+        local mythics = #SMODS.get_clean_pool("Joker", "minty_mythic")
+        SMODS.poll_object_allow_duplicates = allowdupes
+        if SMODS.pseudorandom_probability(nil, "minty_mythic_rare_poll", mythics, (rares*2)+mythics, nil, true) then
             res = "minty_mythic"
         end
     end

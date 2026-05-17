@@ -672,11 +672,6 @@ SMODS.current_mod.calculate = function (self, context)
         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
     end
 
-    if G.GAME.real_banned_keys and not G.pack_cards then --Failsafe for mod boosters
-        G.GAME.banned_keys = G.GAME.real_banned_keys
-        G.GAME.real_banned_keys = nil
-    end
-
     if (G.GAME.modifiers.minty_taxation and G.GAME.modifiers.minty_taxation ~= 0) and context.initial_scoring_step then
         return {
             mult = G.GAME.dollars * -G.GAME.modifiers.minty_taxation

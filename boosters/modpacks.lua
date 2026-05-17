@@ -1,3 +1,26 @@
+local function create_modded_card (self, card, i)
+    local key = SMODS.poll_object{
+        type = "Joker",
+        seed = "minty_mod_pack",
+        filter = function (pool)
+            local newpool = {}
+            for _,item in ipairs(pool) do
+                local center = G.P_CENTERS[item.key]
+                if center and item.type == "Joker" and center.original_mod and center.original_mod.id == card.ability.mod.id then
+                    newpool[#newpool+1] = item
+                end
+            end
+            return newpool
+        end
+    }
+
+    return {
+        set = "Joker",
+        key = key,
+        skip_materialize = true
+    }
+end
+
 SMODS.Booster{
     key = "mod_normal_1",
     kind = "mod_packs",
@@ -53,29 +76,7 @@ SMODS.Booster{
     in_pool = function (self, args)
         return true
     end,
-    create_card = function (self, card, i)
-        if i==1 then
-            G.GAME.real_banned_keys = copy_table(G.GAME.banned_keys or {})
-            MINTY.event(function ()
-                if (G.pack_cards and G.pack_cards.cards) then return false end
-                G.GAME.banned_keys = G.GAME.real_banned_keys or {}
-                G.GAME.real_banned_keys = nil
-                return true
-            end, {blocking = false, blockable = false, delay = 0.2})
-
-            for k,v in pairs(G.P_CENTERS) do
-                if (v.original_mod or {}).id ~= card.ability.mod.id then
-                    G.GAME.banned_keys[k] = true
-                end
-            end
-        end
-
-        return {
-            set = "Joker",
-            key_append = "minty_mod_pack",
-            skip_materialize = true
-        }
-    end
+    create_card = create_modded_card
 }
 
 SMODS.Booster{
@@ -133,28 +134,7 @@ SMODS.Booster{
     in_pool = function (self, args)
         return true
     end,
-    create_card = function (self, card, i)
-        if i==1 then
-            G.GAME.real_banned_keys = copy_table(G.GAME.banned_keys or {})
-            MINTY.event(function ()
-                if (G.pack_cards and G.pack_cards.cards) then return false end
-                G.GAME.banned_keys = G.GAME.real_banned_keys or {}
-                G.GAME.real_banned_keys = nil
-                return true
-            end, {blocking = false, blockable = false, delay = 0.2})
-            for k,v in pairs(G.P_CENTERS) do
-                if (v.original_mod or {}).id ~= card.ability.mod.id then
-                    G.GAME.banned_keys[k] = true
-                end
-            end
-        end
-
-        return {
-            set = "Joker",
-            key_append = "minty_mod_pack",
-            skip_materialize = true
-        }
-    end
+    create_card = create_modded_card
 }
 
 SMODS.Booster{
@@ -212,28 +192,7 @@ SMODS.Booster{
     in_pool = function (self, args)
         return true
     end,
-    create_card = function (self, card, i)
-        if i==1 then
-            G.GAME.real_banned_keys = copy_table(G.GAME.banned_keys or {})
-            MINTY.event(function ()
-                if (G.pack_cards and G.pack_cards.cards) then return false end
-                G.GAME.banned_keys = G.GAME.real_banned_keys or {}
-                G.GAME.real_banned_keys = nil
-                return true
-            end, {blocking = false, blockable = false, delay = 0.2})
-            for k,v in pairs(G.P_CENTERS) do
-                if (v.original_mod or {}).id ~= card.ability.mod.id then
-                    G.GAME.banned_keys[k] = true
-                end
-            end
-        end
-
-        return {
-            set = "Joker",
-            key_append = "minty_mod_pack",
-            skip_materialize = true
-        }
-    end
+    create_card = create_modded_card
 }
 
 SMODS.Booster{
@@ -291,26 +250,5 @@ SMODS.Booster{
     in_pool = function (self, args)
         return true
     end,
-    create_card = function (self, card, i)
-        if i==1 then
-            G.GAME.real_banned_keys = copy_table(G.GAME.banned_keys or {})
-            MINTY.event(function ()
-                if (G.pack_cards and G.pack_cards.cards) then return false end
-                G.GAME.banned_keys = G.GAME.real_banned_keys or {}
-                G.GAME.real_banned_keys = nil
-                return true
-            end, {blocking = false, blockable = false, delay = 0.2})
-            for k,v in pairs(G.P_CENTERS) do
-                if (v.original_mod or {}).id ~= card.ability.mod.id then
-                    G.GAME.banned_keys[k] = true
-                end
-            end
-        end
-
-        return {
-            set = "Joker",
-            key_append = "minty_mod_pack",
-            skip_materialize = true
-        }
-    end
+    create_card = create_modded_card
 }

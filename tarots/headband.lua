@@ -52,6 +52,6 @@ SMODS.Consumable{
     end,
 
     in_pool = function (self, args)
-        return true
+        return not not next(SMODS.find_card("v_minty_mandate")) --No need for headbands when everyone's a catgirl by law
     end
 }
