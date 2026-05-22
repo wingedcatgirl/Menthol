@@ -1,7 +1,7 @@
 SMODS.Voucher{
     key = "suggestion",
     atlas = "vouchers",
-    pos = {
+    pos = { --Possible art idea: https://x.com/bghtnya/status/2056024715836424364 Estradiol girl?
         x = 0,
         y = 0,
     },
