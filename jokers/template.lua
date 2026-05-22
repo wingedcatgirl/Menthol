@@ -29,7 +29,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
+        if MINTY.config.flavor_text and G.localization.descriptions[self.set][self.key.."_flavor"] then
             key = self.key.."_flavor"
         end
         return {

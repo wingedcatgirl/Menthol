@@ -27,6 +27,7 @@ return {
 			["k_minty_crystal"] = "Crystal!",
 			k_minty_ratio = "L + ratio!",
 			k_minty_bouyant = "Buoyant!",
+			k_minty_charged = "Charged!",
 
 			--Option text
 			option_minty_flavor = "Flavor text",
@@ -1709,6 +1710,20 @@ return {
 					" ",
 					"{C:inactive,s:0.8}All ghosts have unfinished business.",
 					"{C:inactive,s:0.8}That's why they don't cross over."
+				}
+			},
+			j_minty_chopper = {
+				name = "Chopper Badstone",
+				text = {
+					{
+						"When fully charged, {C:attention}use{} to double the",
+						"next hand's score, and reduce the blind",
+						"size by the same amount."
+					},
+					{
+						"Gains charge when drawing a card",
+						"that is debuffed or flipped"
+					}
 				}
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 

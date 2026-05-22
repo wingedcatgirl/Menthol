@@ -100,6 +100,7 @@ local files = {
         { name = "gradience" },
         { name = "functions" },
         { name = "hooks" },
+        { name = "buttons" },
         { name = "achievements" },
         { name = "sounds" },
         { name = "configui" },
@@ -144,6 +145,7 @@ local files = {
         { name = "cakesword" },
         { name = "catcafe" },
         { name = "catnipfields" },
+        { name = "chopper" },
         { name = "claw" },
         { name = "clock" },
         { name = "contraption" },
@@ -352,6 +354,46 @@ for _, folder in ipairs(files) do
         end
         ::nvm::
     end
+end
+
+local dev = true
+if dev then
+    SMODS.Back{
+        key = "testdeck",
+        loc_txt = {
+            name = "Test Deck",
+            text = {
+                "Contains whatever"
+            }
+        },
+        apply = function (self, back)
+            MINTY.event(function ()
+                if not G.jokers then return false end
+                SMODS.add_card{
+                    key = "j_greedy_joker",
+                    set = "Joker",
+                    area = G.jokers
+                }
+                SMODS.add_card{
+                    key = "j_smeared",
+                    set = "Joker",
+                    area = G.jokers
+                }
+                SMODS.add_card{
+                    key = "j_minty_chopper",
+                    set = "Joker",
+                    area = G.jokers
+                }
+                SMODS.add_card{
+                    key = "c_hermit",
+                    set = "Tarot",
+                    area = G.consumeables
+                }
+                
+                return true
+            end, {blocking = false})
+        end
+    }
 end
 
 SMODS.current_mod.menu_cards = function ()
