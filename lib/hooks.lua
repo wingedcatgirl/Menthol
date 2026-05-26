@@ -20,6 +20,7 @@ end
 local isfaceref = Card.is_face
 function Card:is_face(from_boss)
     if self.debuff and not from_boss then return end
+    if self.base.id == SMODS.Mods.minty_face.id then return true end
     if next(find_joker("Prosopagnosia")) and not next(find_joker("Pareidolia")) then
         return false
     end
@@ -87,15 +88,21 @@ loc_colour = function (_c, _default)
         colour(_c, _default)
     end
 
+    local colours = {
+        stake_minty_scarlet = HEX("ff0537"),
+        stake_minty_irrigo = HEX("cb0dff"),
+        stake_minty_void = HEX("001417"),
+        stake_minty_sky = HEX("00c7ff"),
+        stake_minty_mint = HEX("00a156"),
+        stake_minty_tungsten = HEX("667072"),
+        stake_minty_catcat = HEX("CA7CA7"),
+        stake_minty_rose_gold = HEX("ffb2a0")
+    }
+
     if not G.ARGS.LOC_COLOURS.stake_minty_scarlet then
-        G.ARGS.LOC_COLOURS.stake_minty_scarlet = HEX("ff0537")
-        G.ARGS.LOC_COLOURS.stake_minty_irrigo = HEX("cb0dff")
-        G.ARGS.LOC_COLOURS.stake_minty_void = HEX("001417")
-        G.ARGS.LOC_COLOURS.stake_minty_sky = HEX("00c7ff")
-        G.ARGS.LOC_COLOURS.stake_minty_mint = HEX("00a156")
-        G.ARGS.LOC_COLOURS.stake_minty_tungsten = HEX("667072")
-        G.ARGS.LOC_COLOURS.stake_minty_catcat = HEX("CA7CA7")
-        G.ARGS.LOC_COLOURS.stake_minty_rose_gold = HEX("ffb2a0")
+        for k,v in pairs(colours) do
+            G.ARGS.LOC_COLOURS[k] = v
+        end
     end
 
     return colour(_c, _default)

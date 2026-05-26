@@ -14,8 +14,7 @@ SMODS.Consumable {
             key = self.key.."_flavor"
         end
 		-- Handle creating a tooltip with set args.
-		info_queue[#info_queue + 1] =
-			{ set = "Other", key = "minty_cement_seal", specific_vars = { self.config.seal.extra.chips } }
+		info_queue[#info_queue + 1] = { set = "Other", key = "minty_cement_seal", specific_vars = { self.config.seal.extra.chips } }
 		return {
 			key = key,
 			vars = { card.ability.max_highlighted }

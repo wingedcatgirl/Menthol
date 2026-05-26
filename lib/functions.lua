@@ -569,7 +569,7 @@ end
 MINTY.event = function(func, args)
     args = args or {}
     args.func = args.func or func
-    G.E_MANAGER:add_event(Event(args))
+    G.E_MANAGER:add_event(Event(args), args.queue, args.front)
 end
 
 
