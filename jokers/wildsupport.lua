@@ -54,7 +54,8 @@ SMODS.Joker {
                 card.ability.extra.multgain,
                 card.ability.extra.xmultgain,
                 card.ability.extra.chipsgain,
-                card.ability.extra.cashgain
+                card.ability.extra.cashgain,
+                luck,
             }
         }
     end,

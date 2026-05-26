@@ -1395,7 +1395,7 @@ return {
 					"up to {X:mult,C:white}X#3#{} Mult (+{X:mult,C:white}X#8#{}),",
 					"up to {C:chips}#4#{} Chips (+{C:chips}#9#{}),",
 					"or up to {C:money}$#5#{} (+{C:money}$#10#{}),",
-					"and {C:green}#1# in #6#{} chance to",
+					"and {C:green}#11# in #6#{} chance to",
 					"increase maximum value"
 				},
 			},
@@ -1407,7 +1407,7 @@ return {
 					"up to {X:mult,C:white}X#3#{} Mult (+{X:mult,C:white}X#8#{}),",
 					"up to {C:chips}#4#{} Chips (+{C:chips}#9#{}),",
 					"or up to {C:money}$#5#{} (+{C:money}$#10#{}),",
-					"and {C:green}#1# in #6#{} chance to",
+					"and {C:green}#11# in #6#{} chance to",
 					"increase maximum value",
 					" ",
 					"{C:inactive,s:0.8}This is definitely fine.{}",
