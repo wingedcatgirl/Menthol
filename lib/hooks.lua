@@ -40,14 +40,6 @@ function Card:set_base(card, initial, manual_sprites)
     setbaseref(self, card, initial, manual_sprites)
 end
 
---Hook: Cat Ears sticker gives card the kity attribute
-local hasatt = Card.has_attribute
-function Card:has_attribute(attribute)
-    if attribute == "kity" and self.ability.minty_cat_ears then return true end
-
-    return hasatt(self, attribute)
-end
-
 ---Slapdash patch for #CA7CA7 stake name; replaces "<hash>" with "#"
 local oldparser = loc_parse_string
 loc_parse_string = function (line)
