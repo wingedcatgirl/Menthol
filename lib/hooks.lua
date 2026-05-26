@@ -16,11 +16,11 @@ function Card:is_suit(suit, bypass_debuff, flush_calc)
     return issuitref(self, suit, bypass_debuff, flush_calc)
 end
 
---Hook: Prosopagnosia
+--Hook: Prosopagnosia and Face rank
 local isfaceref = Card.is_face
 function Card:is_face(from_boss)
     if self.debuff and not from_boss then return end
-    if self.base.id == SMODS.Mods.minty_face.id then return true end
+    if self.base.id == SMODS.Ranks.minty_face.id then return true end
     if next(find_joker("Prosopagnosia")) and not next(find_joker("Pareidolia")) then
         return false
     end
