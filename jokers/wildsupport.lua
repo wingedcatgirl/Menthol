@@ -109,7 +109,6 @@ SMODS.Joker {
                 local luck, unluck = SMODS.get_probability_vars(card, 1, 4, "minty_wildsupport_luck", false)
                 local total_luck = (luck/unluck)*4
                 total_luck = math.min(math.floor(total_luck), 4)
-                local _,odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "minty_wildsupport_odds", true)
                 if SMODS.has_enhancement(context.other_card, "m_wild") and (total_luck >= 1) then
                     local bonuses = {'mult', 'xmult', 'chips', 'cash'}
                     local result = {}
