@@ -46,6 +46,8 @@ SMODS.Joker {
             }
         end
 
+        --if a food card just got consumed, convert to fast tiger?
+
         if context.end_of_round and not context.blueprint and not context.repetition and not context.individual then
             SMODS.scale_card(card,{
                 ref_table = card.ability.extra,

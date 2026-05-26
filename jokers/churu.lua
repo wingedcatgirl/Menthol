@@ -1,10 +1,16 @@
 ---Stub function if PB isn't active, so this *can* work without it. Not recommended, but possible!
-local stickmult = (PB_UTIL and PB_UTIL.calculate_stick_xMult) or function (card)
-    local xMult = card.ability.extra.xMult or 1
+local plastic_stickmult = (PB_UTIL and PB_UTIL.calculate_stick_xMult) or function (card)
+    local xMult_per = card.ability.extra.xMult or 1
+    local xMult_if = card.ability.extra.unhidden_xmult
     local sticks = SMODS.find_card("j_minty_plastic_stick") --Assuming no other mod allows PB sticks to exist without PB :v
+    local hidden = not (G.GAME.starting_params.start_with_3s or G.GAME.starting_params.minty_three_lock == 1)
 
     if #sticks > 0 then
-        return card.ability.extra.xMult_if_stick or (xMult * (#sticks-1))
+        if hidden then
+            return (xMult_per * (#sticks-1))
+        else
+            return xMult_if
+        end
     end
     return 1
 end
@@ -162,8 +168,8 @@ SMODS.Joker {
     key = 'plastic_stick',
     config = {
         extra = {
-            xMult = 1,
-            xMult_if_stick = 2
+            xMult = 1.5,
+            unhidden_xmult = 2
         }
     },
     attributes = {
@@ -198,16 +204,20 @@ SMODS.Joker {
             info_queue[#info_queue+1] = { set = "Other", key = "minty_disabled_object_requirement", specific_vars = { "Mod", "Paperback" } }
         end
         local key = self.key
+        local hidden = not (G.GAME.starting_params.start_with_3s or G.GAME.starting_params.minty_three_lock == 1)
+        if not hidden then
+            key = key.."_unhidden"
+        end
         if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
+            key = key.."_flavor"
         end
 
-        local xMult = stickmult(card)
+        local xMult = plastic_stickmult(card)
 
         return {
             key = key,
             vars = {
-                card.ability.extra.xMult_if_stick,
+                hidden and card.ability.extra.xMult or card.ability.extra.unhidden_xmult,
                 xMult
             }
         }
@@ -215,7 +225,7 @@ SMODS.Joker {
 
     calculate = function(self, card, context)
         if context.joker_main then
-            local xMult = stickmult(card)
+            local xMult = plastic_stickmult(card)
 
             if xMult ~= 1 then
                 return {

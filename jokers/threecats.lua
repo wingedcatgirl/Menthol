@@ -37,12 +37,13 @@ SMODS.Joker {
         if MINTY.config.flavor_text then
             key = self.key.."_flavor"
         end
-        local luck = SMODS.get_probability_vars(card, 1, 3, "minty_threecats_desc", false)
-        luck = math.min(luck, 3)
+        local luck, unluck = SMODS.get_probability_vars(card, 1, 3, "minty_threecats", false)
+        local total_luck = (luck/unluck)*3
+        total_luck = math.min(math.floor(total_luck), 3)
         return {
             key = key,
             vars = {
-                luck,
+                total_luck,
                 card.ability.extra.chips,
                 card.ability.extra.mult,
                 card.ability.extra.xmult
@@ -71,10 +72,14 @@ SMODS.Joker {
             local count = context.other_card:is_3()
             card.ability.extra.again = count - 1
             local bonuses = {'mult', 'xmult', 'chips'}
-            local result = {card = card}
-            local luck = SMODS.get_probability_vars(card, 1, 3, "minty_claw_roll", true)
-            luck = math.floor(luck)
-            for go=1, math.min(luck, 3) do
+            local result = {}
+            local luck, unluck = SMODS.get_probability_vars(card, 1, 3, "minty_threecats", false)
+            local total_luck = (luck/unluck)*3
+            total_luck = math.min(math.floor(total_luck), 3)
+
+            if total_luck < 1 then return end
+
+            for go=1, total_luck do
                 local roll = pseudorandom_element(bonuses)
                 for i, v in ipairs(bonuses) do
                     if v == roll then

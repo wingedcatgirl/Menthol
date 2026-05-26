@@ -1322,11 +1322,29 @@ return {
 					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				},
 			},
+			["j_minty_plastic_stick_unhidden"] = {
+				["name"] = "Plastic \"Stick\"",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult for each",
+					"other {C:attention}\"Stick\"{} Joker",
+					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+				},
+			},
 			["j_minty_plastic_stick_flavor"] = {
 				["name"] = "Plastic \"Stick\"",
 				["text"] = {
 					"{X:mult,C:white}X#1#{} Mult if you have",
 					"another {C:attention}\"Stick\"{} Joker",
+					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+					" ",
+					"{C:inactive,s:0.8}nooooo my treat is all gone",
+				},
+			},
+			["j_minty_plastic_stick_unhidden_flavor"] = {
+				["name"] = "Plastic \"Stick\"",
+				["text"] = {
+					"{X:mult,C:white}X#1#{} Mult for each",
+					"other {C:attention}\"Stick\"{} Joker",
 					"{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 					" ",
 					"{C:inactive,s:0.8}nooooo my treat is all gone",
