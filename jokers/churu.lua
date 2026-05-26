@@ -7,7 +7,7 @@ local plastic_stickmult = (PB_UTIL and PB_UTIL.calculate_stick_xMult) or functio
 
     if #sticks > 0 then
         if hidden then
-            return (xMult_per * (#sticks-1))
+            return (xMult_per * (#sticks-1)) or xMult_if
         else
             return xMult_if
         end
