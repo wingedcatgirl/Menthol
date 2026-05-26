@@ -39,11 +39,13 @@ SMODS.Joker {
         if MINTY.config.flavor_text then
             key = self.key.."_flavor"
         end
-        local luck, odds = SMODS.get_probability_vars(self, 1, card.ability.extra.odds, "minty_wildsupport_desc", false)
+        local luck, unluck = SMODS.get_probability_vars(card, 1, 4, "minty_wildsupport_luck", false)
+        local total_luck = (luck/unluck)*4
+        total_luck = math.min(math.floor(total_luck), 4)
         return {
             key = key,
             vars = {
-                luck,
+                total_luck,
                 card.ability.extra.mult,
                 card.ability.extra.xmult,
                 card.ability.extra.chips,
@@ -104,15 +106,15 @@ SMODS.Joker {
 
         if context.individual then
             if context.cardarea == G.play then
-                local luck = SMODS.get_probability_vars(card, 1, 999999999999, "minty_wildsupport_luck", true)
-                luck = math.min(luck, 4)
+                local luck, unluck = SMODS.get_probability_vars(card, 1, 4, "minty_wildsupport_luck", false)
+                local total_luck = (luck/unluck)*4
+                total_luck = math.min(math.floor(total_luck), 4)
                 local _,odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "minty_wildsupport_odds", true)
-                if SMODS.has_enhancement(context.other_card, "m_wild") and (luck >= 1) then
+                if SMODS.has_enhancement(context.other_card, "m_wild") and (total_luck >= 1) then
                     local bonuses = {'mult', 'xmult', 'chips', 'cash'}
-                    local result = {card = card}
-                    luck = math.floor(luck)
-                    --sendDebugMessage('[Minty] Luck = '..luck)
-                    for go=1, math.min(luck, 4) do
+                    local result = {}
+                    --sendDebugMessage('[Minty] Luck = '..total_luck)
+                    for go=1, math.min(total_luck, 4) do
                         local roll = pseudorandom_element(bonuses)
                         for i, v in ipairs(bonuses) do
                             if v == roll then
