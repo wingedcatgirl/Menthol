@@ -1,6 +1,7 @@
 MINTY = MINTY or {}
 MINTY.prefix = SMODS.current_mod.prefix
 MINTY.config = SMODS.current_mod.config
+local dev = string.find(SMODS.current_mod.version, "~")
 
 SMODS.current_mod.debug_info = {}
 
@@ -391,14 +392,20 @@ end
 
 MINTY.lastmoment = function ()
     MINTY.say("Running last-moment code...")
+    local function fulltrace(msg)
+        if dev then MINTY.say(msg, "TRACE") end
+    end
+    fulltrace("Collecting rocks...")
     MINTY.rocklist()
     if G.P_CENTERS.j_minty_inkbleed then --No point actually *doing* this if Inkbleed is still dummied
+        fulltrace("Bleeding ink...")
         MINTY.enhancecheck()
     end
 
     MINTY.packable_mods = {}
     MINTY.modbag = {}
     MINTY.vjokers = {}
+    fulltrace("Assembling Mod Packs...")
     for k,v in pairs(G.P_CENTERS) do
         local normal = {
             [1] = true,
@@ -423,7 +430,13 @@ MINTY.lastmoment = function ()
             end
         end
     end
-    for k,v in pairs(copy_table(MINTY.packable_mods)) do
+
+    local temp = {}
+    for k,v in pairs(MINTY.packable_mods) do
+        temp[k] = v
+    end
+
+    for k,v in pairs(temp) do
         if v.count < 6 then
             MINTY.packable_mods[k] = nil
         else
@@ -443,6 +456,7 @@ MINTY.lastmoment = function ()
     --]]
 
     --Put vanilla ranks in first slot of prev table, where they belong.
+    fulltrace("Ordering ranks...")
     for k,v in pairs(SMODS.Ranks) do
         if v.prev and type(v.prev[1]) == "string" and v.prev[2] and string.find(v.prev[1], "minty_") then
             for ii,vv in ipairs(v.prev) do
@@ -455,6 +469,7 @@ MINTY.lastmoment = function ()
     end
 
     if Cryptid and cry_best_interest_cap and not MINTY.cbic_override then --Gotta put it here cause priority~ Cryptid will probably fix this on their end soon-ish but for now this at least makes sure ducks are accounted for
+        fulltrace("Improving interest cap...")
         MINTY.cbic_override = true --Only do it once
         local cbic = cry_best_interest_cap
         function cry_best_interest_cap()
@@ -471,6 +486,7 @@ MINTY.lastmoment = function ()
     end
 
     -- Reassociate fallback for custom ranks for mods that load after this one
+    fulltrace("Reassembling face and number art...")
     MINTY.build_face_rank()
     MINTY.build_number_rank()
 
