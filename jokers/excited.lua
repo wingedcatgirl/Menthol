@@ -92,7 +92,11 @@ SMODS.Joker {
         end
         if
 			(-- Mostly copied from Cryptid's "sob" and "Duplicare"
-                (context.post_trigger and (context.other_context.main_eval or context.other_context.individual) and (context.other_card ~= card))
+                (context.post_trigger and (
+                    (context.other_context.main_eval or context.other_context.individual) and
+                    not (context.other_context.modify_scoring_hand))
+                    and (context.other_card ~= card
+                ))
                 or (context.cardarea == G.play and context.individual)
 				or context.discard
 				or context.reroll_shop
@@ -112,6 +116,13 @@ SMODS.Joker {
             for k,v in pairs(context) do
                 if v == true then
                     MINTY.say(k, "TRACE")
+                end
+                if k == "other_context" and type(v) == "table" then
+                    for kk, vv in pairs(v) do
+                        if vv == true then
+                            MINTY.say(kk, "TRACE")
+                        end
+                    end
                 end
             end
             --]]
