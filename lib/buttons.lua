@@ -165,7 +165,7 @@ function G.UIDEF.use_and_sell_buttons(card)
     if center.buttons then
         local to_override = {}
         for i,button in ipairs(center.buttons) do
-            args = button.get_button_args(center, card)
+            local args = button.get_button_args(center, card)
             if not (button.hide and button.hide(center, card)) then
                 if to_override[args.id or ""] then
                     args = to_override[args.id]
@@ -174,7 +174,7 @@ function G.UIDEF.use_and_sell_buttons(card)
                 end
                 
                 if type(args.override) == "string" then
-                    overridden = false
+                    local overridden = false
                     for ii,vv in ipairs(pre_buttons) do
                         if vv.id == args.override then
                             pre_buttons[ii] = args
