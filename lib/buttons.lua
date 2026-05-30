@@ -1,5 +1,6 @@
 ---@diagnostic disable: duplicate-set-field
 -- Modified code from https://github.com/Foo54/SynthB/blob/main/src/api/useable_joker.lua
+-- which in turn modified it from spectrallib https://github.com/SpectralPack/Spectrallib/blob/main/Entropy/card_buttons.lua ahahaha there is so much going on in here i am NOT touching that
 
 local myprefix = SMODS.current_mod.prefix
 
@@ -120,6 +121,7 @@ function G.UIDEF.use_and_sell_buttons(card)
 
     local sell_args = {
         card = card,
+        id = "sell",
         can = "can_sell_card",
         effect = "sell_card",
         handy_insta = "sell",
@@ -132,6 +134,7 @@ function G.UIDEF.use_and_sell_buttons(card)
     }
     local use_args = {
         card = card,
+        id = "use",
         can = myprefix .. "_can_use_joker",
         effect = myprefix .. "_use_joker",
         handy_insta = "use",
@@ -139,6 +142,7 @@ function G.UIDEF.use_and_sell_buttons(card)
     }
     local fuse_args = {
         card = card,
+        id = "fuse",
         can = "can_fuse_card",
         effect = "fuse_card",
         title = localize("b_fuse"),
@@ -153,17 +157,38 @@ function G.UIDEF.use_and_sell_buttons(card)
     if not (center.hide_sell_button and center:hide_sell_button(card)) then
         pre_buttons[#pre_buttons+1] = sell_args
     end
-    if center.use and (not center.can_use or center:can_use(card)) and not (center.hide_use_button and center:hide_use_button(card)) then
+    if center.use and not (center.hide_use_button and center:hide_use_button(card)) then
+        print("Creating use button")
         pre_buttons[#pre_buttons+1] = use_args
     end
 
-
     if center.buttons then
+        local to_override = {}
         for i,button in ipairs(center.buttons) do
-            if #pre_buttons > 3 then break end
             args = button.get_button_args(center, card)
             if not (button.hide and button.hide(center, card)) then
-                pre_buttons[#pre_buttons+1] = args
+                if to_override[args.id or ""] then
+                    args = to_override[args.id]
+                    to_override[args.id] = nil
+                    args.override = nil
+                end
+                
+                if type(args.override) == "string" then
+                    overridden = false
+                    for ii,vv in ipairs(pre_buttons) do
+                        if vv.id == args.override then
+                            pre_buttons[ii] = args
+                            break
+                        end
+                    end
+                    if not overridden then
+                        to_override[args.override] = args
+                    end
+                elseif #pre_buttons < 3 then
+                    pre_buttons[#pre_buttons+1] = args
+                else
+                    pre_buttons[math.random(1,3)] = args --Horribly, horribly inelegant, but at least ensures excess buttons can appear at all. Probably avoid causing this situation if you can!!!
+                end
             end
         end
     end

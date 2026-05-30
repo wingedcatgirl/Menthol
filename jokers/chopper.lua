@@ -33,6 +33,8 @@ SMODS.Joker {
                 effect = "minty_use_joker",
                 handy_insta = "use",
                 title = localize("b_use"),
+                override = "use",
+                id = "use_charged",
                 text = {
                     { ref_table = card.ability.extra, ref_value = "charge" },
                     "/",
@@ -42,9 +44,6 @@ SMODS.Joker {
             return args
         end }
     },
-    hide_use_button = function (self, card)
-        return true
-    end,
     use = function (self, card)
         card.ability.extra.ready = true
         juice_card_until(card, function ()
