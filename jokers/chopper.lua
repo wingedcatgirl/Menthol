@@ -37,6 +37,7 @@ SMODS.Joker {
                 title = localize("b_use"),
                 override = "use",
                 id = "use_charged",
+                minw = 1.25,
                 text = {
                     { ref_table = card.ability.extra, ref_value = "charge" },
                     "/",

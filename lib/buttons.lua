@@ -12,7 +12,7 @@ G.FUNCS[myprefix .. "_can_use_joker"] = function(e)
         e.config.colour = G.C.UI.BACKGROUND_INACTIVE
         e.config.button = nil
     end
-    
+
     if
         (not center.can_use or center:can_use(e.config.ref_table)) and not e.config.ref_table.debuff
         and G.STATE ~= G.STATES.HAND_PLAYED and G.STATE ~= G.STATES.DRAW_TO_HAND and G.STATE ~= G.STATES.PLAY_TAROT
@@ -37,30 +37,41 @@ G.FUNCS[myprefix .. "_use_joker"] = function(e)
 end
 
 if G.basic_buttons_activated then
-    print("Buttons provided by "..G.basic_buttons_activated.."; letting them handle it")
+    print("Buttons already provided by "..G.basic_buttons_activated.."; letting them handle it")
     return
 else
     G.basic_buttons_activated = SMODS.current_mod.name
 end
 
-local function gen_button(args, card)
+local scales = {
+    [1] = 1.1,
+    [2] = 1,
+    [3] = 0.8,
+    [4] = 0.7,
+    [5] = 0.6
+}
+
+local function gen_button(args, card, scale_down)
+    scale_down = math.floor(math.max(math.min(scale_down or 0, 4), 0))
+    local debig = (0.4/0.5)^(scale_down or 0)
     card = card or args.card
-    local button_config = { ref_table = card, align = "cr", padding = 0.1, r = 0.08, minw = 1.25, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = args.one_press, button = args.effect, func = args.can, handy_insta_action = args.handy_insta }
+    local minw = math.max(scales[(scale_down + 1)], args.minw or 0)
+    if args.maxw then minw = math.min(minw, args.maxw) end
+    local button_config = { ref_table = card, align = "cr", padding = 0.1-(scale_down*0.01), r = 0.08, minw = minw, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = args.one_press, button = args.effect, func = args.can, handy_insta_action = args.handy_insta }
     local title = args.title and {
         n = G.UIT.R,
         config = { align = "cm", maxw = 1.25, debug = "gentitle" },
         nodes = {
-            { n = G.UIT.T, config = { text = args.title, colour = args.title_colour or G.C.UI.TEXT_LIGHT, scale = 0.4, shadow = true } }
+            { n = G.UIT.T, config = { text = args.title, colour = args.title_colour or G.C.UI.TEXT_LIGHT, scale = (args.title_scale or 0.4)*debig, shadow = true } }
         }
     } or nil
     local text = {}
     if type(args.text) == "string" then
-        text[1] = { n = G.UIT.T, config = { text = args.text, colour = args.text_colour or G.C.WHITE, scale = args.text_scale or 0.55, shadow = true } }
+        text[1] = { n = G.UIT.T, config = { text = args.text, colour = args.text_colour or G.C.WHITE, scale = (args.text_scale or 0.55)*debig, shadow = true } }
     else
         for i, subtext in ipairs(args.text) do
-            local node = { n = G.UIT.T, config = { colour = subtext.colour or G.C.WHITE, scale = subtext.scale or 0.4, shadow = true } }
+            local node = { n = G.UIT.T, config = { colour = subtext.colour or G.C.WHITE, scale = (subtext.scale or 0.55)*debig, shadow = true } }
             if type(subtext) == "string" then
-                print("subtext is a string, weird that it didn't crash")
                 node.config.text = subtext
             elseif type(subtext) == "table" then
                 for k, v in pairs(subtext) do
@@ -68,6 +79,9 @@ local function gen_button(args, card)
                     if string.find(k, "_arg$") then
                         key = string.gsub(arg, "_arg$", "")
                         arg = args[v]
+                    end
+                    if string.find(k, "scale") then
+                        arg = v*debig
                     end
                     node.config[key] = arg
                 end
@@ -83,17 +97,6 @@ local function gen_button(args, card)
         nodes = text
     }
 
-    local locs = {
-        top = "t",
-        high = "t",
-        center = "c",
-        middle = "c",
-        mid = "c",
-        bottom = "b",
-        bot = "b",
-        low = "b",
-    }
-
     return {
         n = G.UIT.R,
         config = { align = 'cl' },
@@ -106,7 +109,7 @@ local function gen_button(args, card)
                         n = G.UIT.C,
                         config = button_config,
                         nodes = {
-                            { n = G.UIT.B, config = { w = 0.1, h = 0.6 } },
+                            { n = G.UIT.B, config = { w = 0.1, minh = 0.2 } },
                             {
                                 n = G.UIT.C,
                                 config = { align = "tm" },
@@ -125,8 +128,10 @@ function G.UIDEF.use_and_sell_buttons(card)
     local orig_btns = G_UIDEF_use_and_sell_buttons_ref(card)
     if card.config.center.set ~= "Joker" or (card.area and card.area.config.collection) then return orig_btns end
 
+    ---@class SMODS.Center
     local center = card.config.center
 
+    ---@class ButtonData
     local sell_args = {
         card = card,
         id = "sell",
@@ -140,6 +145,7 @@ function G.UIDEF.use_and_sell_buttons(card)
             { ref_table = card, ref_value = "sell_cost_label", scale = 0.55 }
         }
     }
+    ---@class ButtonData
     local use_args = {
         card = card,
         id = "use",
@@ -148,6 +154,7 @@ function G.UIDEF.use_and_sell_buttons(card)
         handy_insta = "use",
         text = localize("b_use")
     }
+    ---@class ButtonData
     local fuse_args = {
         card = card,
         id = "fuse",
@@ -156,7 +163,7 @@ function G.UIDEF.use_and_sell_buttons(card)
         title = localize("b_fuse"),
         text = {
             localize("$"),
-            { ref_table = card, ref_value = "fusion_cost" }
+            { ref_table = card, ref_value = "fusion_cost", scale = 0.55 }
         }
     }
 
@@ -166,7 +173,6 @@ function G.UIDEF.use_and_sell_buttons(card)
         pre_buttons[#pre_buttons+1] = sell_args
     end
     if center.use and not (center.hide_use_button and center:hide_use_button(card)) then
-        print("Creating use button")
         pre_buttons[#pre_buttons+1] = use_args
     end
 
@@ -174,13 +180,13 @@ function G.UIDEF.use_and_sell_buttons(card)
         local to_override = {}
         for i,button in ipairs(center.buttons) do
             local args = button.get_button_args(center, card)
-            if not (button.hide and button.hide(center, card)) then
+            if args and not (button.hide and button.hide(center, card)) then
                 if to_override[args.id or ""] then
                     args = to_override[args.id]
                     to_override[args.id] = nil
                     args.override = nil
                 end
-                
+
                 if type(args.override) == "string" then
                     local overridden = false
                     for ii,vv in ipairs(pre_buttons) do
@@ -192,22 +198,32 @@ function G.UIDEF.use_and_sell_buttons(card)
                     if not overridden then
                         to_override[args.override] = args
                     end
-                elseif #pre_buttons < 3 then
-                    pre_buttons[#pre_buttons+1] = args
                 else
-                    pre_buttons[math.random(1,3)] = args --Horribly, horribly inelegant, but at least ensures excess buttons can appear at all. Probably avoid causing this situation if you can!!!
+                    pre_buttons[#pre_buttons+1] = args
                 end
             end
         end
     end
 
+    if next(SMODS.find_mod("FusionJokers")) and card.ability.fusion and (#pre_buttons < 5 or card:can_fuse_card()) then
+        pre_buttons[#pre_buttons+1] = fuse_args
+    end
+
+    if #pre_buttons > 5 then
+        local new_buttons = {}
+        while #new_buttons < 5 do
+            local i = math.random(#pre_buttons)
+            new_buttons[#new_buttons+1] = pre_buttons[i]
+            table.remove(pre_buttons, i)
+        end
+        pre_buttons = new_buttons
+    end
+
     local indiv_buttons = {}
     for i,args in ipairs(pre_buttons) do
-        local locs = {"top", "middle", "bottom"}
-        args.loc = locs[i]
-        indiv_buttons[i] = gen_button(args, card)
+        indiv_buttons[i] = gen_button(args, card, math.max(#pre_buttons - 1, 0))
     end
-    
+
     local final_nodes = {
         n = G.UIT.ROOT,
         config = { padding = 0, colour = G.C.CLEAR },
