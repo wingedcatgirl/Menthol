@@ -89,7 +89,7 @@ end
 
 local function modpack_in_pool(self, args)
     MINTY.poll_mod { count_only = true }
-    return (MINTY.modcount or 0) > 3
+    return (#MINTY.modcount or 0) > 3
 end
 
 local function set_modpack_ability(self, card, initial, delay_sprites)
