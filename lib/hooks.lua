@@ -103,7 +103,7 @@ end
 --Hook: Preserve passed object weights even if they aren't objects that exist
 local getweightof = SMODS.get_weight_of_object
 function SMODS.get_weight_of_object(obj, opt_weight, args)
-    if args.force_weight then
+    if args and args.force_weight then
         if not obj then return opt_weight or 10, opt_weight or 10 end
     end
     return getweightof(obj, opt_weight, args)
