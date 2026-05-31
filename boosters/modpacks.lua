@@ -54,6 +54,7 @@ local function poll_mod(args)
 
     local modkey = SMODS.poll_object {
         pool = mod_pool,
+        force_weight = true,
         print = args.print,
         seed = args.seed or "minty_modpack_gen"
     }
