@@ -10,21 +10,7 @@ position = "after"
 match_indent = true
 payload = '''
     -- MENTHOL: Add copies of the selected item to the pool to make it more common if...
-
-    --... it's a Menthol Joker and the Silliest Littlest Deck or Sleeve is active
-    if G.GAME.modifiers.mintyjokerboost and (v.key:find('j_minty_') or ((v.pools and (v.pools.MintysSillyMod or v.pools.Menthol)) and (v.set and v.set.Joker))) then
-      for i = 1, 2 do
-        _pool[#_pool + 1] = v.key
-        _pool_size = _pool_size + 1
-      end
-    end
-
-    -- ... it's a Menthol non-Joker and the Silliest Littlest Deck *and* Sleeve are active
-    if G.GAME.modifiers.mintyallboost and ((v.key:find('_minty_') and not v.key:find('j_minty_')) or ((v.pools and (v.pools.MintysSillyMod or v.pools.Menthol)) and not (v.set and v.set.Joker))) then
-        _pool[#_pool + 1] = v.key
-        _pool_size = _pool_size + 1
-    end
-
+    
     --... it's a type of object whose in_pool function indicates it should have extra copies added
     if type(pool_opts.minty_extra_copies) == "number" and pool_opts.minty_extra_copies > 1 then
       for i = 1, (pool_opts.minty_extra_copies-1) do
