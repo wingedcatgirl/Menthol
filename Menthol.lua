@@ -395,49 +395,10 @@ MINTY.lastmoment = function ()
         MINTY.enhancecheck()
     end
 
-    MINTY.packable_mods = {}
-    MINTY.modbag = {}
-    MINTY.vjokers = {}
     fulltrace("Assembling Mod Packs...")
-    for k,v in pairs(G.P_CENTERS) do
-        local normal = {
-            [1] = true,
-            [2] = true,
-            [3] = true,
-        }
-        if v.set == "Joker" and normal[v.rarity] then
-            if v.original_mod then
-                if not MINTY.packable_mods[v.original_mod.id] then
-                    MINTY.packable_mods[v.original_mod.id] = {
-                        id = v.original_mod.id,
-                        name = v.original_mod.name,
-                        shortname = v.original_mod.display_name,
-                        colour = v.original_mod.badge_colour,
-                        count = 1
-                    }
-                else
-                    MINTY.packable_mods[v.original_mod.id].count = MINTY.packable_mods[v.original_mod.id].count + 1
-                end
-            else
-                MINTY.vjokers[#MINTY.vjokers+1] = k
-            end
-        end
-    end
-
-    local temp = {}
-    for k,v in pairs(MINTY.packable_mods) do
-        temp[k] = v
-    end
-
-    for k,v in pairs(temp) do
-        if v.count < 6 then
-            MINTY.packable_mods[k] = nil
-        else
-            for _=1,math.ceil(math.log(v.count, 7)) do
-                MINTY.modbag[#MINTY.modbag+1] = k
-            end
-        end
-    end
+    MINTY.poll_mod{
+        init = true
+    }
 
     --Set applied stakes of the "applies every stake" stake. If we invent that.
     --[[
