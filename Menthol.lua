@@ -380,6 +380,11 @@ if dev then
                     area = G.jokers
                 }
                 SMODS.add_card{
+                    key = "j_matador",
+                    set = "Joker",
+                    area = G.jokers
+                }
+                SMODS.add_card{
                     key = "j_minty_chopper",
                     set = "Joker",
                     area = G.jokers

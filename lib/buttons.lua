@@ -36,6 +36,13 @@ G.FUNCS[myprefix .. "_use_joker"] = function(e)
     G.TAROT_INTERRUPT = int
 end
 
+if G.basic_buttons_activated then
+    print("Buttons provided by "..G.basic_buttons_activated.."; letting them handle it")
+    return
+else
+    G.basic_buttons_activated = SMODS.current_mod.name
+end
+
 local function gen_button(args, card)
     card = card or args.card
     local button_config = { ref_table = card, align = "cr", padding = 0.1, r = 0.08, minw = 1.25, hover = true, shadow = true, colour = G.C.UI.BACKGROUND_INACTIVE, one_press = args.one_press, button = args.effect, func = args.can, handy_insta_action = args.handy_insta }
@@ -53,6 +60,7 @@ local function gen_button(args, card)
         for i, subtext in ipairs(args.text) do
             local node = { n = G.UIT.T, config = { colour = subtext.colour or G.C.WHITE, scale = subtext.scale or 0.4, shadow = true } }
             if type(subtext) == "string" then
+                print("subtext is a string, weird that it didn't crash")
                 node.config.text = subtext
             elseif type(subtext) == "table" then
                 for k, v in pairs(subtext) do

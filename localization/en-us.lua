@@ -1721,8 +1721,9 @@ return {
 						"size by the same amount."
 					},
 					{
-						"Gains charge when drawing a card",
-						"that is debuffed or flipped"
+						"Gains {C:attention}#1#{} charge when drawing a card",
+						"that is debuffed or flipped,",
+						"or {C:attention}#2#{} if blind is triggered"
 					}
 				}
 			},

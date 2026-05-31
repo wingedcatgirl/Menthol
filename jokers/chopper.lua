@@ -23,6 +23,8 @@ SMODS.Joker {
         extra = {
             charge = 0,
             charge_needed = 10,
+            cardhit_gain = 1,
+            trigger_gain = 3,
             ready = false
         }
     },
@@ -64,20 +66,34 @@ SMODS.Joker {
         return {
             key = key,
             vars = {
-                
+                card.ability.extra.cardhit_gain,
+                card.ability.extra.trigger_gain,
             }
         }
     end,
     calculate = function(self, card, context)
-        if context.stay_flipped and context.to_area == G.hand then
-            if (context.other_card.debuff or context.other_card.facing == "back") and card.ability.extra.charge < card.ability.extra.charge_needed then
-                card.ability.extra.charge = card.ability.extra.charge + 1
-                if card.ability.extra.charge >= card.ability.extra.charge_needed then
-                    card.ability.extra.charge = card.ability.extra.charge_needed
-                    return {
-                        message = localize("k_minty_charged")
-                    }
+        local drawn = context.hand_drawn or context.other_drawn
+        if drawn and card.ability.extra.charge < card.ability.extra.charge_needed then
+            for i,other_card in ipairs(drawn) do
+                if (other_card.debuff or other_card.facing == "back")then
+                    card.ability.extra.charge = card.ability.extra.charge + card.ability.extra.cardhit_gain
                 end
+            end
+            if card.ability.extra.charge >= card.ability.extra.charge_needed then
+                card.ability.extra.charge = card.ability.extra.charge_needed
+                return {
+                    message = localize("k_minty_charged")
+                }
+            end
+        end
+
+        if (context.joker_main or context.debuffed_hand) and G.GAME.blind.triggered and card.ability.extra.charge < card.ability.extra.charge_needed then
+            card.ability.extra.charge = card.ability.extra.charge + card.ability.extra.trigger_gain
+            if card.ability.extra.charge >= card.ability.extra.charge_needed then
+                card.ability.extra.charge = card.ability.extra.charge_needed
+                return {
+                    message = localize("k_minty_charged")
+                }
             end
         end
 
@@ -88,11 +104,27 @@ SMODS.Joker {
 
             return {
                 score = amt,
-                delay = 8,
+                delay = 4,
+                remove_default_message = true,
+                message = localize{
+                    type = "variable",
+                    key = "a_score",
+                    vars = {amt},
+                },
+                sound = "gong",
+                volume = 0.5,
                 extra = {
                     blindsize = -amt,
                     message_card = G.GAME.blind,
-                    delay = 8
+                    delay = 4,
+                    remove_default_message = true,
+                    sound = "gong",
+                    volume = 0.5,
+                    message = localize{
+                        type = "variable",
+                        key = "a_blind_size",
+                        vars = {"-"..number_format(amt)},
+                    },
                 }
             }
         end
