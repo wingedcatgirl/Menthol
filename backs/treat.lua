@@ -80,20 +80,18 @@ if not not next(SMODS.find_mod("CardSleeves")) then
             if not MINTY.threeSuit_in_pool() then MINTY.enable_threeSuit() end
             G.GAME.starting_params.start_with_3s = true
             G.GAME.starting_params.easy_spectra = true
-            if self.get_current_deck_key() ~= "b_minty_treat" then
-            end
             if self.get_current_deck_key() == "b_minty_treat" then
                 G.E_MANAGER:add_event(Event({
                     func = function()
                         for i = #G.playing_cards, 1, -1 do
                             if G.playing_cards[i]:get_id() == 3 then
-                                SMODS.change_base(G.playing_cards[i], 'minty_3s', nil)
+                                assert(SMODS.change_base(G.playing_cards[i], 'minty_3s', nil))
                             else
                                 if pseudorandom('treatsleevesuit') < 1/3 then
-                                    SMODS.change_base(G.playing_cards[i], 'minty_3s', nil)
+                                    assert(SMODS.change_base(G.playing_cards[i], 'minty_3s', nil))
                                 end
                                 if pseudorandom('treatsleeverank') < 1/3 then
-                                    SMODS.change_base(G.playing_cards[i], nil, "3")
+                                    assert(SMODS.change_base(G.playing_cards[i], nil, "3"))
                                 end
                             end
                         end
