@@ -190,11 +190,11 @@ MINTY.centercount = function (args)
     MINTY.say(tostring(count))
 end
 
----@param this? string Pass a sleeve key to check if it already got unlocked
+---@param current_sleeve? string Pass a sleeve key to check if it already got unlocked
 ---@param debug? boolean Print debugging strings
----@return string result Key of the stake that will unlock next sleeve, or already unlocked sleeve with key passed into `this` 
----@return integer count Count (order) of the same stake as `string`
-MINTY.sleeveunlockcheck = function(this, debug)
+---@return string result Key of the stake that will unlock next sleeve, or that already did unlock `current_sleeve` if applicable
+---@return integer count Count (order) of the same stake as `result`
+MINTY.sleeveunlockcheck = function(current_sleeve, debug)
   G.PROFILES[G.SETTINGS.profile].mintysleeves = G.PROFILES[G.SETTINGS.profile].mintysleeves or {}
 
   local sleeves = {}
@@ -224,8 +224,8 @@ MINTY.sleeveunlockcheck = function(this, debug)
   local index = G.P_STAKES[result].order
 
   G.PROFILES[G.SETTINGS.profile].mintysleeves.key, G.PROFILES[G.SETTINGS.profile].mintysleeves.result = result, index
-  if G.PROFILES[G.SETTINGS.profile].mintysleeves[this] then --put it in the settings?
-    result = G.PROFILES[G.SETTINGS.profile].mintysleeves[this]
+  if G.PROFILES[G.SETTINGS.profile].mintysleeves[current_sleeve] then --put it in the settings?
+    result = G.PROFILES[G.SETTINGS.profile].mintysleeves[current_sleeve]
   end
 
   G:save_settings()
