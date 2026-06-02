@@ -267,6 +267,7 @@ local files = {
         { name = "plasmaathome" },
         { name = "suitfocus" },
         { name = "drippy" },
+        { name = "linguistic" },
         { name = "silly" },
     } },
     { name = "blinds", contents = {

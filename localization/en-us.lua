@@ -1874,6 +1874,18 @@ return {
                     "counts in scoring",
 				},
 			},
+			b_minty_linguistic = {
+				name = "Linguistic Deck",
+				unlock = {
+					"Win a run with a {T:j_minty_languageEgg}#1#{}",
+					"containing {C:attention}#2#{} languages",
+					"or any non-vanilla language"
+				},
+				text = {
+					"Start with a weakened {T:j_minty_languageEgg}{}#1#{}",
+					"and a weakened eternal {T:j_egg}#2#{}"
+				}
+			},
 			["b_minty_sillylittledeck"] = {
 				["name"] = "The Silliest, Littlest Deck",
 				["text"] = {
@@ -1881,6 +1893,12 @@ return {
 					"more likely to appear",
 				},
 			},
+			b_minty_hidden_deck = {
+				name = "???",
+				text = {
+					"???"
+				}
+			}
 		},
 		["Blind"] = {
 			["bl_minty_thenip"] = {
