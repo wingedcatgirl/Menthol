@@ -632,6 +632,7 @@ function SMODS.current_mod.reset_game_globals(init)
     if init then
         G.GAME.minty_no_dumb_shit = MINTY.config.no_dumbass_shit
         G.GAME.minty_crossover = MINTY.config.include_crossover
+        G.GAME.modifiers.extra_vouchers = math.max(math.floor(#G.P_CENTER_POOLS.Voucher/32)-1, G.GAME.modifiers.extra_vouchers or 0)
     end
 
     G.GAME.minty_hyperfix = G.GAME.minty_hyperfix or { active = true, value = 0 }
