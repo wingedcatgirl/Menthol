@@ -47,30 +47,19 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.cardarea == G.play and context.individual and context.other_card.lucky_trigger then
-            card.ability.extra.luckycards[#card.ability.extra.luckycards+1] = context.other_card.unique_val
-            MINTY.luckyCount(1)
+            card.ability.extra.luckycards[context.other_card] = true
+            --MINTY.luckyCount(1)
             card.ability.extra.count = math.min(7, G.GAME.total_lucky_count)
             --MINTY.say("Lucky hit: "..context.other_card.unique_val)
         end
-        if context.cardarea == G.play and context.repetition and card.ability.extra.count ~= 0 and context.other_card then
-            local luckycard = false
-            --MINTY.say("Current card: "..context.other_card.unique_val)
-            for k,v in pairs(card.ability.extra.luckycards) do
-                --MINTY.say("Previous hit: "..v)
-                if context.other_card.unique_val == v then
-                    card.ability.extra.luckycards[k] = nil
-                    luckycard = true
-                    break
-                end
-            end
-            if luckycard then
-                return {
-                    message = localize("k_again_ex"),
-                    sound = 'minty_batnoise',
-                    message_card = card,
-                    repetitions = card.ability.extra.count,
-                }
-            end
+        if context.cardarea == G.play and context.repetition and card.ability.extra.count ~= 0 and context.other_card and card.ability.extra.luckycards[context.other_card] then
+            card.ability.extra.luckycards[context.other_card] = nil
+            return {
+                message = localize("k_again_ex"),
+                sound = 'minty_batnoise',
+                message_card = card,
+                repetitions = card.ability.extra.count,
+            }
         end
         if context.final_scoring_step then
             card.ability.extra.luckycards = {}
