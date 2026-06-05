@@ -73,8 +73,10 @@ SMODS.ConsumableType{
     key = "minty_treat",
     default = "c_minty_funnel_cake",
     select_card = function (self, card, pack)
-        if pack.kind == "minty_everycard" then return "consumeables" end
-        return false
+        if pack.kind == "minty_everycard" then
+            return "consumeables", true
+        end
+        return nil
     end,
     primary_colour = G.C.PURPLE,
     secondary_colour = HEX("ca7ca7")
