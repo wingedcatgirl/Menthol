@@ -18,9 +18,8 @@ SMODS.Consumable {
 	hidden = true,
 	soul_set = 'Tarot',
 	soul_rate = 0.0015, --Half the Soul's rate cause we don't want to flood the pool with these things
-	atlas = "placeholder",
-	pos = { x = 2, y = 9 },
-	soul_pos = { x = 2, y = 8},
+	atlas = "spectrals",
+	pos = { x = 1, y = 1 },
 	can_use = function(self, card)
 		if #G.jokers.cards < G.jokers.config.card_limit or self.area == G.jokers then
 			return true

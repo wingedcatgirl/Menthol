@@ -21,9 +21,8 @@ SMODS.Consumable {
 		}
 	end,
 	cost = 4,
-	atlas = "placeholder",
-	pos = { x = 2, y = 9 },
-	soul_pos = { x = 2, y = 7},
+	atlas = "spectrals",
+	pos = { x = 0, y = 1 },
 	use = function(self, card, area, copier) --Good enough
 		for i = 1, #G.hand.highlighted do
 			local highlighted = G.hand.highlighted[i]
