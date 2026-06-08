@@ -3411,5 +3411,14 @@ return {
 				}
 			},
 		},
+		Flavor = {
+			j_minty_hedonist = {
+				text = {
+					"{C:inactive,s:0.8}I'm a hedonist.{}",
+					"{C:inactive,s:0.8}Of course I have{}",
+					"{C:inactive,s:0.8}flavor text. Mmm...{}",
+				}
+			}
+		}
 	},
 }
