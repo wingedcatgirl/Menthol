@@ -66,14 +66,10 @@ if not not next(SMODS.find_mod("CardSleeves")) then
             end
 
             if self.get_current_deck_key() == "b_minty_drippy" and context.individual and context.cardarea == G.hand and context.scoring_hand then
-                if context.scoring_hand and not next(context.scoring_hand) then
-                    print("uh oh this won't work try a different thing")
-                end
                 local newcontext = {}
                 for k, v in pairs(context) do
                     newcontext[k] = v
                 end
-                --newcontext.drippynoinfinite = true
 
                 if context.other_card.debuff then
                     G.GAME.blind.triggered = true
