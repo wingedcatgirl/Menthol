@@ -29,7 +29,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local box_ends = {
-            MINTY.flavorize(self.key) --Technically this should go in [2] but something's fucky
+            MINTY.flavorize(self.key)
         }
         info_queue[#info_queue+1] = G.P_CENTERS.c_minty_backup_plan
         local estimate
