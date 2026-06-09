@@ -37,12 +37,11 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         info_queue[#info_queue+1] = { set = "Other", key = "minty_spread2", specific_vars = { card.ability.extra.perish_count, card.ability.extra.perish_count == 1 and "" or "s" } }
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.xmult,
                 card.ability.extra.xmult_gain,

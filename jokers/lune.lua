@@ -55,11 +55,10 @@ SMODS.Joker {
             info_queue[#info_queue+1] = { set = "Other", key = "minty_disabled_object_requirement", specific_vars = { "Mod", "Ortalab" } }
         end
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.drop,
             },

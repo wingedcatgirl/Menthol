@@ -15,11 +15,10 @@ SMODS.Consumable {
 		local a = plural and "" or "a "
 		local ies = plural and "ies" or "y"
 		local them = plural and "them" or "it"
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
 		return {
 			key = key,
+			main_end = main_end,
 			vars = {
 				card.ability.max_highlighted,
 				up,

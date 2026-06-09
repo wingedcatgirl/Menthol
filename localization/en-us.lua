@@ -209,16 +209,6 @@ return {
 					"exactly {C:attention}4{} cards",
 				},
 			},
-			["j_minty_cube_flavor"] = {
-				["name"] = "Cube Joker",
-				["text"] = {
-					"{X:mult,C:white}X#1#{} Mult",
-					"Played hand must contain",
-					"exactly {C:attention}4{} cards",
-					" ",
-					"{C:inactive,s:0.8}YOU'RE a cube!",
-				},
-			},
 			["j_minty_youtube"] = {
 				["name"] = "YouTube",
 				["text"] = {
@@ -228,26 +218,6 @@ return {
 				["unlock"] = {
 					"Overkill a {C:attention}Boss Blind{}",
 					"by a factor of {X:mult,C:white}#1#{}"
-				},
-			},
-			["j_minty_youtube_flavor"] = {
-				["name"] = "YouTube",
-				["text"] = {
-					"{C:green}#1# in #2#{} chance of",
-					"{X:mult,C:white}X#3#{} Mult",
-					" ",
-					"{C:inactive,s:0.8}What? It's an expected result",
-					"{C:inactive,s:0.8}of {X:inactive,C:white,s:0.8}X#4#{C:inactive,s:0.8}, it's totally balanced!",
-				},
-			},
-			["j_minty_youtube_flavor_alt"] = {
-				["name"] = "YouTube",
-				["text"] = {
-					"{C:green}#1# in #2#{} chance of",
-					"{X:mult,C:white}X#3#{} Mult",
-					" ",
-					"{C:inactive,s:0.8}What? It's an expected{}",
-					"{C:inactive,s:0.8}result of... uh-oh.{}",
 				},
 			},
 			["j_minty_inkbleed"] = {
@@ -1685,22 +1655,6 @@ return {
 					{
 						"{X:mult,C:white}X#1#{} Mult per",
 						"suit in hand: {X:mult,C:white}X#2#{}"
-					}
-				}
-			},
-			j_minty_prism_flavor = {
-				name = "//cat.exe -prism",
-				text = {
-					{
-						"When setting blind,",
-						"create a {C:attention}Backup Plan{}",
-						"if you don't have one"
-					},
-					{
-						"{X:mult,C:white}X#1#{} Mult per",
-						"suit in hand: {X:mult,C:white}X#2#{}",
-						" ",
-						"{C:inactive,s:0.8}The power of friendship!"
 					}
 				}
 			},
@@ -3412,13 +3366,574 @@ return {
 			},
 		},
 		Flavor = {
+			j_minty_cube = {
+				text = {
+					"{C:inactive,s:0.8}YOU'RE a cube!",
+				},
+			},
+			j_minty_youtube = {
+				text = {
+					"{C:inactive,s:0.8}What? It's an expected result",
+					"{C:inactive,s:0.8}of {X:inactive,C:white,s:0.8}X#1#{C:inactive,s:0.8}, it's totally balanced!",
+				},
+			},
+			j_minty_youtube_alt = {
+				text = {
+					"{C:inactive,s:0.8}What? It's an expected{}",
+					"{C:inactive,s:0.8}result of... uh-oh.{}",
+				},
+			},
+			j_minty_inkbleed = {
+				text = {
+					"{C:inactive,s:0.8}Also try Entropy and/or ArtBox!{}"
+				},
+			},
+			j_minty_clock = {
+				text = {
+					"{C:inactive,s:0.8}You run will be better for the Time Being"
+				},
+			},
+			j_minty_shadowcrystal = {
+				text = {
+					"{C:inactive,s:0.8}The prophecy's text does not{}",
+					"{C:inactive,s:0.8}warp in the crystal's lens.{}",
+				},
+			},
+			j_minty_superboss = {
+				text = {
+					"{C:inactive,s:0.8}WHY. WHY DID YOU GIVE THAT TO HIM.{}",
+				},
+			},
+			j_minty_bigpockets = {
+				text = {
+					"{C:inactive,s:0.8}... or are you just happy to see me?"
+				},
+			},
+			j_minty_doctor = {
+				text = {
+					"{C:inactive,s:0.8}\"Vent art\"? No, this is a doctor.{}",
+					"{C:inactive,s:0.8}They've got the classic head mirror, see?{}"
+				},
+			},
+			j_minty_doctor_active = {
+				text = {
+					"{C:inactive,s:0.8}Seriously? Lucky bastard.{}"
+				},
+			},
+			j_minty_duckhat = {
+				text = {
+					"{C:inactive,s:0.8}Quack, good #1#."
+				},
+			},
+			j_minty_jacobsladder = {
+				text = {
+					"{C:inactive,s:0.8}What do you mean, 'why'?",
+					"{C:inactive,s:0.8}For SCIENCE, obviously!",
+				},
+			},
+			j_minty_cakesword = {
+				text = {
+					"{C:inactive,s:0.8}You should see the cake gun.{}"
+				},
+			},
+			j_minty_cakegun = {
+				text = {
+					"{C:inactive,s:0.8}Oh, there it is.{}"
+				},
+			},
+			j_minty_finity_calico = {
+				text = {
+					"{C:inactive,s:0.8}Yeah, I made a mess, but{}",
+					"{C:inactive,s:0.8}you like it better that way.{}",
+				},
+			},
+			j_minty_catcafe = {
+				text = {
+					"{C:inactive,s:0.8}The staff are cats.{}",
+					"{C:inactive,s:0.8}The patrons... are also cats.{}"
+				},
+			},
+			j_minty_copycat = {
+				text = {
+					"{C:inactive,s:0.8}*perfectly echoed meow noises*",
+				},
+			},
+			j_minty_hyperfix = {
+				text = {
+					"{C:inactive,s:0.8}Sure, I'll get it done eventually,",
+					"{C:inactive,s:0.8}But it's always at the last minute...",
+				},
+			},
+			j_minty_languageEgg = {
+				text = {
+					"{C:inactive,s:0.8}Best enjoyed in the atheism corner"
+				},
+			},
+			j_minty_neko = {
+				text = {
+					"{C:inactive,s:0.8}Adorable since 1989"
+				},
+			},
+			j_minty_phasebus = {
+				text = {
+					"{C:inactive,s:0.8}No eating language eggs{}",
+					"{C:inactive,s:0.8}allowed on the bus.{}",
+				},
+			},
+			j_minty_catpicmachine_modest = {
+				text = {
+					"{C:inactive,s:0.8}The internet is for cats!",
+				},
+			},
+			j_minty_catpicmachine_mainline = {
+				text = {
+					"{C:inactive,s:0.8}The internet is for cats!",
+				},
+			},
+			j_minty_catpicmachine_madness = {
+				text = {
+					"{C:inactive,s:0.8}The internet is for cats!",
+				},
+			},
+			j_minty_lucky = {
+				text = {
+					"{C:inactive,s:0.8}Black cats are lucky",
+					"{C:inactive,s:0.8}because you get to",
+					"{C:inactive,s:0.8}pet a cat!",
+				},
+			},
+			j_minty_lune = {
+				text = {
+					"{C:inactive,s:0.8}Till all complete.{}",
+				},
+			},
+			j_minty_stormy = {
+				text = {
+					"{C:inactive,s:0.8}(It works.)",
+				},
+			},
+			j_minty_patchy = {
+				text = {
+					"{C:inactive,s:0.8}BITING YOU BITING",
+					"{C:inactive,s:0.8}YOU BITING YOU :3",
+				},
+			},
+			j_minty_minty = {
+				text = {
+					"{C:inactive,s:0.8}Of COURSE I'm in here, it's...{}",
+					"{C:inactive,s:0.8}... er... never mind that, actually."
+				},
+			},
+			j_minty_garfielf = {
+				text = {
+					"{C:inactive,s:0.8}\"Where are the #1#s of #2#?\"",
+					"{C:inactive,s:0.8}\"I ate those card.\"",
+				},
+			},
+			j_minty_claw = {
+				text = {
+					"{C:inactive,s:0.8}It seems to belong",
+					"{C:inactive,s:0.8}to an ancient",
+					"{C:inactive,s:0.8}prehistoric slow tiger.{}",
+				},
+			},
+			["j_minty_fatcat-l_flavor"] = {
+				text = {
+					"{C:inactive,s:0.8}leave Tubbs olone dot tumblr dot com{}",
+				},
+			},
+			["j_minty_fatcat-m_flavor"] = {
+				text = {
+					"{C:inactive,s:0.8}Diversity win: local capitalist",
+					"{C:inactive,s:0.8}pigdog is, in fact, a catgirl!",
+				},
+			},
+			j_minty_chisel = {
+				text = {
+					"{C:inactive,s:0.8}An artist knows they",
+					"{C:inactive,s:0.8}have found perfection",
+					"{C:inactive,s:0.8}when there is nothing",
+					"{C:inactive,s:0.8}left to take away.{}",
+				},
+			},
+			j_minty_bucket = {
+				text = {
+					"{C:inactive,s:0.8}Happy 6th birthday!",
+				},
+			},
+			j_minty_threecats = {
+				text = {
+					"{C:mult,s:0.8}       Meow!      ",
+					"{C:chips,s:0.8}Meow!             ",
+					"            {X:mult,C:white,s:0.8}Meow!",
+				},
+			},
+			j_minty_wettiger = {
+				text = {
+					"{C:inactive,s:0.8}Poor little meow meow...{}"
+				},
+			},
+			j_minty_wildfire = {
+				text = {
+					"{C:inactive,s:0.8}IT BURRRRRRNS!{}"
+				},
+			},
+			j_minty_shakegun = {
+				text = {
+					"{C:inactive,s:0.8}YES, shakes are just wet cakes!{}"
+				},
+			},
+			j_minty_parkour = {
+				text = {
+					"{C:inactive,s:0.8}Their friends call them Peter.{}",
+				},
+			},
+			j_minty_slowtiger = {
+				text = {
+					"{C:inactive,s:0.8}Turn it into a fast",
+					"{C:inactive,s:0.8}tiger with this one trick!",
+				},
+			},
+			j_minty_theecho = {
+				text = {
+					"{C:inactive,s:0.8}Burning for battle...{}",
+					"{C:inactive,s:0.8}as long as the static's patience holds.{}",
+				},
+			},
+			j_minty_froyo = {
+				text = {
+					"{C:inactive,s:0.8}(But it's so much cheaper!)",
+				},
+			},
+			j_minty_chocobar = {
+				text = {
+					"{C:inactive,s:0.8}Because your epic!"
+				},
+			},
+			j_minty_chocobar_alt = {
+				text = {
+					"{C:inactive,s:0.8}Because your epic!",
+					"{C:inactive,s:0.8}MISSPELLING IS PART OF THE REFRANCE",
+					"{C:inactive,s:0.8}PLS DON'T FILE A TYPO REPORT KTHX",
+				},
+			},
+			j_minty_wrapper = {
+				text = {
+					"{C:inactive,s:0.8}(... why are you still carrying this?)"
+				},
+			},
 			j_minty_hedonist = {
 				text = {
 					"{C:inactive,s:0.8}I'm a hedonist.{}",
 					"{C:inactive,s:0.8}Of course I have{}",
 					"{C:inactive,s:0.8}flavor text. Mmm...{}",
+				},
+			},
+			j_minty_proso = {
+				text = {
+					"{C:inactive,s:0.8}You don't know what it's{}",
+					"{C:inactive,s:0.8}like to spend every day{}",
+					"{C:inactive,s:0.8}surrounded by monkeys.{}",
+				},
+			},
+			j_minty_ascetic = {
+				text = {
+					"{C:inactive,s:0.8}Flavor text?",
+					"{C:inactive,s:0.8}A needless indulgence!",
+				},
+			},
+			j_minty_sabertooth = {
+				text = {
+					'{C:inactive,s:0.8}Sharp enough to call it vorpal',
+				},
+			},
+			j_minty_ninethlion = {
+				text = {
+					'{C:inactive,s:0.8}Yum delicis sun >:3',
+					'{C:inactive,s:0.8}In definitely related news:',
+					'{C:inactive,s:0.8}you\'re mortal!'
+				},
+			},
+			j_minty_eaten = {
+				text = {
+					"{C:inactive,s:0.8}All shall be well and all shall be well{}",
+					"{C:inactive,s:0.8}and all manner of thing shall be well.{}",
+					"{C:inactive,s:0.8}That was the promise.{}"
+				},
+			},
+			j_minty_excited = {
+				text = {
+					"{C:inactive,s:0.8}Holy shit, it's a Joker!",
+				},
+			},
+			j_minty_gymbuddy = {
+				text = {
+					"{C:inactive,s:0.8}Feel the burn!{}"
+				},
+			},
+			j_minty_churutreat = {
+				text = {
+					"{C:inactive,s:0.8}Kity go nomnomnomnom :3",
+				},
+			},
+			j_minty_plastic_stick = {
+				text = {
+					"{C:inactive,s:0.8}nooooo my treat is all gone",
+				},
+			},
+			j_minty_plastic_stick_unhidden = {
+				text = {
+					"{C:inactive,s:0.8}nooooo my treat is all gone",
+				},
+			},
+			j_minty_atheismcorner = {
+				text = {
+					"{C:inactive,s:0.8}And think about what you've done!"
+				},
+			},
+			j_minty_treatovision = {
+				text = {
+					"{C:inactive,s:0.8}Hey would you mind slathering yourself",
+					"{C:inactive,s:0.8}in BBQ sauce real quick? No reason.{}",
+				},
+			},
+			j_minty_wildsupport = {
+				text = {
+					"{C:inactive,s:0.8}This is definitely fine.{}",
+				},
+			},
+			j_minty_scoundrel = {
+				text = {
+					"{C:inactive,s:0.8}*bites you cutely* ;3"
+				},
+			},
+			j_minty_manacompressor = {
+				text = {
+					"{C:inactive,s:0.8}As long as it doesn't have Annihilator amirite?{}"
+				},
+			},
+			j_minty_bonkdice = {
+				text = {
+					"{C:inactive,s:0.8}Maybe him skill issue?{}",
+				},
+			},
+			j_minty_contraption = {
+				text = {
+					"{C:inactive,s:0.8}No, we're not throwing green people into it.{}",
+				},
+			},
+			j_minty_nucleation = {
+				text = {
+					"{C:inactive,s:0.8}This {C:attention,s:0.8}crystal{C:inactive,s:0.8} is the",
+					"{C:purple,s:0.8}crystal{} {C:chips,s:0.8}crystal{} {C:gold,s:0.8}crystal{}",
+					"{C:mult,s:0.8}crystal{} {C:minty_3s,s:0.8}crystal{} {C:dark_edition,s:0.8}crystal{}",
+					"{C:inactive,s:0.5}what{}"
+				},
+			},
+			j_minty_altar = {
+				text = {
+					"{C:inactive,s:0.8}Seems like a good spot{}",
+					"{C:inactive,s:0.8}to place an idol...{}",
+				},
+			},
+			j_minty_numberslop = {
+				text = {
+					"{C:inactive,s:0.8}These lazy Joker Forge mods{}",
+					"{C:inactive,s:0.8}always do this kind of shit!{}",
+				},
+			},
+			j_minty_fate = {
+				text = {
+					"{C:inactive,s:0.8}The other half is luck.{}",
+				},
+			},
+			j_minty_optimist = {
+				text = {
+					"{C:inactive,s:0.8}It'll all work out!{}",
+				},
+			},
+			j_minty_pessimist = {
+				text = {
+					"{C:inactive,s:0.8}You can't count on luck...{}",
+				},
+			},
+			j_minty_printer = {
+				text = {
+					"{C:inactive,s:0.8}And then I've got like, 55..."
+				},
+			},
+			j_minty_obsession = {
+				text = {
+					"{C:inactive,s:0.8}I always feel like, somebody's watching me..."
+				},
+			},
+			j_minty_hamburger = {
+				text = {
+					"{C:inactive,s:0.8}Girls will literally eat it"
+				},
+			},
+			j_minty_prism = {
+				text = 
+					{
+						"{C:inactive,s:0.8}The power of friendship!"
+					}
+			},
+			j_minty_lazarus = {
+				text = {
+					"{C:inactive,s:0.8}All ghosts have unfinished business.",
+					"{C:inactive,s:0.8}That's why they don't cross over."
 				}
-			}
-		}
+			},
+			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
+			j_minty_template = {
+				text = {
+					"{C:inactive,s:0.8}And has flavor text!{}",
+				},
+			},
+			j_minty_catnipfields = {
+				text = {
+					"{C:inactive,s:0.8}Cats come from across the land to frolic here.{}",
+				},
+			},
+
+
+			c_minty_cat = {
+				text = {
+					"{C:inactive,s:0.8}Meow! :3",
+				},
+			},
+			c_minty_focus = {
+				text = {
+					"{C:inactive,s:0.8}Target sighted..."
+				},
+			},
+			c_minty_grin = {
+				text = {
+					"{C:inactive,s:0.8}You smirk. Critical hit rate up!",
+					"{C:inactive,s:0.8}... which does nothing in this game!"
+				},
+			},
+			c_minty_abacus = {
+				text = {
+					"{C:inactive,s:0.8}32.33 (repeating, of course)!"
+				},
+			},
+			c_minty_boredkid = {
+				text = {
+					"{C:inactive,s:0.8}Well, what if I threw rocks at you?",
+				},
+			},
+			c_minty_dorf = {
+				text = {
+					"{C:inactive,s:0.8}Strike the earth!",
+				},
+			},
+			c_minty_battery = {
+				text = {
+					"{C:inactive,s:0.8}Tales of the ancient",
+					"{C:inactive,s:0.8}'nine-volt' remain unsubstantiated",
+				},
+			},
+			c_minty_gleam = {
+				text = {
+					"{C:inactive,s:0.8}But consider: SHINY",
+				},
+			},
+			c_minty_magnet = {
+				text = {
+					"{C:inactive,s:0.8}... but how does it work?"
+				},
+			},
+			c_minty_geologist = {
+				text = {
+					"{C:inactive,s:0.8}Please look at these cool rocks{}"
+				},
+			},
+			c_minty_bitz = {
+				text = {
+					'{C:inactive,s:0.8}"... now with a dash of bonito flakes{}',
+					'{C:inactive,s:0.8}to fuel your cats\' active lifestyles!{}',
+				},
+			},
+			c_minty_headband = {
+				text = {
+					"{C:inactive,s:0.8}Add some striped socks and estrogen and",
+					"{C:inactive,s:0.8}you'll be ready to make your own mod :3"
+				},
+			},
+
+
+			c_minty_6years = {
+				text = {
+					"{C:inactive,s:0.8}... in the joint made you",
+					"{C:inactive,s:0.8}a - no? Wrong meme?",
+				},
+			},
+			c_minty_dekaja = {
+				text = {
+					"{C:inactive,s:0.8}Act now and we'll throw in",
+					"{C:inactive,s:0.8}a bonus Dekunda for free!",
+				},
+			},
+			c_minty_reincarnate = {
+				text = {
+					"{C:inactive,s:0.8}You feel like a new Joker!{}"
+				},
+			},
+			c_minty_piracy = {
+				text = {
+					"{C:inactive,s:0.8}I would download a Blueprint, actually"
+				},
+			},
+			c_minty_delicacy = {
+				text = {
+					"{C:inactive,s:0.8}Unable to see anything but the{}",
+					"{C:inactive,s:0.8}transcendent glow of perfection!{}",
+				},
+			},
+			c_minty_wand = {
+				text = {
+					"{C:inactive,s:0.8}RUN POUNCE CHASE HUNT"
+				},
+			},
+
+
+			c_minty_choccytreat = {
+				text = {
+					"{C:inactive,s:0.8}CHOCOLAAAAAAATE???{}"
+				}
+			},
+			c_minty_ice_cream = {
+				text = {
+					"{C:inactive,s:0.8}Yes, yes, insert obligatory joke here.{}"
+				}
+			},
+			c_minty_blueberry_pie = {
+				text = {
+					"{C:inactive,s:0.8}Guaranteed not to cause{}",
+					"{C:inactive,s:0.8}gratuitous inflation{}",
+
+				}
+			},
+			c_minty_funnel_cake = {
+				text = {
+					"{C:inactive,s:0.8}cronch cronch cronch{}"
+				}
+			},
+
+
+			c_minty_emeowrald = {
+				text = {
+					"{C:inactive,s:0.8}Green like a kitty's pretty eyes",
+				}
+			},
+
+
+			c_minty_catseye = {
+				text  = {
+					"{C:inactive,s:0.8}It can see you...r treats.{}"
+				},
+			},
+        },
 	},
 }

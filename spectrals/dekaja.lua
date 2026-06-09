@@ -13,11 +13,10 @@ SMODS.Consumable {
         if card.ability.max_highlighted ~= 1 then plural = true end
         local s = plural and "s" or ""
         local a = plural and "" or "up to "
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
 		return {
 			key = key,
+			main_end = main_end,
 			vars = {
 				card.ability.max_highlighted,
 				a,

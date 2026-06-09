@@ -10,6 +10,7 @@ SMODS.Consumable {
 		local key = self.key
 		return {
 			key = key,
+			main_end = main_end,
 			vars = {
 
             }

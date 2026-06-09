@@ -54,11 +54,10 @@ SMODS.Joker {
         local key = self.key
         local min, max = SMODS.get_probability_vars(card, card.ability.extra.min, card.ability.extra.max, "minty_bonk_dice_roll", true)
         min = math.min(min, max)
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 min,
                 max,

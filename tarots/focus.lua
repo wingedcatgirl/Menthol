@@ -32,12 +32,11 @@ SMODS.Consumable{
         else
             suit = localize(G.GAME.minty_focussuit, "suits_plural").." suit" --TODO localizify this phrase
         end
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local suitcolor = G.C.SUITS[G.GAME.minty_focussuit] or G.C.IMPORTANT
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.consumeable.max_highlighted,
                 s,

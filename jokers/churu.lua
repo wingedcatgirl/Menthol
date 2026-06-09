@@ -53,12 +53,11 @@ SMODS.Joker {
             info_queue[#info_queue+1] = { set = "Other", key = "minty_disabled_object_requirement", specific_vars = { "Mod", "Paperback" } }
         end
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local luck, odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "minty_churu_desc", false)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.s_mult,
                 luck,
@@ -208,14 +207,13 @@ SMODS.Joker {
         if not hidden then
             key = key.."_unhidden"
         end
-        if MINTY.config.flavor_text then
-            key = key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(key)
 
         local xMult = plastic_stickmult(card)
 
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 hidden and card.ability.extra.xMult or card.ability.extra.unhidden_xmult,
                 xMult

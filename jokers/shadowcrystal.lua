@@ -33,9 +33,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local suit
         if G.GAME.minty_focussuit == nil then
             suit = localize("k_minty_first_suit")
@@ -48,6 +46,7 @@ SMODS.Joker {
         end
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 suit,
                 card.ability.extra.dollars,

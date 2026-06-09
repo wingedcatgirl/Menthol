@@ -40,15 +40,14 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local plural = ""
         if card.ability.extra.reps > 0 then plural = "s" end
         local op = (talisman and "^" or "X")
         local opcol = talisman and G.C.DARK_EDITION or G.C.XMULT
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 talisman and card.ability.extra.powmult or card.ability.extra.xmult,
                 card.ability.extra.scored,

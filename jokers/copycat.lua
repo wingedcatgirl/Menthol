@@ -48,9 +48,7 @@ SMODS.Joker {
             info_queue[#info_queue+1] = { set = "Other", key = mirrorkey, specific_vars = { localize{type = "name_text", set = "Joker", key = self.key } } }
         end
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local target
         if card.ability.immutable.targetkey ~= "" then
             for i = 1, #G.jokers.cards do
@@ -67,6 +65,7 @@ SMODS.Joker {
         end
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.immutable.targetname
             }

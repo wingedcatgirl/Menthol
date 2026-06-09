@@ -27,8 +27,8 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local namekey = "minty_flexweirdo_full_name"
+        local main_end = MINTY.flavorize(key)
         if MINTY.config.flavor_text then
-            --key = self.key.."_flavor"
             namekey = namekey.."_flavor"
         end
         info_queue[#info_queue + 1] = {
@@ -47,6 +47,7 @@ SMODS.Joker {
         end
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 suit,
                 card.ability.extra.s_mult

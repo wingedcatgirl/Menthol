@@ -47,14 +47,13 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local luck, odds = SMODS.get_probability_vars(card, card.ability.extra.base_luck, card.ability.extra.base_odds, "minty_finity_calico_desc", false)
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         if not (finity or crossover()) then
             info_queue[#info_queue+1] = { set = "Other", key = "minty_disabled_object_requirement", specific_vars = { "Mod", "Finity" } }
         end
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 luck,
                 odds,

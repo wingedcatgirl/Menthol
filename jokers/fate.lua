@@ -34,11 +34,10 @@ SMODS.Joker {
         local key = self.key
         local luck1, odds1 = SMODS.get_probability_vars(card, card.ability.extra.luck1, card.ability.extra.odds1, "minty_fate_desc_good", false, true)
         local luck2, odds2 = SMODS.get_probability_vars(card, card.ability.extra.luck2, card.ability.extra.odds2, "minty_fate_desc_bad", false, true)
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 luck1, odds1,
                 luck2, odds2,

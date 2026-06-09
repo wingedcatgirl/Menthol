@@ -33,11 +33,10 @@ SMODS.Joker {
         local key = self.key
         local plural = "s"
         if card.ability.extra.count == 1 then plural = "" end
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 localize{type = 'name_text', set = 'Enhanced', key = "m_lucky"},
                 card.ability.extra.count,

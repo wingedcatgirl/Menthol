@@ -17,12 +17,11 @@ SMODS.Consumable{
     },
     loc_vars = function (self, info_queue, card)
 		local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local ante = G.GAME.round_resets.ante or 1
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.consumeable.dollars_base + (card.ability.consumeable.dollars_rate * ante),
                 card.ability.consumeable.dollars_rate

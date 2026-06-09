@@ -45,11 +45,10 @@ SMODS.Joker {
         local key = self.key
         local gameset = cry and Cryptid.gameset(self) or "mainline"
         key = key.."_"..gameset
-        if MINTY.config.flavor_text then
-            key = key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.modnumber,
                 card.ability.extra.mainnumber,

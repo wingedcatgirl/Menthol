@@ -44,11 +44,10 @@ SMODS.Joker {
         local boost = card.ability.extra.talisman and "^"..card.ability.extra.emult or "X"..card.ability.extra.xmult
         local boostcol = card.ability.extra.talisman and G.C.DARK_EDITION or G.C.XMULT
         local s = card.ability.extra.countdown ~= 1 and "s" or ""
-        if MINTY.config.flavor_text then
-            key = key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.countdown,
                 boost,

@@ -20,11 +20,10 @@ SMODS.Consumable{
         local s = plural and "s" or ""
         local a = plural and "" or "a "
         local suit = localize(card.ability.suit_conv, plural and "suits_plural" or "suits_singular")
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.consumeable.max_highlighted,
                 s,

@@ -36,14 +36,12 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-            if (pseudorandom("choccyflavor") > 0.95) then
-                key = key.."2"
-            end
+        if (pseudorandom("choccyflavor") > 0.95) then
+            key = key.."2"
         end
+        local main_end = MINTY.flavorize(key)
         return {
-            key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.mult,
                 card.ability.extra.drop,
@@ -126,11 +124,12 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text and (pseudorandom("wrapperflavor") > 0.95) then
-            key = self.key.."_flavor"
+        if (pseudorandom("wrapperflavor") > 0.95) then
+            local main_end = MINTY.flavorize(key)
         end
         return {
             key = key,
+            main_end = main_end,
             vars = {
             }
         }

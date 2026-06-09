@@ -49,16 +49,13 @@ SMODS.Joker {
 
         local rank = localize(pseudorandom_element(ranks), "ranks")
         local suit = localize(pseudorandom_element(suits), "suits_singular")
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key, {rank, suit})
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.xmult,
                 card.ability.extra.xmultgain,
-                rank,
-                suit,
             }
         }
     end,

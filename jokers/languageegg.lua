@@ -56,11 +56,10 @@ SMODS.Joker {
         end
         local total = count * card.ability.extra.mult
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.mult,
                 total

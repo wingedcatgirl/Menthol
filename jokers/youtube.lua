@@ -51,15 +51,14 @@ SMODS.Joker {
         local key = self.key
         local luck, odds = SMODS.get_probability_vars("minty_youtube_desc", 1, card.ability.extra.xmult, "minty_youtube_desc", false)
         local ev = ((card.ability.extra.xmult-1) * (luck/odds)) + 1
+        if ev > 9 then key = key.."_alt" end
         if MINTY.in_collection(card) and ((G.STAGE == G.STAGES.RUN and G.GAME.minty_no_dumb_shit) or (G.STAGE == G.STAGES.MAIN_MENU and MINTY.config.no_dumbass_shit)) then
             info_queue[#info_queue+1] = { set = "Other", key = "minty_disabled_object_config", specific_vars = { localize("option_minty_nodumbshit"), } }
         end
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-            if ev > 9 then key = key.."_alt" end
-        end
+        local main_end = MINTY.flavorize(self.key, {ev})
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 luck, odds,
                 card.ability.extra.xmult,

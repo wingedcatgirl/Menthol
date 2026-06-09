@@ -28,9 +28,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         info_queue[#info_queue+1] = G.P_CENTERS.c_minty_backup_plan
         local estimate
         if card.area.config.collection or not (G.hand and G.hand.cards and #G.hand.cards > 0) then
@@ -69,6 +67,7 @@ SMODS.Joker {
         end
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.xmult,
                 estimate

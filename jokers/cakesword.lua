@@ -37,11 +37,10 @@ SMODS.Joker {
             key = "minty_percent",
         }
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.percent,
                 card.ability.extra.fallpct,

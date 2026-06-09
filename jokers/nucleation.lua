@@ -41,11 +41,10 @@ SMODS.Joker {
         local luck,odds = SMODS.get_probability_vars(card, 1, cryscount, "minty_nucleation_desc", false)
         odds = math.max(odds, 2)
         odds = math.min(odds, ((G.playing_cards and #G.playing_cards or 52) / 2))
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card.ability.extra.chips,
                 total,

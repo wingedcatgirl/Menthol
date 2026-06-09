@@ -39,12 +39,11 @@ SMODS.Joker {
             info_queue[#info_queue+1] = { set = "Other", key = "minty_disabled_object_requirement", specific_vars = { "Mod", "Ortalab" } }
         end
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local unluck, odds = SMODS.get_probability_vars(self, 1, card.ability.extra.odds, "minty_sabertooth_desc", false)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 unluck,
                 odds,

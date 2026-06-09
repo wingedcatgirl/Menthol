@@ -66,14 +66,13 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         if next(card.ability.extra.eaten) then
             info_queue[#info_queue+1] = enhancement_list(card.ability.extra.eaten)
         end
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 localize{type = 'name_text', set = 'Enhanced', key = card.ability.extra.current}
             }

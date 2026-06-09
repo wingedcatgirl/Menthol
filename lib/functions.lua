@@ -5,7 +5,7 @@ function MINTY.say(message, level)
     message = message or "???"
     level = level or "DEBUG"
     while #level < 5 do
-        level = level.." "
+        level = level .. " "
     end
     if level == "TRACE" and not (MINTY.config.dev_mode and not MINTY.config.suppress_trace) then
         return
@@ -16,7 +16,7 @@ end
 ---Checks whether a card is in the collection (as opposed to e.g. the hand or Jokers tray)
 ---@param card table Card to check
 ---@return boolean
-MINTY.in_collection = function (card)
+MINTY.in_collection = function(card)
     return card.area and card.area.config.collection
 end
 
@@ -93,38 +93,38 @@ end
 ---@return integer|boolean --Number of times the card counts as a 3, or `false` if it doesn't count as a 3 (0 is truthy in lua...)
 function Card:is_3(bypass_debuff)
     local count = 0
-        if self.debuff and not bypass_debuff then return false end
-        if SMODS.has_any_suit(self) or self.base.suit == 'minty_3s' or (next(find_joker("Treat-o-Vision")) and self.base.suit == G.GAME.treatovision_suit) then
-            count = count + 1
-        end
-        if self:get_id() == 3 then
-            count = count + 1
-        end
-        --[[if self.ability.name == "fuzzy enhancement" then
+    if self.debuff and not bypass_debuff then return false end
+    if SMODS.has_any_suit(self) or self.base.suit == 'minty_3s' or (next(find_joker("Treat-o-Vision")) and self.base.suit == G.GAME.treatovision_suit) then
+        count = count + 1
+    end
+    if self:get_id() == 3 then
+        count = count + 1
+    end
+    --[[if self.ability.name == "fuzzy enhancement" then
             count = count + 3
         end]]
-        --[[if (has kity seal) then
+    --[[if (has kity seal) then
             count = count + 3
         end]]
 
-        local gems = SMODS.find_mod("Gemstone")[1]
+    local gems = SMODS.find_mod("Gemstone")[1]
 
-        if gems and gems.can_load then
-            if self.ability.gemslot_catseye then
-                count = count + 2
-            end
+    if gems and gems.can_load then
+        if self.ability.gemslot_catseye then
+            count = count + 2
         end
-        --[[if (is feline edition) then
+    end
+    --[[if (is feline edition) then
             count = count * 2
         end]]
 
-        local aikoshen = SMODS.find_mod("aikoyorisshenanigans")[1]
+    local aikoshen = SMODS.find_mod("aikoyorisshenanigans")[1]
 
-        if aikoshen and aikoshen.can_load then
-            if self.get_letter_with_pretend and self:get_letter_with_pretend() == "3" then count = count + 1 end --Completely useless bc math deck ignores 98% of mechanics, but funny
-        end
+    if aikoshen and aikoshen.can_load then
+        if self.get_letter_with_pretend and self:get_letter_with_pretend() == "3" then count = count + 1 end     --Completely useless bc math deck ignores 98% of mechanics, but funny
+    end
 
-        if count == 0 then return false else return count end
+    if count == 0 then return false else return count end
 end
 
 function Card:is_kity()
@@ -146,7 +146,7 @@ MINTY.getSpecKey = (SPECF and SPECF.getSpecKey) or function(HandName)
     HandName = HandName or "Spectrum"
     local lowest_key = nil
     local lowest_order = math.huge
-    local escaped_name = HandName:gsub("([^%w])", "%%%1")  -- escape magic chars
+    local escaped_name = HandName:gsub("([^%w])", "%%%1") -- escape magic chars
 
     local suffix_pattern = "_" .. escaped_name .. "$"
 
@@ -174,15 +174,15 @@ MINTY.luckyCount = function(mod)
     end--]]
 end
 
----Testing function cause I keep forgetting how pairs and ipairs work, don't worry about it 
-MINTY.centercount = function (args)
+---Testing function cause I keep forgetting how pairs and ipairs work, don't worry about it
+MINTY.centercount = function(args)
     args = args or {}
     local mod = args.mod or "Menthol"
-    local modprefix = SMODS.Mods[mod].prefix.."_"
+    local modprefix = SMODS.Mods[mod].prefix .. "_"
     local itemprefix = args.itemprefix or "sleeve_"
     local count = 0
-    for k,v in pairs(G.P_CENTERS) do
-        if string.find(k,itemprefix..modprefix) then
+    for k, v in pairs(G.P_CENTERS) do
+        if string.find(k, itemprefix .. modprefix) then
             count = count + 1
             MINTY.say(k)
         end
@@ -195,44 +195,44 @@ end
 ---@return string result Key of the stake that will unlock next sleeve, or that already did unlock `current_sleeve` if applicable
 ---@return integer count Count (order) of the same stake as `result`
 MINTY.sleeveunlockcheck = function(current_sleeve, debug)
-  G.PROFILES[G.SETTINGS.profile].mintysleeves = G.PROFILES[G.SETTINGS.profile].mintysleeves or {}
+    G.PROFILES[G.SETTINGS.profile].mintysleeves = G.PROFILES[G.SETTINGS.profile].mintysleeves or {}
 
-  local sleeves = {}
-    for k,_ in pairs(G.P_CENTERS) do
-        if string.find(k,"sleeve_minty_") then
+    local sleeves = {}
+    for k, _ in pairs(G.P_CENTERS) do
+        if string.find(k, "sleeve_minty_") then
             table.insert(sleeves, k)
         end
     end
-  local count = 1
-  for _, sleeve in ipairs(sleeves) do
-    if G.P_CENTERS[sleeve] and G.P_CENTERS[sleeve].unlocked == true then
-      count = count + 1
+    local count = 1
+    for _, sleeve in ipairs(sleeves) do
+        if G.P_CENTERS[sleeve] and G.P_CENTERS[sleeve].unlocked == true then
+            count = count + 1
+        end
     end
-  end
 
-  local stakes = {
-    "stake_minty_scarlet",
-    "stake_minty_irrigo",
-    "stake_minty_void",
-    "stake_minty_sky",
-    "stake_minty_mint",
-    "stake_minty_tungsten",
-    "stake_minty_catcat",
-  }
+    local stakes = {
+        "stake_minty_scarlet",
+        "stake_minty_irrigo",
+        "stake_minty_void",
+        "stake_minty_sky",
+        "stake_minty_mint",
+        "stake_minty_tungsten",
+        "stake_minty_catcat",
+    }
 
-  local result = stakes[count] or "stake_minty_catcat"
-  local index = G.P_STAKES[result].order
+    local result = stakes[count] or "stake_minty_catcat"
+    local index = G.P_STAKES[result].order
 
-  G.PROFILES[G.SETTINGS.profile].mintysleeves.key, G.PROFILES[G.SETTINGS.profile].mintysleeves.result = result, index
-  if G.PROFILES[G.SETTINGS.profile].mintysleeves[current_sleeve] then --put it in the settings?
-    result = G.PROFILES[G.SETTINGS.profile].mintysleeves[current_sleeve]
-  end
+    G.PROFILES[G.SETTINGS.profile].mintysleeves.key, G.PROFILES[G.SETTINGS.profile].mintysleeves.result = result, index
+    if G.PROFILES[G.SETTINGS.profile].mintysleeves[current_sleeve] then --put it in the settings?
+        result = G.PROFILES[G.SETTINGS.profile].mintysleeves[current_sleeve]
+    end
 
-  G:save_settings()
-  return result, index
+    G:save_settings()
+    return result, index
 end
 
-MINTY.rocklist = function ()
+MINTY.rocklist = function()
     MINTY.rocks = MINTY.rocks or {}
     MINTY.rockbag = {}
     local outside_rocks = {
@@ -245,7 +245,7 @@ MINTY.rocklist = function ()
 
     }
 
-    for k,v in pairs(G.P_CENTERS) do
+    for k, v in pairs(G.P_CENTERS) do
         if (v.minty_rock) or outside_rocks[k] then
             MINTY.rocks[v.key] = true
             table.insert(MINTY.rockbag, v.key)
@@ -258,28 +258,28 @@ end
 ---@param name string The name of the enhancement list
 ---@return table
 function MINTY.enhancement_list(table, name)
-  local key = 'minty_'..name..'_enhancements'
+    local key = 'minty_' .. name .. '_enhancements'
     local text = {}
     local text_parsed = {}
 
-    for k,_ in pairs(table) do
+    for k, _ in pairs(table) do
         if G.P_CENTERS[k] then
-            text[#text+1] = localize{type = 'name_text', set = 'Enhanced', key = k}
+            text[#text + 1] = localize { type = 'name_text', set = 'Enhanced', key = k }
         end
     end
 
     for _, v in ipairs(text) do
-      text_parsed[#text_parsed + 1] = loc_parse_string(v)
+        text_parsed[#text_parsed + 1] = loc_parse_string(v)
     end
 
     G.localization.descriptions.Other[key] = G.localization.descriptions.Other[key] or {}
     G.localization.descriptions.Other[key].text = text
     G.localization.descriptions.Other[key].text_parsed = text_parsed
 
-  return {
-    set = 'Other',
-    key = key,
-  }
+    return {
+        set = 'Other',
+        key = key,
+    }
 end
 
 ---... from target areas, excluding self
@@ -289,9 +289,9 @@ end
 function MINTY.get_all_highlighted(card, areas)
     local cards = {}
 
-    for _,area in ipairs(areas) do
-        for _,v in ipairs(G[area].highlighted or {}) do
-            if v~=card then cards[#cards+1] = v end
+    for _, area in ipairs(areas) do
+        for _, v in ipairs(G[area].highlighted or {}) do
+            if v ~= card then cards[#cards + 1] = v end
         end
     end
 
@@ -301,7 +301,7 @@ end
 ---Do the tarot flip thing to all of G.hand.highlighted
 ---@param card Card
 ---@param args table|{rank:string?, suit:string?, enh:string?, edi:string?, random_ranks:table?, random_suits:table?, random_enhs:table?, random_edis:table?, seed:string?, sound:string?} Keys of the appropriate target modifications. `random_` tables are lists of same keys to pick one at random, in which case you need `seed` to seed the seed. Note: To clear an edition, pass the string "base", "none", "false", or "remove" as the edition key.
-MINTY.tarotflip = function (card, args)
+MINTY.tarotflip = function(card, args)
     if not args then
         MINTY.say("hey you forgor to say anything when trying to change these cards", "ERROR")
         return
@@ -323,96 +323,97 @@ MINTY.tarotflip = function (card, args)
 
     if card then
         G.E_MANAGER:add_event(Event({
-        trigger = 'after',
-        delay = 0.4,
-        func = function()
-            play_sound('tarot1')
-            card:juice_up(0.3, 0.5)
-            return true
-        end }))
+            trigger = 'after',
+            delay = 0.4,
+            func = function()
+                play_sound('tarot1')
+                card:juice_up(0.3, 0.5)
+                return true
+            end
+        }))
     end
 
     if (rank or ranks or suit or suits or enh or enhs) then
-        for i=1, #G.hand.highlighted do
-            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+        for i = 1, #G.hand.highlighted do
+            local percent = 1.15 - (i - 0.999) / (#G.hand.highlighted - 0.998) * 0.3
             G.E_MANAGER:add_event(Event({
-            trigger = 'after',
-            delay = 0.15,
-            func = function()
-                G.hand.highlighted[i]:flip()
-                play_sound('card1', percent)
-                G.hand.highlighted[i]:juice_up(0.3, 0.3)
-                return true
-            end
+                trigger = 'after',
+                delay = 0.15,
+                func = function()
+                    G.hand.highlighted[i]:flip()
+                    play_sound('card1', percent)
+                    G.hand.highlighted[i]:juice_up(0.3, 0.3)
+                    return true
+                end
             }))
         end
         delay(0.2)
-        for i=1, #G.hand.highlighted do
+        for i = 1, #G.hand.highlighted do
             G.E_MANAGER:add_event(Event({
-            trigger = 'after',
-            delay = 0.1,
-            func = function()
-                if ranks then rank = pseudorandom_element(ranks, pseudoseed(seed)) end
-                if suits then suit = pseudorandom_element(suits, pseudoseed(seed)) end
-                if enhs then enh = SMODS.poll_enhancement({options = enhs, key = seed, guaranteed = true}) end
-                if rank or suit then
-                    assert(SMODS.change_base(G.hand.highlighted[i], suit, rank))
+                trigger = 'after',
+                delay = 0.1,
+                func = function()
+                    if ranks then rank = pseudorandom_element(ranks, pseudoseed(seed)) end
+                    if suits then suit = pseudorandom_element(suits, pseudoseed(seed)) end
+                    if enhs then enh = SMODS.poll_enhancement({ options = enhs, key = seed, guaranteed = true }) end
+                    if rank or suit then
+                        assert(SMODS.change_base(G.hand.highlighted[i], suit, rank))
+                    end
+                    if enh then
+                        G.hand.highlighted[i]:set_ability(G.P_CENTERS[enh])
+                    end
+                    return true
                 end
-                if enh then
-                    G.hand.highlighted[i]:set_ability(G.P_CENTERS[enh])
-                end
-                return true
-            end
             }))
         end
-        for i=1, #G.hand.highlighted do
-            local percent = 0.85 + ( i - 0.999 ) / ( #G.hand.highlighted - 0.998 ) * 0.3
+        for i = 1, #G.hand.highlighted do
+            local percent = 0.85 + (i - 0.999) / (#G.hand.highlighted - 0.998) * 0.3
             G.E_MANAGER:add_event(Event({
-            trigger = 'after',
-            delay = 0.15,
-            func = function()
-                G.hand.highlighted[i]:flip()
-                play_sound(sound or 'tarot2', percent, 0.6)
-                G.hand.highlighted[i]:juice_up(0.3, 0.3)
-                return true
-            end
+                trigger = 'after',
+                delay = 0.15,
+                func = function()
+                    G.hand.highlighted[i]:flip()
+                    play_sound(sound or 'tarot2', percent, 0.6)
+                    G.hand.highlighted[i]:juice_up(0.3, 0.3)
+                    return true
+                end
             }))
         end
     end
 
     if (edi or edis) then
-        for i=1, #G.hand.highlighted do
+        for i = 1, #G.hand.highlighted do
             G.E_MANAGER:add_event(Event({
-            trigger = 'after',
-            delay = 0.1,
-            func = function()
-                if edis then edi = SMODS.poll_edition({options = enhs, key = seed, guaranteed = true}) end
-                if edi then
-                    if edi == "base" or edi == "none" or edi == "false" or edi == "remove" then edi = nil end
-                    G.hand.highlighted[i]:set_edition(edi)
-                    G.hand.highlighted[i]:juice_up(0.3,0.3)
+                trigger = 'after',
+                delay = 0.1,
+                func = function()
+                    if edis then edi = SMODS.poll_edition({ options = enhs, key = seed, guaranteed = true }) end
+                    if edi then
+                        if edi == "base" or edi == "none" or edi == "false" or edi == "remove" then edi = nil end
+                        G.hand.highlighted[i]:set_edition(edi)
+                        G.hand.highlighted[i]:juice_up(0.3, 0.3)
+                    end
+                    return true
                 end
-                return true
-            end
             }))
         end
     end
 
     G.E_MANAGER:add_event(Event({
-    trigger = 'after',
-    delay = 0.15,
-    func = function()
-        G.hand:unhighlight_all()
-        return true
-    end
+        trigger = 'after',
+        delay = 0.15,
+        func = function()
+            G.hand:unhighlight_all()
+            return true
+        end
     }))
     delay(0.5)
 end
 
 ---Get next blind, including custom small/big blinds
 ---@param round string
----@return string? 
-MINTY.get_blind = function (round)
+---@return string?
+MINTY.get_blind = function(round)
     if not round then
         --figure out current round from G.GAME? Maybe not possible
 
@@ -436,11 +437,11 @@ MINTY.get_blind = function (round)
     end
     --]]
 
-    if G["FORCE_"..round:upper()] then return G["FORCE_"..round:upper()] end
+    if G["FORCE_" .. round:upper()] then return G["FORCE_" .. round:upper()] end
 
-    local vanillablind = "bl_"..round:lower()
+    local vanillablind = "bl_" .. round:lower()
 
-    local eligible_blinds = {[vanillablind] = true}
+    local eligible_blinds = { [vanillablind] = true }
     for k, v in pairs(G.P_BLINDS) do
         if not v[round:lower()] then
             -- don't add
@@ -519,15 +520,15 @@ MINTY.discover_count = function(set, mod, debug)
     local found = 0
 
     if debug then
-        MINTY.say("Counting discovered items of set "..set.." from mod with id "..mod)
+        MINTY.say("Counting discovered items of set " .. set .. " from mod with id " .. mod)
     end
 
     for k, v in pairs(G.P_CENTERS) do
         if v.discovered then
             if ((mod == "all") or (mod == "vanilla" and not v.mod) or (v.mod and v.mod.id == mod))
-            and ((v.set == set) or (set == "all")) then
+                and ((v.set == set) or (set == "all")) then
                 if debug then
-                    MINTY.say("Discovered center found with key "..k)
+                    MINTY.say("Discovered center found with key " .. k)
                 end
                 found = found + 1
             end
@@ -539,7 +540,7 @@ MINTY.discover_count = function(set, mod, debug)
             if v.discovered then
                 if ((mod == "all") or (mod == "vanilla" and not v.mod) or (v.mod and v.mod.id == mod)) then
                     if debug then
-                        MINTY.say("Discovered blind found with key "..k)
+                        MINTY.say("Discovered blind found with key " .. k)
                     end
                     found = found + 1
                 end
@@ -552,7 +553,7 @@ MINTY.discover_count = function(set, mod, debug)
             if v.discovered then
                 if ((mod == "all") or (mod == "vanilla" and not v.mod) or (v.mod and v.mod.id == mod)) then
                     if debug then
-                        MINTY.say("Discovered tag found with key "..k)
+                        MINTY.say("Discovered tag found with key " .. k)
                     end
                     found = found + 1
                 end
@@ -563,7 +564,7 @@ MINTY.discover_count = function(set, mod, debug)
     return found
 end
 
----Faster than typing out all this crap :v 
+---Faster than typing out all this crap :v
 ---Remember to return `true` to resolve the event!
 ---@param func function The function to queue
 ---@param args? table Other arguments
@@ -595,7 +596,7 @@ function MINTY.select_card_from_deck(args)
         valid = valid and not (args.must_be_suited and SMODS.has_no_suit(v))
         valid = valid and not (args.exclude_suit and v:is_suit(args.exclude_suit))
         if valid then
-            valid_cards[#valid_cards+1] = v
+            valid_cards[#valid_cards + 1] = v
         end
     end
     if valid_cards[1] then
@@ -609,11 +610,11 @@ function MINTY.reset_treat_card()
     local valid_treat_cards = {}
     for k, v in ipairs(G.playing_cards) do
         if not SMODS.has_no_suit(v) and v.base.suit ~= 'minty_3s' then
-            valid_treat_cards[#valid_treat_cards+1] = v
+            valid_treat_cards[#valid_treat_cards + 1] = v
         end
     end
     if valid_treat_cards[1] then
-        local treat_card = pseudorandom_element(valid_treat_cards, pseudoseed('treat'..G.GAME.round_resets.ante))
+        local treat_card = pseudorandom_element(valid_treat_cards, pseudoseed('treat' .. G.GAME.round_resets.ante))
         G.GAME.treatovision_suit = treat_card.base.suit
     end
     --sendDebugMessage('[Minty] Treat-o-vision suit reset to '..G.GAME.treatovision_suit)
@@ -632,7 +633,8 @@ function SMODS.current_mod.reset_game_globals(init)
     if init then
         G.GAME.minty_no_dumb_shit = MINTY.config.no_dumbass_shit
         G.GAME.minty_crossover = MINTY.config.include_crossover
-        G.GAME.modifiers.extra_vouchers = math.max(math.floor(#G.P_CENTER_POOLS.Voucher/32)-1, G.GAME.modifiers.extra_vouchers or 0)
+        G.GAME.modifiers.extra_vouchers = math.max(math.floor(#G.P_CENTER_POOLS.Voucher / 32) - 1,
+            G.GAME.modifiers.extra_vouchers or 0)
     end
 
     G.GAME.minty_hyperfix = G.GAME.minty_hyperfix or { active = true, value = 0 }
@@ -643,25 +645,26 @@ function SMODS.current_mod.reset_game_globals(init)
     MINTY.reset_treat_card()
 end
 
-SMODS.current_mod.set_debuff = function (card)
-  if
-    card.seal == "minty_cement"
-    or SMODS.has_enhancement(card, "m_minty_marble")
-    or (card.ability or {}).dekaja == G.GAME.round
-  then
-     return "prevent_debuff"
-  end
+SMODS.current_mod.set_debuff = function(card)
+    if
+        card.seal == "minty_cement"
+        or SMODS.has_enhancement(card, "m_minty_marble")
+        or (card.ability or {}).dekaja == G.GAME.round
+    then
+        return "prevent_debuff"
+    end
 end
 
 
-SMODS.current_mod.calculate = function (self, context)
+SMODS.current_mod.calculate = function(self, context)
     if context.using_consumeable then
         local legmap = {
             c_soul = true,
             c_minty_wand = true
         }
 
-        local key = context.consumeable.config and context.consumeable.config.center and context.consumeable.config.center.key or "nope"
+        local key = context.consumeable.config and context.consumeable.config.center and
+        context.consumeable.config.center.key or "nope"
 
         if legmap[key] then
             G.GAME.soul_or_wand_used = true
@@ -685,11 +688,11 @@ end
 MINTY.enhancecheck = function()
     MINTY.say("Building Inkbleed table...")
     MINTY.inkbleedtable = MINTY.inkbleedtable or {}
-    for k,v in pairs(G.P_CENTERS) do
+    for k, v in pairs(G.P_CENTERS) do
         if v.set == "Enhanced" then
             for kk, vv in pairs(G.P_CENTERS) do
                 if vv.set == "Enhanced" then
-                    if (localize{type = 'name_text', set = 'Enhanced', key = k} == localize{type = 'name_text', set = 'Enhanced', key = kk}) and (k ~= kk) then
+                    if (localize { type = 'name_text', set = 'Enhanced', key = k } == localize { type = 'name_text', set = 'Enhanced', key = kk }) and (k ~= kk) then
                         local k1, k2 = v.key, vv.key
                         MINTY.inkbleedtable[k1] = MINTY.inkbleedtable[k1] or {}
                         MINTY.inkbleedtable[k1][k2] = true
@@ -707,7 +710,7 @@ end
 ---@param stake number|string Index or key of stake to evaluate
 ---@param target number|string Index or key of stake we're checking against
 ---@return boolean
-MINTY.at_least_stake = function (stake, target)
+MINTY.at_least_stake = function(stake, target)
     if not (stake and target) then return false end
     local stake_index, target_index, stake_key, target_key
     if type(stake) == "string" then
@@ -731,7 +734,7 @@ MINTY.at_least_stake = function (stake, target)
 
     local function get_all_applied_stakes(key, ret)
         ret = ret or {}
-        for _,v in ipairs(SMODS.Stakes[key].applied_stakes) do
+        for _, v in ipairs(SMODS.Stakes[key].applied_stakes) do
             ret[v] = true
             get_all_applied_stakes(v, ret)
         end
@@ -739,35 +742,70 @@ MINTY.at_least_stake = function (stake, target)
     end
 
     local stakes = get_all_applied_stakes(stake_key)
-    return stakes[target_key] == true--, stakes
+    return stakes[target_key] == true --, stakes
 end
 
 MINTY.get_all_top_stakes = function()
     local stakes = {}
-    for k,v in pairs(SMODS.Stakes) do
+    for k, v in pairs(SMODS.Stakes) do
         if k ~= "stake_minty_barber" then
             if stakes[k] == nil then stakes[k] = true end
-            for _,vv in ipairs(v.applied_stakes) do
+            for _, vv in ipairs(v.applied_stakes) do
                 stakes[vv] = false
             end
         end
     end
     local ret = {}
-    for k,v in pairs(stakes) do
+    for k, v in pairs(stakes) do
         if v == true then
-            ret[#ret+1] = k
+            ret[#ret + 1] = k
         end
     end
 
     return ret
 end
 
-MINTY.gradient_check = function ()
+MINTY.gradient_check = function()
     if not dp then return end
     loc_colour()
     for k, v in pairs(G.ARGS.LOC_COLOURS) do
         if v[1] and string.find(k, "menthol") then dp.handleLog(v, "INFO", k) end
     end
+end
+
+---Creates the main_end nodes to be returned in loc_vars
+---@param key string
+---@param vars? table Vars to be passed to the flavor text. Separate from the normal description.
+---@return table? main_end
+MINTY.flavorize = function(key, vars)
+    if not MINTY.config.flavor_text then return nil end
+
+    local text = { {
+        n = G.UIT.R,
+        config = { colour = G.C.CLEAR, align = "cm" },
+        nodes = { { n = G.UIT.T, config = { text = " ", colour = G.C.CLEAR, scale = 0.256 } } }
+    } }
+    local flavor_nodes = { {
+        n = G.UIT.C,
+        config = { colour = G.C.CLEAR, align = "cm" },
+        nodes = text
+    } }
+
+    local flavor_data = G.localization.descriptions.Flavor[key]
+    if flavor_data then
+        for i, lines in ipairs(flavor_data.text_parsed) do
+            local final_line = SMODS.localize_box(lines, {vars = vars})
+            text[#text + 1] = {
+                n = G.UIT.R,
+                config = { colour = G.C.CLEAR, align = "cm" },
+                nodes = final_line
+            }
+        end
+    else
+        return nil
+    end
+
+    return flavor_nodes
 end
 
 SMODS.current_mod.process_loc_text = function()

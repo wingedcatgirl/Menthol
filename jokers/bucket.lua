@@ -24,12 +24,11 @@ SMODS.Joker {
     },
 	loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.rocks, "rock")
 		return {
             key = key,
+            main_end = main_end,
             vars = {
                 localize{type = 'name_text', set = 'Other', key = "minty_stone_cards"}
             }

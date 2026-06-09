@@ -29,28 +29,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        local main_end
-        if MINTY.config.flavor_text and G.localization.descriptions.Flavor[self.key] then
-            local text = { {
-                n = G.UIT.R,
-                config = { colour = G.C.CLEAR, align = "cm" },
-                nodes = {{ n = G.UIT.T, config = { text = " ", colour = G.C.CLEAR, scale = 0.256 } }}
-            } }
-            main_end = { {
-                n = G.UIT.C,
-                config = { colour = G.C.CLEAR, align = "cm" },
-                nodes = text
-            } }
-
-            for i, lines in ipairs(G.localization.descriptions.Flavor[self.key].text_parsed) do
-                local final_line = SMODS.localize_box(lines, {})
-                text[#text + 1] = {
-                    n = G.UIT.R,
-                    config = { colour = G.C.CLEAR, align = "cm" },
-                    nodes = final_line
-                }
-            end
-        end
+        local main_end = MINTY.flavorize(self.key)
         return {
             key = key,
             main_end = main_end,

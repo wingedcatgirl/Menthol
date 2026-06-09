@@ -34,14 +34,13 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if MINTY.config.flavor_text then
-            key = self.key.."_flavor"
-        end
+        local main_end = MINTY.flavorize(self.key)
         local luck, unluck = SMODS.get_probability_vars(card, 1, 3, "minty_threecats", false)
         local total_luck = (luck/unluck)*3
         total_luck = math.min(math.floor(total_luck), 3)
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 total_luck,
                 card.ability.extra.chips,

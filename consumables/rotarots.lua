@@ -151,6 +151,7 @@ SMODS.Consumable({
 
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card and card.ability.max_highlighted or self.config.max_highlighted,
                 localize{type = 'name_text', set = 'Enhanced', key = self.config.mod_conv},
@@ -189,6 +190,7 @@ SMODS.Consumable({
 
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card and card.ability.max_highlighted or self.config.max_highlighted,
                 localize{type = 'name_text', set = 'Enhanced', key = self.config.mod_conv},
@@ -227,6 +229,7 @@ SMODS.Consumable({
 
         return {
             key = key,
+            main_end = main_end,
             vars = {
                 card and card.ability.max_highlighted or self.config.max_highlighted,
                 localize{type = 'name_text', set = 'Enhanced', key = self.config.mod_conv},
