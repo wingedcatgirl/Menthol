@@ -126,7 +126,11 @@ end
 local G_UIDEF_use_and_sell_buttons_ref = G.UIDEF.use_and_sell_buttons
 function G.UIDEF.use_and_sell_buttons(card)
     local orig_btns = G_UIDEF_use_and_sell_buttons_ref(card)
-    if card.config.center.set ~= "Joker" or (card.area and card.area.config.collection) then return orig_btns end
+    local set = card.config.center.set
+    local valid_areas = {
+        Joker = G.jokers
+    }
+    if card.area ~= valid_areas[set] then return orig_btns end
 
     ---@class SMODS.Center
     local center = card.config.center
