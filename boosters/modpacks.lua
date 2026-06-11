@@ -42,7 +42,7 @@ local function poll_mod(args)
 
     local mod_pool = {}
     for k, v in pairs(MINTY.mod_pool) do
-        if (args.min or 0) < current_counts[v.id] then
+        if (args.min or 0) < (current_counts[v.id] or 0) then
             v.weight = 10 * math.ceil(math.log(current_counts[v.id], 7))
             mod_pool[#mod_pool + 1] = v
         end
