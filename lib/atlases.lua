@@ -10,11 +10,8 @@ local kitties = {
 
 local color = kitties[math.random(1,#kitties)]
 
-SMODS.Atlas({
-    key = 'modicon',
+SMODS.Atlas:take_ownership("minty_modicon", {
     path = 'kitty ('..color..').png',
-    px = 34,
-    py = 34
 })
 
 SMODS.Atlas {

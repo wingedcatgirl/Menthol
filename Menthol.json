@@ -9,7 +9,8 @@
 	"priority": 37,
 	"badge_colour": "CA7CA7",
 	"badge_text_colour": "FFFFFF",
-	"version": "1.0.1~BETA-20260610",
+	"version": "1.0.1~BETA-20260614",
+	"icon_path": "kitty (missing).png",
 	"provides": [
 		"MintysSillyMod"
 	],
