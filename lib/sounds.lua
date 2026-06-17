@@ -23,6 +23,11 @@ SMODS.Sound { --Sonic 2 time limit warning noise
     path = 'S2 siren.wav'
 }
 
+SMODS.Sound { --Sonic oxygen ding
+    key = 'caution',
+    path = 'sonic oxygen ding.wav'
+}
+
 SMODS.Sound { --https://sounds.spriters-resource.com/gamecube/supermariosunshine/asset/394927/; (sloppy) recreation from w2ndLoad_0.aw_000001bb.wav and w2ndLoad_0.aw_000001d0.wav
     key = 'squirt',
     path = 'approximately yoshi juice noise probably.ogg'

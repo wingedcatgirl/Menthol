@@ -52,6 +52,16 @@ SMODS.Sticker{
                     G.GAME.minty_piracy_punishment = G.GAME.minty_piracy_punishment - 1
                     return true
                 end}))
+            elseif SMODS.pseudorandom_probability(self, "minty_piracy_caution", 3, 15, "minty_piracy_caution", true) then
+                G.GAME.minty_piracy_caution = (G.GAME.minty_piracy_caution or 0) + 1
+                MINTY.event(function ()
+                    G.GAME.minty_piracy_caution = G.GAME.minty_piracy_caution - 1
+                    if (G.GAME.minty_piracy_punishment or 0) > 0 then return true end
+                    if G.GAME.minty_piracy_caution == 0 then
+                        play_sound("minty_caution", 1)
+                    end
+                    return true
+                end)
             end
         end
     end
