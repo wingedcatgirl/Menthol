@@ -14,5 +14,10 @@ SMODS.Blind {
         end
 
         return false
+    end,
+    in_pool = function (self)
+        if G.GAME.modifiers.cry_force_suit == "minty_3s" then return false end
+
+        return G.GAME.round_resets.ante >= self.boss.min
     end
 }
