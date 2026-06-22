@@ -109,6 +109,50 @@ function SMODS.get_weight_of_object(obj, opt_weight, args)
     return getweightof(obj, opt_weight, args)
 end
 
+--Hook: An Absence can't be selected
+local bch = G.FUNCS.blind_choice_handler
+G.FUNCS.blind_choice_handler = function(e)
+    local ret = bch(e)
+
+    --get attached blind, disable select button if it is An Absence
+    local slot = e.config.id
+    local blind_key = G.GAME.round_resets.blind_choices[slot]
+    if slot == G.GAME.blind_on_deck and blind_key == "bl_minty_absence" then
+        local top_button = e.UIBox:get_UIE_by_ID('select_blind_button')
+        if top_button then
+            top_button.config.colour = G.C.UI.BACKGROUND_INACTIVE
+            top_button.config.button = nil
+            top_button.config.hover = false
+            top_button.children[1].config.colour = G.C.UI.TEXT_INACTIVE
+        end
+    end
+
+    return ret
+end
+
+--Hook: An Absence has no score
+local cbc = create_UIBox_blind_choice
+function create_UIBox_blind_choice(type, run_info)
+    local t = cbc(type, run_info)
+
+    if G.GAME.round_resets.blind_choices[type] == "bl_minty_absence" then
+        t.nodes[1].nodes[3].nodes[1].nodes[2] = nil
+    end
+    return t
+end
+
+--Hook: Skipping An Absence isn't an "or" question
+local cbt = create_UIBox_blind_tag
+function create_UIBox_blind_tag(blind_choice, run_info)
+    local t = cbt(blind_choice, run_info)
+
+    if G.GAME.round_resets.blind_choices[blind_choice] == "bl_minty_absence" then
+        t.nodes[1].nodes[1].config.text = ""
+    end
+
+    return t
+end
+
 --Hook: Mythic Rares count as Rares
 local israrity = Card.is_rarity
 function Card:is_rarity(rarity)

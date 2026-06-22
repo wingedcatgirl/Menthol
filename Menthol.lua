@@ -277,6 +277,7 @@ local files = {
         { name = "atooth"},
         { name = "apaw"},
         { name = "atail"},
+        { name = "anabsence"},
         { name = "thenip" },
         --{ name = "thetree" }, Disabled til we play Ortalab again
         { name = "theclowder" },

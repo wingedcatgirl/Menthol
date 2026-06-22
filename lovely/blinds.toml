@@ -119,3 +119,15 @@ if bkey then G.GAME.blinds_defeated_list[bkey] = (G.GAME.blinds_defeated_list[bk
 '''
 match_indent = true
 
+# An Absence has no reward
+[[patches]]
+[patches.pattern]
+target = "functions/UI_definitions.lua"
+position = "after"
+pattern = '''if G.GAME.modifiers.no_blind_reward and G.GAME.modifiers.no_blind_reward[type] then _reward = nil end'''
+payload = '''
+if G.GAME.round_resets.blind_choices[type] == "bl_minty_absence" then 
+    _reward = nil 
+end
+'''
+match_indent = true

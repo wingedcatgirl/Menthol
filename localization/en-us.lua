@@ -1095,6 +1095,13 @@ return {
 					"for first discard"
 				},
 			},
+			bl_minty_absence = {
+				name = "An Absence",
+				text = {
+					"This blind must",
+					"be skipped"
+				}
+			}
 		},
 		["Tarot"] = {
 			["c_minty_cat"] = {
