@@ -29,6 +29,7 @@
 
 ## Blinds
 - (add) The Clowder
+- (add) An Absence
 
 ## etc
 - (add) Cobalt Card consumeable type
