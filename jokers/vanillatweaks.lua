@@ -26,14 +26,12 @@ if not SMODS.find_mod("UnStable")[1] then --UnStable tweaks all these for its ow
 
     SMODS.Joker:take_ownership('fibonacci', {
         config = {
-            extra = {
-                mult = 8,
-                again = 0,
-            },
+            extra = 8,
+            again = 0,
         },
         loc_vars = function(self, info_queue, card)
             return {
-                vars = {card.ability.extra.mult}
+                vars = {card.ability.extra}
             }
         end,
         calculate = function(self, card, context)
@@ -49,17 +47,17 @@ if not SMODS.find_mod("UnStable")[1] then --UnStable tweaks all these for its ow
                     context.other_card:get_id() == 14) then
                         count = count + 1
                     end
-                    card.ability.extra.again = count - 1
+                    card.ability.again = count - 1
                     return {
-                        mult = card.ability.extra.mult,
+                        mult = card.ability.extra,
                         card = card
                     }
                 end
             end
             
-            if context.retrigger_joker_check and card.ability.extra.again ~= 0 and context.other_card == card then
-                local again = card.ability.extra.again
-                card.ability.extra.again = 0
+            if context.retrigger_joker_check and card.ability.again ~= 0 and context.other_card == card then
+                local again = card.ability.again
+                card.ability.again = 0
                 return {
                     message = localize("k_again_ex"),
                     message_card = card,
