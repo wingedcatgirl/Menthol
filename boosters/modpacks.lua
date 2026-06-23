@@ -35,7 +35,7 @@ local function poll_mod(args)
 
     local current_counts = {}
     for k, center in pairs(G.P_CENTERS) do
-        if center.original_mod and center.set == "Joker" and SMODS.add_to_pool(center, { source = args.card_seed or "minty_mod_pack" }) then
+        if center.original_mod and center.set == "Joker" and (G.STAGE ~= G.STAGES.RUN or SMODS.add_to_pool(center, { source = args.card_seed or "minty_mod_pack" })) then
             current_counts[center.original_mod.id] = (current_counts[center.original_mod.id] or 0) + 1
         end
     end
