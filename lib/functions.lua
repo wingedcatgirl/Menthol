@@ -411,21 +411,21 @@ MINTY.tarotflip = function(card, args)
 end
 
 ---Get next blind, including custom small/big blinds
----@param round string
+---@param slot string
 ---@return string?
-MINTY.get_blind = function(round)
-    if not round then
-        --figure out current round from G.GAME? Maybe not possible
+MINTY.get_blind = function(slot)
+    if not slot then
+        --figure out current slot from G.GAME?
 
-        MINTY.say("Don't call MINTY.get_blind without specifying a round!", "WARN ")
+        MINTY.say("Don't call MINTY.get_blind without specifying a slot!", "WARN ")
         return
-    elseif round == "Boss" then
+    elseif slot == "Boss" then
         MINTY.say("Boss blind getting not implemented yet, sowwiez; using vanilla's function instead for now", "WARN ")
         return get_new_boss()
     end
 
     --[[ Nothing uses "perscribing" for small/big blinds yet, so disabling for now
-    local perscription == "perscribed_" .. (round == "Boss" and "bosses") or round:lower()
+    local perscription == "perscribed_" .. (slot == "Boss" and "bosses") or slot:lower()
     G.GAME[perscription] = G.GAME[perscription] or {}
     if G.GAME[perscription] and G.GAME[perscription][G.GAME.round_resets.ante] then
         local ret_blind = G.GAME[perscription][G.GAME.round_resets.ante]
@@ -437,18 +437,18 @@ MINTY.get_blind = function(round)
     end
     --]]
 
-    if G["FORCE_" .. round:upper()] then return G["FORCE_" .. round:upper()] end
+    if G["FORCE_" .. slot:upper()] then return G["FORCE_" .. slot:upper()] end
 
-    local vanillablind = "bl_" .. round:lower()
+    local vanillablind = "bl_" .. slot:lower()
 
     local eligible_blinds = { [vanillablind] = true }
     for k, v in pairs(G.P_BLINDS) do
-        if not v[round:lower()] then
+        if not v[slot:lower()] then
             -- don't add
         elseif v.in_pool and type(v.in_pool) == 'function' then
             local res, options = v:in_pool()
             eligible_blinds[k] = res and true or nil
-        elseif v[round:lower()].min <= math.max(1, G.GAME.round_resets.ante) then
+        elseif v[slot:lower()].min <= math.max(1, G.GAME.round_resets.ante) then
             eligible_blinds[k] = true
         end
     end
@@ -627,10 +627,8 @@ function SMODS.current_mod.reset_game_globals(init)
     if en then lang = "en-us" end
     G.GAME.languageEgg[lang] = true
 
-    if init or not G.GAME.starting_params.minty_three_lock then
-        G.GAME.starting_params.minty_three_lock = MINTY.config.three_lock.current_option
-    end
     if init then
+        G.GAME.starting_params.minty_three_lock = MINTY.config.three_lock.current_option
         G.GAME.minty_no_dumb_shit = MINTY.config.no_dumbass_shit
         G.GAME.minty_crossover = MINTY.config.include_crossover
         G.GAME.modifiers.extra_vouchers = math.max(math.floor(#G.P_CENTER_POOLS.Voucher / 32) - 1,
