@@ -10,7 +10,7 @@ SMODS.Back {
     calculate = function(self, back, context)
         if context.modify_weights then
             for i,item in ipairs(context.pool) do
-                local center = G.P_CENTERS[center.key]
+                local center = G.P_CENTERS[item.key]
                 if center.key:find('_minty_') or (center.pools and (center.pools.MintysSillyMod or center.pools.Menthol)) then
                     if (center.set and center.set.Joker) or center.key:find("j_minty_") then
                         item.weight = item.weight * 3
@@ -81,7 +81,7 @@ if not not next(SMODS.find_mod("CardSleeves")) then
 
             if context.modify_weights then
                 for i,item in ipairs(context.pool) do
-                    local center = G.P_CENTERS[center.key]
+                    local center = G.P_CENTERS[item.key]
                     if center.key:find('_minty_') or (center.pools and (center.pools.MintysSillyMod or center.pools.Menthol)) then
                         if (center.set and center.set.Joker) or center.key:find("j_minty_") then
                             item.weight = item.weight * 3
