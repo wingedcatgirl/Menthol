@@ -74,6 +74,7 @@ SMODS.Joker {
             return
         end
         local area = card.area
+        if not area then return end
         if G.your_collection then
             for k, v in pairs(G.your_collection) do
                 if area == v then
