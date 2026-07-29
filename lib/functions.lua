@@ -574,16 +574,6 @@ MINTY.event = function(func, args)
     G.E_MANAGER:add_event(Event(args), args.queue, args.front)
 end
 
-
---Talisman compatibility compatibility
-to_big = to_big or function(x)
-    return x
-end
-
-to_number = to_number or function(x)
-    return x
-end
-
 function MINTY.select_card_from_deck(args)
     if not G.playing_cards then return nil end
     args = args or {}
@@ -670,7 +660,7 @@ SMODS.current_mod.calculate = function(self, context)
     end
 
     if context.setting_blind and G.GAME.minty_total_piracy_punishment then
-        local final_chips = to_big(G.GAME.blind.chips * (1.03 ^ G.GAME.minty_total_piracy_punishment))
+        local final_chips = G.GAME.blind.chips * (1.03 ^ G.GAME.minty_total_piracy_punishment)
         G.GAME.blind.chips = final_chips
         G.GAME.blind.chip_text = number_format(G.GAME.blind.chips)
     end

@@ -48,7 +48,7 @@ SMODS.Joker {
         return G.GAME.pool_flags.cake_sword_eaten
     end,
     calculate = function(self, card, context)
-        local final_chips = to_big((G.GAME.blind.chips / 100) * (100 - card.ability.extra.percent))
+        local final_chips = (G.GAME.blind.chips / 100) * (100 - card.ability.extra.percent)
         if (context.setting_blind or context.forcetrigger) and not context.blueprint then
             G.E_MANAGER:add_event(Event({trigger = 'after', blocking = true, func = function()
                 play_sound('minty_gunshot', 1)

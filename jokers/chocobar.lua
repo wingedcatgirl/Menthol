@@ -54,7 +54,7 @@ SMODS.Joker {
         card.ability.extra.drop = card.ability.extra.drop + boost*card.ability.extra.droprate
     end,
     calculate = function(self, card, context)
-        if ((context.individual and context.cardarea == G.play) or context.forcetrigger) and to_big(card.ability.extra.mult) > to_big(0) then
+        if ((context.individual and context.cardarea == G.play) or context.forcetrigger) and card.ability.extra.mult > 0 then
             local pmult = card.ability.extra.mult
             local ret = {
                 mult = pmult,
@@ -74,7 +74,7 @@ SMODS.Joker {
             return ret
         end
 
-        if context.after and to_big(card.ability.extra.mult) <= to_big(0) then
+        if context.after and card.ability.extra.mult <= 0 then
             return {
                 message = localize("k_eaten_ex"),
                 message_card = card,

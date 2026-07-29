@@ -46,7 +46,7 @@ SMODS.Joker {
                 operation = "-",
                 no_message = true
             })
-            if to_big(card.ability.extra.chips) > to_big(0) then
+            if card.ability.extra.chips > 0 then
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
                     message = localize {
                         type = 'variable',

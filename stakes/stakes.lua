@@ -47,7 +47,7 @@ SMODS.Stake{
     above_stake = "stake_green",
     colour = HEX("cb0dff"),
     calculate = function (self, context)
-        if context.final_scoring_step and G.GAME.current_round.hands_played == 2 and (G.GAME and G.GAME.hands and G.GAME.hands[G.GAME.last_hand_played] and to_big(G.GAME.hands[G.GAME.last_hand_played].level) > to_big(0)) then
+        if context.final_scoring_step and G.GAME.current_round.hands_played == 2 and (G.GAME and G.GAME.hands and G.GAME.hands[G.GAME.last_hand_played] and G.GAME.hands[G.GAME.last_hand_played].level > 0) then
             return {
                 level_up = -1
             }
@@ -134,7 +134,7 @@ SMODS.Stake{
         end
 
         if context.final_scoring_step then
-            if to_big(mult) > to_big(hand_chips) then
+            if mult > hand_chips then
                 local diff = hand_chips * G.GAME.minty_unbalance
                 mult = mod_mult(mult + diff)
                 hand_chips = mod_chips(hand_chips - diff)

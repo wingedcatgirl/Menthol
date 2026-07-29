@@ -28,8 +28,8 @@ SMODS.Consumable{
 				G.GAME.hands[hand].l_chips,
 				colours = {
 					(
-						to_big(G.GAME.hands[hand].level) == to_big(1) and G.C.UI.TEXT_DARK
-						or G.C.HAND_LEVELS[to_number(to_big(math.min(7, G.GAME.hands[hand].level)))]
+						G.GAME.hands[hand].level == 1 and G.C.UI.TEXT_DARK
+						or G.C.HAND_LEVELS[math.min(7, G.GAME.hands[hand].level)]
 					),
 				},
 			},
@@ -67,8 +67,8 @@ SMODS.Consumable{
 				G.GAME.hands[hand].l_chips,
 				colours = {
 					(
-						to_big(G.GAME.hands[hand].level) == to_big(1) and G.C.UI.TEXT_DARK
-						or G.C.HAND_LEVELS[to_number(to_big(math.min(7, G.GAME.hands[hand].level)))]
+						G.GAME.hands[hand].level == 1 and G.C.UI.TEXT_DARK
+						or G.C.HAND_LEVELS[math.min(7, G.GAME.hands[hand].level)]
 					),
 				},
 			},
@@ -106,8 +106,8 @@ SMODS.Consumable{
 				G.GAME.hands[hand].l_chips,
 				colours = {
 					(
-						to_big(G.GAME.hands[hand].level) == to_big(1) and G.C.UI.TEXT_DARK
-						or G.C.HAND_LEVELS[to_number(to_big(math.min(7, G.GAME.hands[hand].level)))]
+						G.GAME.hands[hand].level == 1 and G.C.UI.TEXT_DARK
+						or G.C.HAND_LEVELS[math.min(7, G.GAME.hands[hand].level)]
 					),
 				},
 			},
@@ -159,16 +159,16 @@ if not not next(SMODS.find_mod("Cryptid")) then
                     number_format(G.GAME.hands["minty_spec_handful"].level),
                     colours = {
                         (
-                            to_big(G.GAME.hands["minty_Handful"].level) == to_big(1) and G.C.UI.TEXT_DARK
-                            or G.C.HAND_LEVELS[to_number(to_big(math.min(7, G.GAME.hands["spectrum_Straight Spectrum"].level)))]
+                            G.GAME.hands["minty_Handful"].level == 1 and G.C.UI.TEXT_DARK
+                            or G.C.HAND_LEVELS[math.min(7, G.GAME.hands["spectrum_Straight Spectrum"].level)]
                         ),
                         (
-                            to_big(G.GAME.hands["minty_flush_handful"].level) == to_big(1) and G.C.UI.TEXT_DARK
-                            or G.C.HAND_LEVELS[to_number(to_big(math.min(7, G.GAME.hands["spectrum_Spectrum House"].level)))]
+                            G.GAME.hands["minty_flush_handful"].level == 1 and G.C.UI.TEXT_DARK
+                            or G.C.HAND_LEVELS[math.min(7, G.GAME.hands["spectrum_Spectrum House"].level)]
                         ),
                         (
-                            to_big(G.GAME.hands["minty_spec_handful"].level) == to_big(1) and G.C.UI.TEXT_DARK
-                            or G.C.HAND_LEVELS[to_number(to_big(math.min(7, G.GAME.hands["spectrum_Spectrum Five"].level)))]
+                            G.GAME.hands["minty_spec_handful"].level == 1 and G.C.UI.TEXT_DARK
+                            or G.C.HAND_LEVELS[math.min(7, G.GAME.hands["spectrum_Spectrum Five"].level)]
                         ),
                     },
                 },

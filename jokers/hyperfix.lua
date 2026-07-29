@@ -68,7 +68,7 @@ SMODS.Joker {
             local base = card.ability.extra.talisman and card.ability.extra.expmult_base or card.ability.extra.xmult_rate
             local inc = (card.ability.extra.talisman and card.ability.extra.expmult_boost or card.ability.extra.xmult_rate) * val
             local op = card.ability.extra.talisman and "emult" or "xmult"
-            if to_big(base + inc) <= to_big(1) then return end
+            if base + inc <= 1 then return end
             local ret = {}
             ret[op] = base+inc
             return ret

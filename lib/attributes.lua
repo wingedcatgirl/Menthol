@@ -49,7 +49,7 @@ SMODS.Attribute{ --Cards which care about the "Rock Card" classification
     key = "minty_rocks"
 }
 
-SMODS.Attribute{ --Cards which are stupid
+SMODS.Attribute{ --Cards which are stupid, and also suck bad
     key = "stupid"
 }
 

@@ -34,7 +34,7 @@ SMODS.Joker {
     end,
     check_for_unlock = function (self, args)
         if args and args.type == "round_win" then
-            if G.GAME.blind:get_type() == "Boss" and to_big(G.GAME.chips) >= to_big(G.GAME.blind.chips * self.config.extra.req) then
+            if G.GAME.blind:get_type() == "Boss" and G.GAME.chips >= (G.GAME.blind.chips * self.config.extra.req) then
                 unlock_card(self)
                 return true
             end

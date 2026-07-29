@@ -42,9 +42,9 @@ SMODS.Enhancement({
         if (context.main_scoring and context.cardarea == G.play) or context.forcetrigger then
             local diff = math.abs(mult - hand_chips)
             diff = math.min(diff*(card.ability.extra.balancepct/100), diff)
-            if to_big(diff) < to_big(1) then goto nvm end
+            if diff < 1 then goto nvm end
 
-            if to_big(mult) > to_big(hand_chips) then
+            if mult > hand_chips then
                 mult = mod_mult(mult - (diff/2))
                 hand_chips = mod_chips(hand_chips + (diff/2))
             else

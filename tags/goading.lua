@@ -17,14 +17,14 @@ SMODS.Tag{
         if not (context and context.type == "blind_defeated_check") then return end
         --MINTY.say("Context check passed...")
         if G.GAME.blind:get_type() ~= "Boss" then return end
-        if to_number(G.GAME.current_round.hands_left) == 0 then
+        if G.GAME.current_round.hands_left == 0 then
             tag:nope()
             return
         end
         --MINTY.say("Boss check passed...")
         local lock = tag.ID
 
-        if to_big(G.GAME.chips) >= to_big(G.GAME.blind.chips) then
+        if G.GAME.chips >= G.GAME.blind.chips then
             G.GAME.ever_successfully_goaded = true
             G.CONTROLLER.locks[lock] = true
             G.hand_text_area.game_chips:juice_up()

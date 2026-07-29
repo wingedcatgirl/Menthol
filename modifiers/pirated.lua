@@ -31,7 +31,7 @@ SMODS.Sticker{
                 --card:juice_up()
 
                 G.E_MANAGER:add_event(Event({trigger = 'after', blocking = true, func = function()
-                    local final_chips = to_big(G.GAME.blind.chips * 1.25)
+                    local final_chips = G.GAME.blind.chips * 1.25
                     if first then
                         play_sound('minty_warning', 1)
                         local amt = (G.GAME.minty_piracy_punishment or 0) ~= 1 and "pl" or "sing"

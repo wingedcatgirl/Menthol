@@ -64,7 +64,7 @@ SMODS.Joker {
                 message_card = G.GAME.blind,
                 sound = "minty_squirt",
                 func = function ()
-                    local final_chips = to_big((G.GAME.blind.chips / 100) * (100 - card.ability.extra.percent))
+                    local final_chips = (G.GAME.blind.chips / 100) * (100 - card.ability.extra.percent)
                     G.GAME.blind.chips = final_chips
                     G.E_MANAGER:add_event(Event({trigger = 'after', blocking = true, func = function()
                         G.GAME.blind:juice_up()
