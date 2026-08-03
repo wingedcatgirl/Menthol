@@ -74,7 +74,7 @@ SMODS.Enhancement({
         }
     end,
     get_weight = function (self)
-        local default = 10
+        local default = 5
         return mf and default or default/2
     end,
     replace_base_card = true,
