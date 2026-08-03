@@ -49,9 +49,13 @@ SMODS.Joker {
             end
 
             SMODS.calculate_context{pre_discard = true, full_hand = fake_discard, fake_discard = true, hook = true}
+            
+            return nil, true
         end
 
         if context.discard and not context.fake_discard then
+            local lastplayed = G.GAME.last_hand_played
+            G.GAME.last_hand_played = G.GAME.last_hand_played or "High Card"
             local cloned_context = {}
             for k,v in pairs(context) do
                 cloned_context[k] = v
@@ -67,9 +71,24 @@ SMODS.Joker {
             cloned_context.fake_held = true
             cloned_context.cardarea = G.hand
             SMODS.calculate_context(cloned_context)
+            cloned_context.end_of_round = true
+            cloned_context.playing_card_end_of_round = true
+            local eff = context.other_card:get_end_of_round_effect(cloned_context)
+            if eff and next(eff) then
+                SMODS.calculate_effect(eff, context.other_card, false)
+            end
+
+            MINTY.event(function ()
+                G.GAME.last_hand_played = lastplayed
+                return true
+            end)
+
+            return nil, true
         end
 
         if context.final_scoring_step then
+            local lastplayed = G.GAME.last_hand_played
+            G.GAME.last_hand_played = G.GAME.last_hand_played or "High Card"
             local sleighted = {}
             for i,v in ipairs(context.full_hand) do
                 if not SMODS.in_scoring(v, context.scoring_hand) then
@@ -84,8 +103,13 @@ SMODS.Joker {
                 if not SMODS.in_scoring(v, context.scoring_hand) then
                     SMODS.calculate_context{discard = true, other_card = v, full_hand = sleighted, fake_discard = true}
                     v:calculate_seal{discard = true, other_card = v, fake_discard = true}
-                    SMODS.calculate_context{individual = true, other_card = v, full_hand = sleighted, fake_held = true, cardarea = G.hand}
-                    v:calculate_seal{individual = true, other_card = v, fake_held = true, cardarea = G.hand}
+                    SMODS.calculate_context{individual = true, other_card = v, full_hand = sleighted, fake_held = true, cardarea = G.hand, playing_card_end_of_round = true, end_of_round = true}
+                    v:calculate_seal{individual = true, other_card = v, fake_held = true, cardarea = G.hand, playing_card_end_of_round = true, end_of_round = true}
+
+                    local eff = v:get_end_of_round_effect{fake_held = true, end_of_round = true, playing_card_end_of_round = true, cardarea = G.hand}
+                    if eff and next(eff) then
+                        SMODS.calculate_effect(eff, v, false)
+                    end
                 end
             end
 
@@ -95,6 +119,12 @@ SMODS.Joker {
                 SMODS.calculate_context{individual = true, other_card = v, full_hand = held, fake_unscored = true, cardarea = "unscored"}
                 v:calculate_seal{individual = true, other_card = v, fake_unscored = true, cardarea = "unscored"}
             end
+
+            MINTY.event(function ()
+                G.GAME.last_hand_played = lastplayed
+                return true
+            end)
+
             return nil, true
         end
     end
