@@ -28,7 +28,7 @@ SMODS.Blind({
         SMODS.change_discard_limit(-G.GAME.round_resets.taildisc)
     end,
     calculate = function (self, blind, context)
-        if context.pre_discard and G.GAME.round_resets.taildisc then
+        if context.pre_discard and G.GAME.round_resets.taildisc and not context.hook then
             SMODS.change_discard_limit(G.GAME.round_resets.taildisc)
             G.GAME.round_resets.taildisc = nil
             return {

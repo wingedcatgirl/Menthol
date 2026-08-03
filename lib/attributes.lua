@@ -57,6 +57,13 @@ SMODS.Attribute{ --Cards which care about unscored cards
     key = "unscored"
 }
 
+SMODS.Attribute{ --Cards which care about cards held in hand
+    key = "held_in_hand",
+    keys = {
+        "j_mime", "j_raised_fist", "j_blackboard", "j_baron", "j_reserved_parking", "j_shoot_the_moon"
+    }
+}
+
 SMODS.Attribute{ --Cards which grant exponential mult, or cause other cards to do so
     key = "emult",
     alias = {

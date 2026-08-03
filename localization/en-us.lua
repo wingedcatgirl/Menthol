@@ -880,6 +880,14 @@ return {
 					"and create {C:dark_edition}The Soul{}"
 				}
 			},
+			j_minty_sleight = {
+				name = "Sleight of Hand",
+				text = {
+					"{C:attention}Unscored{}, {C:red}discarded{}, and",
+					"{C:attention}held in hand{} cards all count",
+					"as each other"
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_minty_template = {
 				name = "Joker Template",
@@ -1098,8 +1106,8 @@ return {
 			bl_minty_absence = {
 				name = "An Absence",
 				text = {
-					"This blind must",
-					"be skipped"
+					"There is no",
+					"blind. Skip."
 				}
 			}
 		},
@@ -2712,7 +2720,7 @@ return {
 				},
 			},
 			j_minty_prism = {
-				text = 
+				text =
 					{
 						"{C:inactive,s:0.8}The power of friendship!"
 					}
@@ -2723,7 +2731,12 @@ return {
 					"{C:inactive,s:0.8}That's why they don't cross over."
 				}
 			},
-			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
+			j_minty_sleight = {
+				text = {
+					"{C:inactive,s:0.8}Is this your card?{}",
+				},
+			},
+			--HEY FUTURE MINTY, PUT NEW FLAVOR TEXT ⬆️HERE⬆️ :P 
 			j_minty_template = {
 				text = {
 					"{C:inactive,s:0.8}And has flavor text!{}",
