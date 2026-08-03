@@ -4,13 +4,14 @@ local slowdown = 0
 local this_card
 local string = "+"
 local characters = {
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", 
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
     "?", "!", "<", ">", "&", "%", "$", "@", "*", "/", "{", "}"
 }
 local text = {
     text = string
 }
+local multchar = 1
 
 SMODS.Enhancement({
     key = "garbled",
@@ -44,14 +45,15 @@ SMODS.Enhancement({
     update = function (self, card, dt)
         if this_card ~= card.unique_val then return end
         slowdown = slowdown + 1
-        if slowdown > math.random(5, 9) then
+        if slowdown > math.random(16, 27) then
             slowdown = 0
             string = "+"
             for i=1,math.random(5,11) do
                 local char = characters[math.random(#characters)]
                 if math.random(3) == 3 then
                     local mult = {"m", "u", "l", "t"}
-                    char = mult[math.random(4)]
+                    char = mult[multchar]
+                    multchar = (multchar%4)+1
                 end
                 if math.random(2) == 2 then
                     char = char:upper()
