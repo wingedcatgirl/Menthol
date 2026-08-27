@@ -180,7 +180,13 @@ return {
 				"Play one of these",
 				"High Card or Flush Five",
 				"builds, or {C:attention}log off!{}"
-			}
+			},
+			["minty_unskipped_absence"] = {
+				"Huh. That shouldn't",
+				"have even been possible.",
+				"... Well, you {C:attention}were{} warned.",
+				"{C:inactive,s:0.8}Maybe file a bug report?"
+			},
 		}
 	},
 	["descriptions"] = {

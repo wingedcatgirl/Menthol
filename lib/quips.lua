@@ -28,3 +28,16 @@ SMODS.JimboQuip{
         return check, {weight = weight}
     end
 }
+
+SMODS.JimboQuip{
+    key = "unskipped_absence",
+    type = "loss",
+    filter = function (self, quip_type)
+        local check
+        pcall(function ()
+            check = G.GAME.blind.config.blind.key == "bl_minty_absence"
+        end)
+
+        return check, {weight = 100000}
+    end
+}
