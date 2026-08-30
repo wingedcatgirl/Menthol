@@ -4,7 +4,7 @@ SMODS.Blind({
     pos = { x=0, y=4 },
     dollars = 4,
     mult = 1,
-    small = { min = 1 },
+    small = { min = 1, allow_duplicates = true },
     boss_colour = HEX("797dc3"),
     config = {
         extra = {
@@ -45,4 +45,5 @@ SMODS.Blind({
     defeat = function (self)
         self:disable()
     end,
+    weight = 5, --Half default
 })

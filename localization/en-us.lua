@@ -1112,10 +1112,17 @@ return {
 			bl_minty_absence = {
 				name = "An Absence",
 				text = {
+					"This blind must",
+					"be skipped"
+				}
+			},
+			bl_minty_absence_alt = {
+				name = "An Absence",
+				text = {
 					"There is no",
 					"blind. Skip."
 				}
-			}
+			},
 		},
 		["Tarot"] = {
 			["c_minty_cat"] = {

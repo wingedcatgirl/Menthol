@@ -2,7 +2,7 @@ SMODS.Blind {
     key = "thenip",
     dollars = 5,
     mult = 2,
-    boss = { min = 3, max = 10 },
+    boss = { min = 3 },
     boss_colour = HEX("CA7CA7"),
     atlas = 'blinds',
     pos = { x=0, y=0 },

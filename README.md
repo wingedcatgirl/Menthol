@@ -26,9 +26,8 @@ Planned features:
 
 ## Installation Instructions
 1. Install [Lovely](https://github.com/ethangreen-dev/lovely-injector), if you haven't already.
-2. Install [Steamodded](https://github.com/Steamodded/smods), if you haven't already.
-   - This mod was developed on [a custom branch off of 1501a](https://github.com/wingedcatgirl/smods/tree/stakeinjection); using [the actual release](https://github.com/Steamodded/smods/releases/tag/1.0.0-beta-1501a) shouldn't cause any Menthol-specific issues, other than the stake screen being bad sometimes.
-3. Because this is the main branch, you most likely want [the latest release](https://github.com/wingedcatgirl/MintysSillyMod/releases/latest).
+2. Install [Steamodded](https://github.com/Steamodded/smods), if you haven't already. The required version for this branch is [26.829.0](https://github.com/Steamodded/smods/releases/tag/26.829.0)
+3. Because this is the `next` branch, you most likely want [the latest commit](https://github.com/wingedcatgirl/Menthol/archive/refs/heads/next.zip).
 4. Inside the zip file is the mod code in a folder, `Menthol`. Put that folder in your Mods folder. The file structure should look like `Mods/Menthol/Menthol.json`. In particular, there should _not_ be a second `Menthol` folder nested inside the first one. (You might prefer to remove the version number suffix from the folder name; it doesn't actually matter.)
 5. Have a little 3 as a treat! :3
 
@@ -101,14 +100,14 @@ Technically you can do whatever you want here, but here's the mods I like for th
 
 ## Contributing
 - Yes, feel free to contribute if you have a contribution!
-- If you find a bug or plausibly-different-than-intended behavior, you can [file an issue](https://github.com/wingedcatgirl/MintysSillyMod/issues) (_please_ test thoroughly to confirm the exact conditions that do _and don't_ cause the problem - you may find [DebugPlus](https://github.com/WilsontheWolf/DebugPlus) to be helpful with this) 
-- If you have a code contribution you can [do a pull request](https://github.com/wingedcatgirl/MintysSillyMod/pulls)
+- If you find a bug or plausibly-different-than-intended behavior, you can [file an issue](https://github.com/wingedcatgirl/Menthol/issues) (_please_ test thoroughly to confirm the exact conditions that do _and don't_ cause the problem - you may find [DebugPlus](https://github.com/WilsontheWolf/DebugPlus) to be helpful with this) 
+- If you have a code contribution you can [do a pull request](https://github.com/wingedcatgirl/Menthol/pulls)
 - If you have an art contribution... you can also do a pull request but if atlases make that too much a pain you can just send the art via one of the methods below:
 
 ## Contacting me (Minty wingedcatgirl)
 - [Mod thread on the Balatro Discord](https://discord.com/channels/1116389027176787968/1308185262664450068) is the most obvious choice for mod-related communication.
 - There's also [my Discord server](https://discord.gg/V5Kbh8Q) <small>or well, one of them, i start so many things and never follow through lol</small>
-- Does GitHub have messaging? It has [Discussions](https://github.com/wingedcatgirl/MintysSillyMod/discussions), that'll have to do.
+- Does GitHub have messaging? It has [Discussions](https://github.com/wingedcatgirl/Menthol/discussions), that'll have to do.
 - Most reliable will be [Dreamwidth](https://wingedcatgirl.dreamwidth.org/). I'm not super _active_ there, but I can assure you it's not going away.
 - I'm most active on [tumblr](https://www.tumblr.com/wingedcatgirl), though I don't trust the CEO of that site not to burn it all down without notice.
 
