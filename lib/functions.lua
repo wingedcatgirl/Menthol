@@ -595,6 +595,10 @@ SMODS.current_mod.calculate = function(self, context)
         end
     end
 
+    if context.setting_blind and (G.GAME.minty_suit_focus_force_first_pack or 0) < 5 then
+        G.GAME.minty_suit_focus_force_first_pack = 5
+    end
+
     if context.setting_blind and G.GAME.minty_total_piracy_punishment then
         local final_chips = G.GAME.blind.chips * (1.03 ^ G.GAME.minty_total_piracy_punishment)
         G.GAME.blind.chips = final_chips
