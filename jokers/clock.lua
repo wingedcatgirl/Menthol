@@ -62,12 +62,12 @@ SMODS.Joker {
     end,
     set_ability = function (self, card, initial, delay_sprites)
         juice_card_until(card, function ()
-            return MINTY.config.ticking_splines
+            return MINTY.config.ticking_splines and (self.discovered or card.bypass_discovery_center or card.bypass_discovery_ui)
         end)
     end,
     load = function (self, card, card_table, other_card)
         juice_card_until(card, function ()
-            return MINTY.config.ticking_splines
+            return MINTY.config.ticking_splines and (self.discovered or card.bypass_discovery_center or card.bypass_discovery_ui)
         end)
     end,
     calculate = function(self, card, context)
