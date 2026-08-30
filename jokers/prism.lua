@@ -78,13 +78,14 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.setting_blind and not next(SMODS.find_card("c_minty_backup_plan")) then
-            SMODS.add_card{
+            local backup = SMODS.add_card{
                 set = "minty_cobalt",
                 key = "c_minty_backup_plan",
                 area = G.consumeables
             }
             return {
-                message = localize("k_minty_bouyant")
+                message = localize("k_minty_bouyant"),
+                message_card = backup
             }
         end
 
