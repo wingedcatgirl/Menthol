@@ -127,23 +127,24 @@ function Card:is_numbercard(bypass_debuff)
     local id = self:get_id()
     local face = self:is_face()
     if face then return false end
+    local rank = SMODS.Ranks[self.base.value]
+    if rank.number then return true end
+    --if id == (SMODS.Ranks.minty_no or {}).id then return false end
     if id > 0 then return true end 
 end
 
-function Card:is_odd(bypass_debuff)
+function Card:is_odd(bypass_debuff) --Todo, consider checking for any "this suit counts as a number" thingies?
     if self.debuff and not bypass_debuff then return false end
     if not self:is_numbercard() then return false end
-    local id = self:get_id()
-    if (id == 14) or (id%2 == 1) then return true end
-    return false
+    local nominal = SMODS.Ranks[self.base.value].nominal
+    return nominal%2 == 1
 end
 
 function Card:is_even(bypass_debuff)
     if self.debuff and not bypass_debuff then return false end
     if not self:is_numbercard() then return false end
-    local id = self:get_id()
-    if (id ~= 14) and (id%2 == 0) then return true end
-    return false
+    local nominal = SMODS.Ranks[self.base.value].nominal
+    return nominal%2 == 0
 end
 
 SMODS.Enhancement:take_ownership("m_stone",{
