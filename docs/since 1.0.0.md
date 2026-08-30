@@ -6,8 +6,8 @@
 - (fix) Wet Tiger still scales at end of round
 - (buff) Cat Cafe is no longer artificially scarce
 - (buff) Legendaries that interact with 3s can spawn without 3 suit
-- (change) Face rank always counts as a face card, regardless of all other conditions
 - (buff) Plastic Stick only uses nerfed values if the game started with 3s
+- (change) Face rank always counts as a face card, regardless of all other conditions
 - (change) Three Cats and Wild Support interact more elegantly with probability modification
 - (remove) Dummied out Pessimist and Fate
 
@@ -23,6 +23,7 @@
 ## Consumeables
 - (add) Prism Cobalt Card
 - (add) Headband Tarot Card
+- (change) Redrew 6 Years and The Wand spectrals
 
 ## Vouchers
 - (add) Buoyancy and Treading Water
