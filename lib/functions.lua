@@ -589,6 +589,12 @@ SMODS.current_mod.calculate = function(self, context)
         end
     end
 
+    if context.skip_blind then
+        if context.skipped_blind == "bl_minty_absence" then
+            discover_card(G.P_BLINDS.bl_minty_absence)
+        end
+    end
+
     if context.setting_blind and G.GAME.minty_total_piracy_punishment then
         local final_chips = G.GAME.blind.chips * (1.03 ^ G.GAME.minty_total_piracy_punishment)
         G.GAME.blind.chips = final_chips

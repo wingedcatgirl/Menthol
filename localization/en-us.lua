@@ -1047,6 +1047,13 @@ return {
 			}
 		},
 		["Blind"] = {
+			bl_minty_undiscovered_alt_desc = {
+				name = "Not Discovered",
+				text = {
+					"Overcome this blind",
+					"to discover it"
+				}
+			},
 			["bl_minty_thenip"] = {
 				["name"] = "The Nip",
 				["text"] = {

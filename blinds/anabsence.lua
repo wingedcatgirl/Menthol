@@ -8,6 +8,13 @@ SMODS.Blind{
     weight = 5,
     dollars = 0,
     mult = 0,
+    collection_loc_vars = function (self)
+        if not self.discovered then
+            return { --This doesn't actually seem to work but I'm leaving it here for in case I try to figure out how to make it work
+                key = "bl_minty_undiscovered_alt_desc"
+            }
+        end
+    end,
     set_blind = function (self)
         --Fallback into instant game over if skip isn't forced properly
         MINTY.event(function ()
