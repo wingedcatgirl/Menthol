@@ -42,6 +42,7 @@ SMODS.Rank{
     pos = {x = 0},
     nominal = 15,
     face_nominal = -14.1, --To make it sort below 2 
+    number = true,
     lc_atlas = "numberrank",
     hc_atlas = "numberrank",
     shorthand = "N",
