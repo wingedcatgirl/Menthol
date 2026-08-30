@@ -1,5 +1,5 @@
 ## Menthol - A Silly Little Minty-flavored Mod
-### (This is the main branch; you may want to look at [the `next` branch](https://github.com/wingedcatgirl/MintysSillyMod/tree/next) for in-progress updates.)
+### (This is the `next` branch, finally seeing use again after half a year. If you don't want to update SMODS, and/or want something stable, co look at [the main branch](https://github.com/wingedcatgirl/Menthol))
 
 My silly little mod that adds some silly little jokers and decks and things. It's minty because it's not vanilla. (It's not vanilla because I think calling a mod a word which in this context means "not modded" is silly. ... Silly in the non-fun way. You know what I mean.)
 
