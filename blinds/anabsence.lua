@@ -2,7 +2,7 @@ SMODS.Blind{
     key="absence",
     atlas = 'blinds',
     boss_colour = HEX("00FFFFFF"),
-    pos = { x=0, y=50 },
+    pos = { x=0, y=8 },
     small = { min = 2, allow_duplicates = true },
     big = { min = 1, allow_duplicates = true },
     weight = 5,
