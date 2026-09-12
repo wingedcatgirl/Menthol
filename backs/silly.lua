@@ -37,7 +37,6 @@ if not not next(SMODS.find_mod("CardSleeves")) then
             local skey = MINTY.sleeveunlockcheck()
             if args and args.type == 'win_custom' and MINTY.at_least_stake(G.GAME.stake, skey) then
                 G.PROFILES[G.SETTINGS.profile].mintysleeves[self.key] = skey
-                --unlock_card(self)
                 return true
             end
         end,

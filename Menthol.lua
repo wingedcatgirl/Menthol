@@ -1,6 +1,7 @@
 MINTY = MINTY or {}
 MINTY.prefix = SMODS.current_mod.prefix
 MINTY.config = SMODS.current_mod.config
+MINTY.path = SMODS.current_mod.path
 local dev = string.find(SMODS.current_mod.version, "~")
 
 SMODS.current_mod.debug_info = {}

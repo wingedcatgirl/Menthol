@@ -34,7 +34,6 @@ SMODS.Joker {
             end
         end
         if count >= self.unlock_condition.count then
-            unlock_card(self)
             return true
         end
     end,

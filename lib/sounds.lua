@@ -65,7 +65,7 @@ do --Buttload of meme sounds grabbed from https://thirtydollar.website/ and also
     for i,v in ipairs(info) do
         local filename = v.name
         sendTraceMessage("Registering meme sound number "..i..": "..filename)
-        assert(string.find(filename, ".wav") or string.find(filename, ".ogg"), "Menthol: "..filename.." isn't a valid sound file! (Must be .wav or .ogg)")
+        assert(string.find(filename:lower(), ".wav") or string.find(filename:lower(), ".ogg"), "Menthol: "..filename.." isn't a valid sound file! (Must be .wav or .ogg)")
         SMODS.Sound{
             key = "memenoise"..i,
             path = "thirty dollar memes/"..filename

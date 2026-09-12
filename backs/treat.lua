@@ -15,7 +15,6 @@ SMODS.Back({
     check_for_unlock = function (self, args)
         if args and args.type == "discover_amount" then
             if MINTY.discover_count() >= self.unlock_req then
-                --unlock_card(self)
                 return true
             end
         end
@@ -44,7 +43,6 @@ if not not next(SMODS.find_mod("CardSleeves")) then
           local skey = MINTY.sleeveunlockcheck()
           if args and args.type == 'win_custom' and MINTY.at_least_stake(G.GAME.stake, skey) then
               G.PROFILES[G.SETTINGS.profile].mintysleeves[self.key] = skey
-              --unlock_card(self)
               return true
           end
         end,

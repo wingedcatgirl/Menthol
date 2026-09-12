@@ -10,9 +10,6 @@ SMODS.Voucher{
             for i,v in ipairs(vouchers) do
                 result = result and G.P_CENTERS[v].unlocked
             end
-            if result then
-                unlock_card(self)
-            end
             return result
         end
     end,

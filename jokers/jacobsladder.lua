@@ -44,7 +44,6 @@ SMODS.Joker {
         if args and args.type == 'hand' and args.scoring_hand then
             local spectrum = string.find(args.disp_text, "Spectrum") --The easy way: detect a Spectrum being scored
             if spectrum then
-                unlock_card(self)
                 return true
             end
             -- If no Spectrum mod is installed, do it the hard way and detect a five-suited hand manually
@@ -91,7 +90,6 @@ SMODS.Joker {
             local needed = 5 - initial_suit_count
 
             if needed <= #wild_cards then
-                unlock_card(self)
                 return true
             end
 
@@ -128,7 +126,6 @@ SMODS.Joker {
             end
 
             if needed <= #flex_cards and assign(1, {}, {}) then
-                unlock_card(self)
                 return true
             end
         end

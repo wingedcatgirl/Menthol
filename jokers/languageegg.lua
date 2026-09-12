@@ -30,7 +30,6 @@ SMODS.Joker {
         local lang = G.SETTINGS.language
         local en = lang:lower():find("^en%W") or lang:lower():find("%Wen$")
         if args.type == 'win_custom' and not en then
-            unlock_card(self)
             return true
         end
     end,
