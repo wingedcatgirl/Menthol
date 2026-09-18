@@ -123,6 +123,7 @@ return {
 			["minty_hooked"] = "Hooked",
 			minty_pirated = "Pirated",
 			minty_cat_ears = "Cat Ears",
+			minty_ethereal = "Ethereal",
 			["k_minty_challenge"] = "Challenge",
 			["k_minty_special"] = "Special",
 			k_minty_mythic = "Mythic Rare",
@@ -866,8 +867,8 @@ return {
 				text = {
 					{
 						"When setting blind,",
-						"create a {C:attention}Backup Plan{}",
-						"if you don't have one"
+						"create an {C:spectral}Ethereal",
+						"{C:attention}Backup Plan{}"
 					},
 					{
 						"{X:mult,C:white}X#1#{} Mult per",
@@ -2049,6 +2050,14 @@ return {
 				["text"] = {
 					"Counts as a",
 					"{C:spectral}Kity{} Joker"
+				}
+			},
+			minty_ethereal = {
+				name = "Ethereal",
+				text = {
+					"Takes no space",
+					"Vanishes at",
+					"end of round"
 				}
 			},
 			["gemslot_catseye"] = {

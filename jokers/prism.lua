@@ -31,7 +31,14 @@ SMODS.Joker {
         local box_ends = {
             MINTY.flavorize(self.key)
         }
+
+        info_queue[#info_queue+1] = {
+            set = "Other",
+            key = "minty_ethereal",
+            vars = {}
+        }
         info_queue[#info_queue+1] = G.P_CENTERS.c_minty_backup_plan
+
         local estimate
         if card.area.config.collection or not (G.hand and G.hand.cards and #G.hand.cards > 0) then
             estimate = "?"
@@ -77,11 +84,12 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.setting_blind and not next(SMODS.find_card("c_minty_backup_plan")) then
+        if context.setting_blind then
             local backup = SMODS.add_card{
                 set = "minty_cobalt",
                 key = "c_minty_backup_plan",
-                area = G.consumeables
+                area = G.consumeables,
+                force_stickers = {"minty_ethereal"}
             }
             return {
                 message = localize("k_minty_bouyant"),

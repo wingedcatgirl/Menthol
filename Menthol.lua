@@ -260,6 +260,7 @@ local files = {
         { name = "hooked" },
         { name = "pirated" },
         { name = "catears" },
+        { name = "ethereal" },
     } },
     { name = "backs", contents = {
         { name = "treat" },
