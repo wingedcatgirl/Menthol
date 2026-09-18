@@ -36,6 +36,7 @@ SMODS.Consumable {
 				attributes = {"kity"},
 				area = G.jokers,
 				key_append = "minty_wand",
+				allow_legendaries = true,
 				rarity = 4,
 				filter = function (pool)
 					print(pool)
