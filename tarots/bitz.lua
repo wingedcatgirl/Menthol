@@ -42,7 +42,7 @@ SMODS.Consumable {
 					}
 					for i,v in ipairs(pool) do
 						if v.key ~= "UNAVAILABLE" then
-							print(v.key)
+							--print(v.key)
 							local _,rarity = pcall(function ()
 								return G.P_CENTERS[v.key].rarity
 							end)

@@ -43,10 +43,10 @@ SMODS.Joker {
         if (context.forcetrigger or context.setting_blind) and not context.blueprint then
             local foodjokers = {}
             local jokerpos = {}
-            for i = 1, #G.jokers.cards do
-                if (G.jokers.cards[i].config.center.pools or {}).Food and not SMODS.is_eternal(G.jokers.cards[i], card) then --Food should always be eternal-incompatible anyway but roll with it if it somehow happens
+            for i,v in ipairs(G.jokers.cards) do
+                if (v:has_attribute("food") or (v.config.center.pools or {}).Food) and not SMODS.is_eternal(G.jokers.cards[i], card) then --Food should always be eternal-incompatible anyway but roll with it if it somehow happens
                     --MINTY.say("Found compatible Joker in slot #"..tostring(i))
-                    foodjokers[#foodjokers+1] = G.jokers.cards[i]
+                    foodjokers[#foodjokers+1] = v
                     jokerpos[#foodjokers] = i
                 end
             end
