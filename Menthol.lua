@@ -8,6 +8,7 @@ SMODS.current_mod.debug_info = {}
 
 local fujo = SMODS.find_mod("FusionJokers")[1]
 local bunco = SMODS.find_mod("Bunco")[1]
+local bmm = SMODS.find_mod("lovely-compat-BMM-Compat")[1] or SMODS.find_mod("BMM-Compat")[1]
 
 if fujo and not fujo.version then
     SMODS.current_mod.debug_info = {
@@ -24,6 +25,14 @@ if bunco then --Not sure this one actually works, but worth putting it in just t
         SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "Please update to the version JumboCarrot is maintaining, located here:"
         SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "https://github.com/jumbocarrot0/Bunco"
     end
+end
+
+if bmm then
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "You should probably turn off the 'BMM-Compat' mod."
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "I mean I personally recommend not using BMM at all..."
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "... but BMM-Compat doesn't even do *something* useful."
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "That's all. Just an FYI."
+    SMODS.current_mod.debug_info[#SMODS.current_mod.debug_info+1] = "Probably didn't cause this crash. I just don't like it."
 end
 
 if not SMODS.current_mod.lovely then
