@@ -708,6 +708,9 @@ end
 MINTY.flavorize = function(key, vars)
     if not MINTY.config.flavor_text then return nil end
 
+    local flavor_data = G.localization.descriptions.Flavor[key]
+    if not flavor_data then return nil end
+
     local text = { {
         n = G.UIT.R,
         config = { colour = G.C.CLEAR, align = "cm" },
@@ -719,18 +722,13 @@ MINTY.flavorize = function(key, vars)
         nodes = text
     } }
 
-    local flavor_data = G.localization.descriptions.Flavor[key]
-    if flavor_data then
-        for i, lines in ipairs(flavor_data.text_parsed) do
-            local final_line = SMODS.localize_box(lines, {vars = vars})
-            text[#text + 1] = {
-                n = G.UIT.R,
-                config = { colour = G.C.CLEAR, align = "cm" },
-                nodes = final_line
-            }
-        end
-    else
-        return nil
+    for i, lines in ipairs(flavor_data.text_parsed) do
+        local final_line = SMODS.localize_box(lines, {vars = vars})
+        text[#text + 1] = {
+            n = G.UIT.R,
+            config = { colour = G.C.CLEAR, align = "cm" },
+            nodes = final_line
+        }
     end
 
     return flavor_nodes
