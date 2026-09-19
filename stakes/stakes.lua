@@ -276,7 +276,7 @@ local vanilla_stake_places = {
 }
 
 for k,v in pairs(vanilla_stake_places) do
-    if not v.above_stake then --If another mod moves a vanilla stake, we'll let them do that
+    if not SMODS.Stakes["stake_"..k].above_stake then --If another mod moves a vanilla stake, we'll let them do that
         SMODS.Stake:take_ownership(k, {
             prefix_config = {
                 above_stake = {
