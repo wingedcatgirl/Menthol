@@ -28,7 +28,7 @@ SMODS.Joker {
         },
     },
     attributes = {
-        "kity", "generation", "joker", "joker"
+        "kity", "generation", "joker",
     },
     loc_vars = function(self, info_queue, card)
         if not (card.edition and card.edition.negative) then

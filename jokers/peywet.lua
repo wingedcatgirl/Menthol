@@ -29,7 +29,7 @@ SMODS.Joker {
         }
     },
     attributes = {
-        "food", "mod_chance"
+        "food", "mod_chance", "meme"
     },
     loc_vars = function(self, info_queue, card)
         if not G.PROFILES[G.SETTINGS.profile].career_stats["minty_peywet"] then G.PROFILES[G.SETTINGS.profile].career_stats["minty_peywet"] = 0 end

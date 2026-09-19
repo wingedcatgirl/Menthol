@@ -42,7 +42,7 @@ SMODS.Joker {
         }
     },
     attributes = {
-        "chance", "mult", "xmult", "passive", "modify_card" --Or make a new debuff/flip attribute?
+        "chance", "mult", "xmult", "passive", "modify_card", "kity" --Or make a new debuff/flip attribute?
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key

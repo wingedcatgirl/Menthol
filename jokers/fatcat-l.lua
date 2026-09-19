@@ -25,7 +25,7 @@ SMODS.Joker {
         }
     },
     attributes = {
-        "kity", "destroy_cards", "xmult", "scaling"
+        "kity", "destroy_cards", "xmult", "scaling", "kity"
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
