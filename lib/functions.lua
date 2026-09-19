@@ -739,4 +739,22 @@ end
 SMODS.current_mod.process_loc_text = function()
     G.localization.descriptions.Enhanced.m_stone_alt = G.localization.descriptions.Enhanced.m_stone_alt or {}
     G.localization.descriptions.Enhanced.m_stone_alt.text = G.localization.descriptions.Enhanced.m_stone.text
+
+    local default_applies_text = G.localization.descriptions.Stake.stake_red.text[#G.localization.descriptions.Stake.stake_red.text]
+
+    for k,v in pairs(SMODS.Stakes) do
+        if not v.original_mod then
+            local stake_text = G.localization.descriptions.Stake[k].text
+            print(k, stake_text[#stake_text] == default_applies_text)
+            if stake_text[#stake_text] == default_applies_text and v.applied_stakes[1] then
+                --TODO is it not possible to localizify the new phrasing?
+                --We tried but localization processing seems to happen before localization injection fsr.
+                stake_text[#stake_text] = "{s:0.8}Applies "..localize{type = "name_text", set = "Stake", key = v.applied_stakes[1]}
+                if v.applied_stakes[1] == "stake_white" then
+                    stake_text[#stake_text] = stake_text[#stake_text].."... {s:0.4}technically..."
+                end
+                print("Hit!", stake_text[#stake_text])
+            end
+        end
+    end
 end

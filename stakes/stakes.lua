@@ -265,6 +265,29 @@ SMODS.Stake{
     colour = HEX("ffb2a0")
 }
 
+local vanilla_stake_places = {
+    --red = "white",
+    green = "minty_scarlet",
+    black = "minty_irrigo",
+    blue = "minty_void",
+    purple = "minty_sky",
+    orange = "minty_mint",
+    gold = "minty_tungsten"
+}
+
+for k,v in pairs(vanilla_stake_places) do
+    if not v.above_stake then --If another mod moves a vanilla stake, we'll let them do that
+        SMODS.Stake:take_ownership(k, {
+            prefix_config = {
+                above_stake = {
+                    mod = false
+                }
+            },
+            above_stake = v
+        }, false)
+    end
+end
+
 do return end --Dummy out Barber Stake for now.
 
 SMODS.Stake{

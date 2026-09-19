@@ -27,6 +27,7 @@ return {
 			["k_minty_crystal"] = "Crystal!",
 			k_minty_ratio = "L + ratio!",
 			k_minty_bouyant = "Buoyant!",
+			k_minty_technically_applies_white_stake = "... {s:0.4}technically...",
 
 			--Option text
 			option_minty_flavor = "Flavor text",
@@ -79,7 +80,8 @@ return {
 			["v_minty_forbidden_hand"] = "Hands containing #1# are forbidden",
 			["v_minty_not_permitted_hand"] = "#1# is not a permitted hand (see challenge info)",
 			v_minty_plusplaylimit = "+#1# play size",
-			v_minty_plusdisclimit = "+#1# discard size"
+			v_minty_plusdisclimit = "+#1# discard size",
+			v_minty_applies_stake = "Applies #1##2#"
 		},
 		["v_text"] = {
 			["ch_c_all_minty_counterfeit"] = {
