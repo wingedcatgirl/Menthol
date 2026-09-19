@@ -743,7 +743,7 @@ SMODS.current_mod.process_loc_text = function()
     for k,v in pairs(SMODS.Stakes) do
         if not v.original_mod then
             local stake_text = G.localization.descriptions.Stake[k].text
-            print(k, stake_text[#stake_text] == default_applies_text)
+            --print(k, stake_text[#stake_text] == default_applies_text)
             if stake_text[#stake_text] == default_applies_text and v.applied_stakes[1] then
                 --TODO is it not possible to localizify the new phrasing?
                 --We tried but localization processing seems to happen before localization injection fsr.
@@ -751,7 +751,7 @@ SMODS.current_mod.process_loc_text = function()
                 if v.applied_stakes[1] == "stake_white" then
                     stake_text[#stake_text] = stake_text[#stake_text].."... {s:0.4}technically..."
                 end
-                print("Hit!", stake_text[#stake_text])
+                --print("Hit!", stake_text[#stake_text])
             end
         end
     end
