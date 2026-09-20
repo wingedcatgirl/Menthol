@@ -24,7 +24,7 @@ SMODS.Joker {
     },
     config = { extra = {mult = 1, multgain = 1} },
     in_pool = function (self, args)
-        return not next(SMODS.find_card("j_minty_fasttiger", true))
+        return SMODS.showman(self.key) or not next(SMODS.find_card("j_minty_fasttiger", true))
     end,
     attributes = {
         "mult", "scaling", "kity"

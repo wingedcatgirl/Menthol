@@ -34,6 +34,9 @@ SMODS.Joker {
     attributes = {
         "xmult", "kity"
     },
+    set_ability = function(self, card, initial, delay_sprites)
+        card.ability.extra.xmult = (G.GAME.round or 1) * card.ability.extra.xmultiplier --for direct creation; should be overwritten when evolving
+    end,
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local main_end = MINTY.flavorize(self.key)

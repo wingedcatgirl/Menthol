@@ -2,6 +2,7 @@
 - (add) /\/cat.exe --prism
 - (add) Lazarus Machine
 - (add) Sleight of Hand
+- (add) (spoiler) Snfg Gvtre
 - (fix) Language Egg no longer counts ISAT mod alt suit names as a whole other language
 - (fix) Wet Tiger still scales at end of round
 - (buff) Cat Cafe is no longer artificially scarce
