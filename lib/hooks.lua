@@ -180,6 +180,48 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
     return creat(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 end
 
+--Hook: make "shaking card" a thing
+local olddrag = Card.drag
+Card.drag = function(self, offset)
+    olddrag(self, offset)
+
+    local shake_req = (type(self.ability.extra) == "table" and self.ability.extra.shake_req) or 45
+
+    -- Initialize if necessary
+    self.prev_drag_x = self.prev_drag_x or self.T.x
+    self.prev_drag_y = self.prev_drag_y or self.T.y
+    self.time_shaken = self.time_shaken or 0
+
+    local x1, x2 = self.prev_drag_x, self.T.x
+    local y1, y2 = self.prev_drag_y, self.T.y
+    local distance = math.sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
+
+    self.prev_drag_x = self.T.x
+    self.prev_drag_y = self.T.y
+    if distance >= 1 then
+        self.time_shaken = self.time_shaken + 1
+        --print(self.time_shaken)
+    end
+
+    if self.time_shaken > shake_req then
+        SMODS.calculate_context{minty_card_shaken = true, other_card = self}
+
+        self.prev_drag_x = nil
+        self.prev_drag_y = nil
+        self.time_shaken = 0
+    end
+end
+
+--Hook: reset card-shaking values
+local oldstopdrag = Card.stop_drag
+Card.stop_drag = function(self)
+    oldstopdrag(self)
+
+    self.prev_drag_x = nil
+    self.prev_drag_y = nil
+    self.time_shaken = 0
+end
+
 --Hook: Mythic Rares count as Rares
 local israrity = Card.is_rarity
 function Card:is_rarity(rarity)

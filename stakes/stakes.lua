@@ -266,7 +266,7 @@ SMODS.Stake{
 }
 
 local vanilla_stake_places = {
-    --red = "white",
+    red = "white",
     green = "minty_scarlet",
     black = "minty_irrigo",
     blue = "minty_void",
@@ -275,6 +275,7 @@ local vanilla_stake_places = {
     gold = "minty_tungsten"
 }
 
+--[[ --Technically no longer needed but leaving it here in case that changes
 for k,v in pairs(vanilla_stake_places) do
     if not SMODS.Stakes["stake_"..k].above_stake then --If another mod moves a vanilla stake, we'll let them do that
         SMODS.Stake:take_ownership(k, {
@@ -285,13 +286,17 @@ for k,v in pairs(vanilla_stake_places) do
             },
             above_stake = v
         }, false)
+    else
+        print("Stake "..k.." has been moved to above "..v.above_stake)
     end
 end
+--]]
 
-do return end --Dummy out Barber Stake for now.
 
+--[[  --Dummy out Barber Stake for now.
 SMODS.Stake{
     key = "barber",
     unlocked = false,
     applied_stakes = {}
 }
+--]]

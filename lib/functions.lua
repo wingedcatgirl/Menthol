@@ -610,6 +610,12 @@ SMODS.current_mod.calculate = function(self, context)
             mult = G.GAME.dollars * -G.GAME.modifiers.minty_taxation
         }
     end
+
+    if context.minty_card_shaken and MINTY.dev then
+        local succ,cardname = pcall(localize, {type = "name_text", set = context.other_card.config.center.set, key = context.other_card.config.center_key})
+
+        if succ then print("Card shaken!", cardname) else print("localize crashed fsr :sob:", cardname) end
+    end
 end
 
 

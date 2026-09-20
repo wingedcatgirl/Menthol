@@ -602,6 +602,12 @@ return {
 					"{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult){}",
 				},
 			},
+			j_minty_fasttiger = {
+				name = "Fast Tiger",
+				text = {
+					"{X:mult,C:white}X#1#{} Mult"
+				}
+			},
 			["j_minty_theecho"] = {
 				["name"] = "The Echo",
 				["text"] = {
@@ -2571,6 +2577,11 @@ return {
 					"{C:inactive,s:0.8}Turn it into a fast",
 					"{C:inactive,s:0.8}tiger with this one trick!",
 				},
+			},
+			j_minty_fasttiger = {
+				text = {
+					"{C:inactive,s:0.8}Oh hey, you found the trick."
+				}
 			},
 			j_minty_theecho = {
 				text = {

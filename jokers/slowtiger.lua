@@ -23,6 +23,9 @@ SMODS.Joker {
         ["kity"] = true
     },
     config = { extra = {mult = 1, multgain = 1} },
+    in_pool = function (self, args)
+        return not next(SMODS.find_card("j_minty_fasttiger", true))
+    end,
     attributes = {
         "mult", "scaling", "kity"
     },
@@ -41,11 +44,35 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if (context.joker_main and context.scoring_hand) or context.forcetrigger then
             return {
-                    mult = card.ability.extra.mult,
+                mult = card.ability.extra.mult,
             }
         end
 
-        --if a food card just got consumed, convert to fast tiger?
+        if context.minty_card_shaken and not MINTY.in_collection(card) and (card.ability.extra.mult * G.P_CENTERS.j_minty_fasttiger.config.extra.xmultiplier > 1) then
+            discover_card(G.P_CENTERS.j_minty_fasttiger)
+
+            card.states.drag.can = false
+            card.states.drag.is = false
+
+            local amt = card.ability.extra.mult
+
+            return {
+                message = "!", --todo better message
+                sound = "tarot1",
+                extra = {
+                    func = function()
+                        MINTY.event(function()
+                            card:set_ability(G.P_CENTERS.j_minty_fasttiger)
+                            card.ability.extra.xmult = amt * card.ability.extra.xmultiplier
+                            card:juice_up(5)
+                            play_sound("tarot1")
+                            card.states.drag.can = true
+                            return true
+                        end, { trigger = "after", delay = 1.5 })
+                    end
+                }
+            }
+        end
 
         if context.end_of_round and not context.blueprint and not context.repetition and not context.individual then
             SMODS.scale_card(card,{
