@@ -84,7 +84,6 @@ Menthol doesn't add anything for these _yet_, but we might in future. Until then
 
 ### Quality of life
 Technically you can do whatever you want here, but here's the mods I like for the purpose:
-- [Galdur](https://github.com/Eremel/Galdur) revamps the New Run screen to make deck and sleeve selection much easier.
 - [Glue for Modpacks](https://github.com/icyethics/Glue-For-Modpacks) lets you adjust the shop so having a lot of mods doesn't drown everything out.
 - [Handy](https://github.com/SleepyG11/HandyBalatro) adds a whole lot of things but tbh the only one I care about is selecting multiple playing cards by dragging across them.
 - [Item Remover](https://github.com/art-muncher/Item-Remover) lets you disable specific items from the Collection, if they're OP or bugged or you just don't like them. ([Banner](https://github.com/SylviBlossom/Banner) does the same thing and is newer, switch if one of them isn't doing what you want it to.)
