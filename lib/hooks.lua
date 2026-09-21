@@ -180,6 +180,7 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
     return creat(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 end
 
+--Adapted from Gem's Pokermon https://github.com/TGem7/Gem-Pokermon
 --Hook: make "shaking card" a thing
 local olddrag = Card.drag
 Card.drag = function(self, offset)
