@@ -216,6 +216,8 @@ SMODS.Stake{
             Spectral = "Spectral",
             Default = "Standard",
             Enhanced = "Standard",
+            --TARGET: Cross-mod sets and their associated booster
+            
         }
 
         if context.create_shop_card and set_to_booster[context.set] then
