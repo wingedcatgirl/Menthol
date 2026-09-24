@@ -1727,16 +1727,17 @@ return {
 			["stake_minty_irrigo"] = {
 				["name"] = "Irrigo Stake",
 				["text"] = {
-					"{C:blue}3rd{} hand of each",
-					"round is leveled down",
+                    "Shop can have {C:attention}Counterfeit{} cards",
+                    "{C:inactive,s:0.8}({C:attention,s:0.8}Costs{s:0.8} money to sell)",
                     "{s:0.8}Applies Scarlet Stake",
 				}
 			},
 			["stake_minty_void"] = {
 				["name"] = "Void Stake",
 				["text"] = {
-                    "Shop can have {C:attention}Counterfeit{} cards",
-                    "{C:inactive,s:0.8}({C:attention,s:0.8}Costs{s:0.8} money to sell)",
+					"{C:purple}Unbalance{} Chips and Mult",
+					"by {C:attention}10%{} plus {C:attention}5%{} per Ante",
+					"{s:0.8,C:inactive}(Maximum {s:0.8,C:attention}50%{s:0.8,C:inactive})",
                     "{s:0.8}Applies Irrigo Stake",
 				}
 			},
@@ -1751,19 +1752,18 @@ return {
 			["stake_minty_mint"] = {
 				["name"] = "Mint Stake",
 				["text"] = {
-					"{C:purple}Unbalance{} Chips and Mult",
-					"by {C:attention}10%{} plus {C:attention}5%{} per Ante",
-					"{s:0.8,C:inactive}(Maximum {s:0.8,C:attention}50%{s:0.8,C:inactive})",
+                    "Playing cards may become",
+					"{C:attention}Hooked{} when modified",
+                    "{C:inactive,s:0.8}(Will be {C:attention,s:0.8}discarded{C:inactive,s:0.8} if held)",
                     "{s:0.8}Applies Sky Stake",
 				}
 			},
 			["stake_minty_tungsten"] = {
 				["name"] = "Tungsten Stake",
 				["text"] = {
-                    "Playing cards may become",
-					"{C:attention}Hooked{} when modified",
-                    "{C:inactive,s:0.8}(Will be {C:attention,s:0.8}discarded{C:inactive,s:0.8} if held)",
-                    "{s:0.8}Applies Mint Stake",
+					"Shop cards are replaced",
+					"with equivalent Boosters",
+					"{s:0.8}Applies Mint Stake"
 				}
 			},
 			["stake_minty_catcat"] = {

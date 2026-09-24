@@ -46,12 +46,9 @@ SMODS.Stake{
     applied_stakes = { "scarlet" },
     above_stake = "stake_green",
     colour = HEX("cb0dff"),
-    calculate = function (self, context)
-        if context.final_scoring_step and G.GAME.current_round.hands_played == 2 and (G.GAME and G.GAME.hands and G.GAME.hands[G.GAME.last_hand_played] and G.GAME.hands[G.GAME.last_hand_played].level > 0) then
-            return {
-                level_up = -1
-            }
-        end
+    modifiers = function ()
+        G.GAME.modifiers.enable_minty_counterfeit = true
+        G.GAME.modifiers.enable_minty_counterfeit_consumeables = true
     end
 }
 
@@ -74,55 +71,6 @@ SMODS.Stake{
     applied_stakes = { "irrigo" },
     above_stake = "stake_black",
     colour = HEX("001417"),
-    modifiers = function ()
-        G.GAME.modifiers.enable_minty_counterfeit = true
-        G.GAME.modifiers.enable_minty_counterfeit_consumeables = true
-    end
-}
-
-SMODS.Stake{
-    key = "sky",
-    atlas = "stakes",
-    pos = {
-        x = 3,
-        y = 0,
-    },
-    sticker_atlas = "stake_stickers",
-    sticker_pos = {
-        x = 3,
-        y = 0,
-    },
-    unlocked = false,
-    prefix_config = {
-        above_stake = false
-    },
-    applied_stakes = { "void" },
-    above_stake = "stake_blue",
-    colour = HEX("00c7ff"),
-    modifiers = function ()
-        G.GAME.showdown_rate = (G.GAME.showdown_rate or 1) * 2
-    end
-}
-
-SMODS.Stake{
-    key = "mint", --Hee hee hoo hoo.
-    atlas = "stakes",
-    pos = {
-        x = 0,
-        y = 1,
-    },
-    sticker_atlas = "stake_stickers",
-    sticker_pos = {
-        x = 0,
-        y = 1,
-    },
-    unlocked = false,
-    prefix_config = {
-        above_stake = false
-    },
-    applied_stakes = { "sky" },
-    above_stake = "stake_purple",
-    colour = HEX("00a156"),
     modifiers = function ()
         G.GAME.minty_unbalance = 0.10
         G.GAME.minty_unbalance_base = 0.05
@@ -185,6 +133,63 @@ SMODS.Stake{
 }
 
 SMODS.Stake{
+    key = "sky",
+    atlas = "stakes",
+    pos = {
+        x = 3,
+        y = 0,
+    },
+    sticker_atlas = "stake_stickers",
+    sticker_pos = {
+        x = 3,
+        y = 0,
+    },
+    unlocked = false,
+    prefix_config = {
+        above_stake = false
+    },
+    applied_stakes = { "void" },
+    above_stake = "stake_blue",
+    colour = HEX("00c7ff"),
+    modifiers = function ()
+        G.GAME.showdown_rate = (G.GAME.showdown_rate or 1) * 2
+    end
+}
+
+SMODS.Stake{
+    key = "mint", --Hee hee hoo hoo.
+    atlas = "stakes",
+    pos = {
+        x = 0,
+        y = 1,
+    },
+    sticker_atlas = "stake_stickers",
+    sticker_pos = {
+        x = 0,
+        y = 1,
+    },
+    unlocked = false,
+    prefix_config = {
+        above_stake = false
+    },
+    applied_stakes = { "sky" },
+    above_stake = "stake_purple",
+    colour = HEX("00a156"),
+    modifiers = function ()
+        G.GAME.modifiers.enable_minty_hooked = true
+    end,
+    calculate = function (self, context)
+        local center = (context.other_card and context.other_card.config and context.other_card.config.center) or {}
+        if (context.setting_ability and (center.set == "Default" or center.set == "Enhanced")) or context.change_rank or context.change_suit then
+            MINTY.say("Modifying playing card...")
+            if SMODS.Stickers.minty_hooked:should_apply(context.other_card, center, context.other_card.area) then
+                SMODS.Stickers.minty_hooked:apply(context.other_card, true)
+            end
+        end
+    end
+}
+
+SMODS.Stake{
     key = "tungsten",
     atlas = "stakes",
     pos = {
@@ -203,15 +208,36 @@ SMODS.Stake{
     applied_stakes = { "mint" },
     above_stake = "stake_orange",
     colour = HEX("667072"),
-    modifiers = function ()
-        G.GAME.modifiers.enable_minty_hooked = true
-    end,
     calculate = function (self, context)
-        local center = (context.other_card and context.other_card.config and context.other_card.config.center) or {}
-        if (context.setting_ability and (center.set == "Default" or center.set == "Enhanced")) or context.change_rank or context.change_suit then
-            MINTY.say("Modifying playing card...")
-            if SMODS.Stickers.minty_hooked:should_apply(context.other_card, center, context.other_card.area) then
-                SMODS.Stickers.minty_hooked:apply(context.other_card, true)
+        local set_to_booster = {
+            Joker = "Buffoon",
+            Planet = "Celestial",
+            Tarot = "Arcana",
+            Spectral = "Spectral",
+            Default = "Standard",
+            Enhanced = "Standard",
+        }
+
+        if context.create_shop_card and set_to_booster[context.set] then
+            local kind = set_to_booster[context.set]
+            if SMODS.pseudorandom_probability(self, "minty_tungsten_every_card", 1, 25) then
+                kind = "minty_everycard"
+            end
+
+            local key = get_pack("minty_tungsten_booster", kind).key
+            print(kind, key)
+
+            if G.P_CENTERS[key] and G.P_CENTERS[key].set == "Booster" then
+                return {
+                    shop_create_flags = {
+                        set = "Booster",
+                        key = key,
+                        scale = {
+                            w = 1.27,
+                            h = 1.27
+                        }
+                    }
+                }
             end
         end
     end
