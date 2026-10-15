@@ -9,13 +9,13 @@
 	"priority": 37,
 	"badge_colour": "CA7CA7",
 	"badge_text_colour": "FFFFFF",
-	"version": "1.0.1~BETA-20260923",
+	"version": "1.0.1~BETA-20261015",
 	"icon_path": "kitty (missing).png",
 	"provides": [
 		"MintysSillyMod"
 	],
 	"dependencies": [
-		"Steamodded(>=26.829.0)"
+		"Steamodded(>=26.1002.0)"
 	],
 	"conflicts": [
 		"Talisman(<<3)"
