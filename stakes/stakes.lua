@@ -216,13 +216,13 @@ SMODS.Stake{
             Spectral = "Spectral",
             Default = "Standard",
             Enhanced = "Standard",
-            --TARGET: Cross-mod sets and their associated booster
+            --TARGET: Cross-mod sets and their associated booster. todo figure out a better solution to this
             
         }
 
-        if context.create_shop_card and set_to_booster[context.set] then
+        if context.create_shop_card then
             local kind = set_to_booster[context.set]
-            if SMODS.pseudorandom_probability(self, "minty_tungsten_every_card", 1, 25) then
+            if SMODS.pseudorandom_probability(self, "minty_tungsten_every_card", 1, 25) or not kind then
                 kind = "minty_everycard"
             end
 
