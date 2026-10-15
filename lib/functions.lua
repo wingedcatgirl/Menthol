@@ -284,7 +284,7 @@ end
 
 ---... from target areas, excluding self
 ---@param card Card|table The object that's looking at highlighted things (it won't see itself)
----@param areas table List of keys of `CardArea`s in `G`
+---@param areas string[] List of keys of `CardArea`s in `G`
 ---@return table cards List of highlighted cards
 function MINTY.get_all_highlighted(card, areas)
     local cards = {}
