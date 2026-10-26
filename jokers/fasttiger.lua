@@ -25,7 +25,7 @@ SMODS.Joker {
     config = {
         extra = {
             xmult = 1,
-            xmultiplier = 0.2
+            xmultiplier = 0.25
         }
     },
     in_pool = function (self, args)
