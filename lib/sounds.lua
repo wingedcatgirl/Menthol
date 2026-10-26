@@ -58,6 +58,11 @@ SMODS.Sound{ --https://freesound.org/people/FreqWincy/sounds/703921/ x2 combob
     path = "meow 3.ogg"
 }
 
+SMODS.Sound{ --https://freesound.org/people/SGAK/sounds/467762/ Could use a better sound bank than free sound dot org tbh, the options here were kinda meh
+    key = "roar",
+    path = "lion roar.wav"
+}
+
 do --Buttload of meme sounds grabbed from https://thirtydollar.website/ and also video games
     local path = SMODS.current_mod.path.."assets/sounds/thirty dollar memes"
     local info = NFS.getDirectoryItemsInfo(path)

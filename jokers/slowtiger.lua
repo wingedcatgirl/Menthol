@@ -65,7 +65,7 @@ SMODS.Joker {
                             card:set_ability(G.P_CENTERS.j_minty_fasttiger)
                             card.ability.extra.xmult = amt * card.ability.extra.xmultiplier
                             card:juice_up(5)
-                            play_sound("tarot1")
+                            play_sound("minty_roar")
                             card.states.drag.can = true
                             return true
                         end, { trigger = "after", delay = 1.5 })
