@@ -1,3 +1,9 @@
+---@type number|string
+local rarity = 2
+if next(SMODS.find_mod("Bibliography")) then
+    rarity = "biblio_evolved"
+end
+
 SMODS.Joker {
     key = "fasttiger",
     name = "Fast Tiger",
@@ -11,7 +17,7 @@ SMODS.Joker {
         x = 1,
         y = 0
     },
-    rarity = 2,
+    rarity = rarity,
     cost = 7,
     unlocked = true,
     discovered = false,
