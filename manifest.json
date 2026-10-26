@@ -1,0 +1,9 @@
+{
+    "name": "Menthol",
+    "description": "A silly little mod by Minty, adding things I think are fun and/or amusing.",
+    "version_number": "1.0.1",
+    "website_url": "https://github.com/wingedcatgirl/Menthol",
+    "dependencies": [
+        "Steamodded-Steamodded-26.1002.0"
+    ]
+}
