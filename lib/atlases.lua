@@ -50,6 +50,96 @@ SMODS.Atlas {
 }
 
 SMODS.Atlas {
+    key = 'neko_alt',
+    path = "neko_swapped.png",
+    px = 48,
+    py = 65,
+    atlas_table = "STATE_ATLAS",
+    sprite_args = {
+        default_state = "wait",
+        fps = 3,
+        states = {
+            base = {
+                start_pos = {x=0,y=0},
+                frames = 1
+            },
+            wait = {
+                start_pos = {x=0, y=1},
+                frames = 2,
+            },
+            wash = {
+                start_pos = {x=0, y=2},
+                frames = 2
+            },
+            scratchself = {
+                start_pos = {x=0, y=3},
+                frames = 2
+            },
+            yawn = {
+                start_pos = {x=0, y=4},
+                frames = 2
+            },
+            nap = {
+                start_pos = {x=0, y=5},
+                frames = 2
+            },
+            alert = {
+                start_pos = {x=0, y=6},
+                frames = 2
+            },
+            chasedown = {
+                start_pos = {x=0, y=7},
+                frames = 2
+            },
+            chasedownright = {
+                start_pos = {x=0, y=8},
+                frames = 2
+            },
+            chaseright = {
+                start_pos = {x=0, y=9},
+                frames = 2
+            },
+            chaseupright = {
+                start_pos = {x=0, y=10},
+                frames = 2
+            },
+            chaseup = {
+                start_pos = {x=0, y=11},
+                frames = 2
+            },
+            chaseupleft = {
+                start_pos = {x=0, y=12},
+                frames = 2
+            },
+            chaseleft = {
+                start_pos = {x=0, y=13},
+                frames = 2
+            },
+            chasedownleft = {
+                start_pos = {x=0, y=14},
+                frames = 2
+            },
+            scratchd = {
+                start_pos = {x=0, y=15},
+                frames = 2
+            },
+            scratchr = {
+                start_pos = {x=0, y=16},
+                frames = 2
+            },
+            scratchu = {
+                start_pos = {x=0, y=17},
+                frames = 2
+            },
+            scratchl = {
+                start_pos = {x=0, y=18},
+                frames = 2
+            },
+        }
+    }
+}
+
+SMODS.Atlas {
     key = 'dice',
     path = "dice.png",
     px = 71,
