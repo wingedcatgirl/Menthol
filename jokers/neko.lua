@@ -70,6 +70,14 @@ SMODS.Joker {
     set_ability = function (self, card, initial, delay_sprites)
         card.children.center:set_state("base")
     end,
+    load = function (self, card, card_table, other_card)
+        MINTY.event(function ()
+            if not (card.children and card.children.center and card.children.center.set_state) then return false end
+
+            card.children.center:set_state("base")
+            return true
+        end, {blocking = false, blockable = false})
+    end,
     update = function (self, card, dt)
         local succ,vis = pcall(function ()return card.states.visible end)
         if not (succ and vis) then
