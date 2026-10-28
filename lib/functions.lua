@@ -540,6 +540,16 @@ function MINTY.reset_treat_card()
     --sendDebugMessage('[Minty] Treat-o-vision suit reset to '..G.GAME.treatovision_suit)
 end
 
+---Can this cross-mod card appear
+---@param mod_id string ID of the mod to check
+---@param strict boolean Set `true` to ignore Menthol's allow-crossover config
+---@return boolean
+function MINTY.can_crossover(mod_id, strict)
+    if next(SMODS.find_mod(mod_id)) then return true end
+
+    return not strict and ((G.STAGE == G.STAGES.RUN and G.GAME.minty_crossover) or MINTY.config.include_crossover)
+end
+
 function SMODS.current_mod.reset_game_globals(init)
     G.GAME.languageEgg = G.GAME.languageEgg or {}
     local lang = G.SETTINGS.language
