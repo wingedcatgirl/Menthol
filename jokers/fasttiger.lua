@@ -1,7 +1,9 @@
----@type number|string
-local rarity = 2
+local set_card_type_badge
 if next(SMODS.find_mod("Bibliography")) then
-    rarity = "biblio_evolved"
+    set_card_type_badge = function (self, card, badges)
+        if not (self.discovered or card.bypass_discovery_ui) then return end
+        badges[1] = create_badge(localize("k_biblio_evolved", "labels"), SMODS.Gradients.biblio_evolved, nil, 1.2)
+    end
 end
 
 SMODS.Joker {
@@ -17,8 +19,9 @@ SMODS.Joker {
         x = 1,
         y = 0
     },
-    rarity = rarity,
+    rarity = 2,
     cost = 7,
+    set_card_type_badge = set_card_type_badge,
     unlocked = true,
     discovered = false,
     no_collection = function (self)
