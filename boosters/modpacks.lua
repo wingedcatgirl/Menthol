@@ -69,14 +69,13 @@ local function create_modded_card(self, card, i)
         type = "Joker",
         seed = "minty_mod_pack",
         filter = function(pool)
-            local newpool = {}
             for _, item in ipairs(pool) do
                 local center = G.P_CENTERS[item.key]
-                if center and item.type == "Joker" and center.original_mod and center.original_mod.id == card.ability.mod.id then
-                    newpool[#newpool + 1] = item
+                if not (center and item.type == "Joker" and center.original_mod and center.original_mod.id == card.ability.mod.id) then
+                    item.key = "UNAVAILABLE"
                 end
             end
-            return newpool
+            return pool
         end
     }
 
