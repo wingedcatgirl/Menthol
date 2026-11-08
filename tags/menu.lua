@@ -8,6 +8,7 @@ SMODS.Tag{
     in_pool = function (self, args)
         return false
     end,
+    attributes = {"booster"},
     loc_vars = function (self, info_queue, tag)
         info_queue[#info_queue+1] = G.P_CENTERS.p_minty_treat_normal_1
     end,

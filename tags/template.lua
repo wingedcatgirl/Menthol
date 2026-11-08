@@ -8,6 +8,9 @@ SMODS.Tag{
     in_pool = function (self, args)
         return false
     end,
+    attributes = {
+
+    },
     loc_vars = function (self, info_queue, tag)
         
     end,
