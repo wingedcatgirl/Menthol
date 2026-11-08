@@ -35,6 +35,7 @@ SMODS.Voucher{
             amount = 1
         }
     },
+    attributes = {"hands", "hand_size", "discard", "joker_slot", "play_size", "discard_size"},
     loc_vars = function (self, info_queue, voucher)
         local option
         if MINTY.in_collection(voucher) then

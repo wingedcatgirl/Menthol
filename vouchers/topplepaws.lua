@@ -16,6 +16,7 @@ SMODS.Voucher{
             disc = 3
         }
     },
+    attributes = {"discard", "discard_size"},
     loc_vars = function (self, info_queue, card)
         local disclimit = G.GAME and G.GAME.starting_params and G.GAME.starting_params.discard_limit or 5
         local increase = card.ability.extra.disc
@@ -55,6 +56,7 @@ SMODS.Voucher{
             play = 2,
         }
     },
+    attributes = {"discard", "discard_size", "play_size"},
     requires = {"v_minty_tabletopple"},
     unlocked = false,
     unlockreq = 20,

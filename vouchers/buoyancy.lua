@@ -9,6 +9,7 @@ SMODS.Voucher{
         x = 0,
         y = 0,
     },
+    attributes = {"discard"}, --Todo, "playing cards return to deck" attribute?
     loc_vars = function (self, info_queue, voucher)
         local luck, odds = SMODS.get_probability_vars(voucher, voucher.ability.luck, voucher.ability.odds, "minty_buoyant", false)
         return {
@@ -44,6 +45,7 @@ SMODS.Voucher{
         x = 0,
         y = 1,
     },
+    attributes = {"hands", "discard"},
     loc_vars = function (self, info_queue, voucher)
         return {
             vars = {

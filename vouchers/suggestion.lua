@@ -8,6 +8,7 @@ SMODS.Voucher{
     config = {
         percent = 13
     },
+    attributes = {},
     loc_vars = function (self, info_queue, voucher)
         info_queue[#info_queue+1] = {set = "Other", key = "minty_cat_ears"}
         return {
@@ -40,6 +41,7 @@ SMODS.Voucher{
         x = 0,
         y = 1,
     },
+    attributes = {},
     loc_vars = function (self, info_queue, voucher)
         info_queue[#info_queue+1] = {set = "Other", key = "minty_cat_ears"}
     end,

@@ -67,6 +67,14 @@ SMODS.Attribute{ --Enhancements which *are* rock cards
     }
 }
 
+SMODS.Attribute{ --Cards which modify how many cards you physically can play (not by debuffing hand)
+    key = "play_size"
+}
+
+SMODS.Attribute{ --Same but red instead of blue
+    key = "discard_size"
+}
+
 SMODS.Attribute{ --Objects which are stupid, and also suck bad
     key = "stupid"
 }

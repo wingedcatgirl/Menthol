@@ -13,7 +13,7 @@ SMODS.Blind({
         },
     },
     attributes = {
-        "hand_size"
+        "play_size"
     },
     loc_vars = function (self)
         return {
