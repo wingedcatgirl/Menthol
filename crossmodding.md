@@ -11,6 +11,8 @@ Give your enhancements a `config.extra.gymboost` of `"chips"`, `"xchips"`, `"mul
 
 ### Lazarus machine
 Add `[your edition's key] = value` to `MINTY.edition_values` to change how much the Lazarus machine gets from draining it. For comparison, vanilla editions are 1 for foil and holo, 2 for poly, and 4 for negative.
+> [!NOTE]
+> If your mod loads before Menthol, the table won't exist yet. You'll need to find a way to delay this code until the table does exist.
 
 ### [Attributes](https://docs.smods.dev/Game%20Objects/SMODS.Attributes/) with mechanical baggage
 See [attributes.lua](lib/attributes.lua) for complete details, but here are some worth noting.
