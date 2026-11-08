@@ -5,6 +5,9 @@ SMODS.Consumable {
 	key = "wand",
 	effect = "Unlocker",
 	config = {},
+	attributes = {
+		"generation"
+	},
 	loc_vars = function(self, info_queue, card)
 		local key = self.key
         local main_end = MINTY.flavorize(self.key)

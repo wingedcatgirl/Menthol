@@ -7,6 +7,9 @@ SMODS.Consumable {
 	config = {
         max_highlighted = 1
 	},
+	attributes = {
+		"generation"
+	},
 	loc_vars = function(self, info_queue, card)
 		local key = self.key
         local main_end = MINTY.flavorize(self.key)

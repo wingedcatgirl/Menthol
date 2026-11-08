@@ -8,6 +8,9 @@ SMODS.Consumable {
 		max_highlighted = 1,
         seal = {extra = {chips = 50}},
 	},
+	attributes = {
+		"modify_card", "seals"
+	},
 	loc_vars = function(self, info_queue, card)
 		local key = self.key
         local main_end = MINTY.flavorize(self.key)

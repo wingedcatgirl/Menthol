@@ -7,6 +7,9 @@ SMODS.Consumable {
 	config = {
 		max_highlighted = 4
 	},
+	attributes = {
+		"modify_card"
+	},
 	loc_vars = function(self, info_queue, card)
 		local key = self.key
         local plural = false

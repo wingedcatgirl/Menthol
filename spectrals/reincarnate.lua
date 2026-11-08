@@ -6,6 +6,9 @@ SMODS.Consumable {
 	config = {
         max_highlighted = 1
 	},
+	attributes = {
+		"generation", "destroy_card"
+	},
 	loc_vars = function(self, info_queue, card)
 		local key = self.key
         local plural = false
