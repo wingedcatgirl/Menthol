@@ -11,6 +11,9 @@ SMODS.Booster{
         extra = 5,
         choose = 1
     },
+    attributes = {
+        
+    },
     in_pool = function (self, args)
         return false
     end,
