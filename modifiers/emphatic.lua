@@ -17,6 +17,9 @@ SMODS.Enhancement({
             chips = 100
         }
     },
+    attributes = {
+        "chips", "xmult", "destroy_card"
+    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

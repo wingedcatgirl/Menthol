@@ -17,6 +17,9 @@ SMODS.Enhancement({
             gymboost = "random"
         }
     },
+    attributes = {
+        "xblindsize", "destroy_card"
+    },
     valk_hand_buff = {
         title = "EXPLOSIVE",
         colour = HEX("ab1f07"),

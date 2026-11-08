@@ -6,6 +6,9 @@ SMODS.Seal {
   config = {extra = {chips = 50}},
   --discovered = true,
   always_scores = true,
+  attributes = {
+    "chips", "debuff_protection"
+  },
   loc_vars = function(self, info_queue)
     return { vars = {self.config.extra.chips, } }
   end,

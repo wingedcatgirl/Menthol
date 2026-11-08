@@ -15,6 +15,9 @@ SMODS.Edition{
     unlocked = true,
     discovered = true,
     no_suit = true,
+    attributes = {
+        
+    },
     weight = 0,
     in_pool = function (self, args)
         return false

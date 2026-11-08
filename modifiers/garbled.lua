@@ -31,6 +31,9 @@ SMODS.Enhancement({
             gymboost = "mult"
         },
     },
+    attributes = {
+        "mult"
+    },
     valk_hand_buff = {
         title = "fB*&@@Pe%$3%%", --todo, dynatext this misprint style?
         colour = SMODS.Gradients.minty_garbled_handbuff,

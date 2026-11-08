@@ -1,6 +1,12 @@
 ---Debug messages
 ---@param message string Message to send
----@param level? string Log level, DEBUG by default, TRACE won't send unless dev mode is active since DebugPlus doesn't have that filter fsr
+---@param level? string 
+---|"'FATAL'" # Something has gone horribly wrong and crashes are likely
+---|"'ERROR'" # Something has gone horribly wrong, but crashes aren't likely (yet)
+---|"'WARN '" # Something has gone wrong, but the program can handle it (e.g. call to a deprecated function)
+---|"'INFO '" # Information even a casual player might want if they added DebugPlus
+---|"'DEBUG'" # Debugging info most people don't need (default value)
+---|"'TRACE'" # Potential debugging info even we don't (yet) need
 function MINTY.say(message, level)
     message = message or "???"
     level = level or "DEBUG"
@@ -235,26 +241,34 @@ end
 MINTY.rocklist = function()
     MINTY.rocks = MINTY.rocks or {}
     MINTY.rockbag = {}
-    local outside_rocks = {
-        m_ortalab_ore = true,
-        m_akyrs_brick_card = true,
-        m_mf_gemstone = true,
-        m_artb_marble = true,
-        m_stone = true,
-        --Minty rock list patch target
-
-    }
+    for i,v in ipairs(SMODS.get_attribute_pool("minty_rock_card")) do
+        MINTY.rockbag[#MINTY.rockbag+1] = v
+        MINTY.rocks[v] = true
+    end
 
     for k, v in pairs(G.P_CENTERS) do
-        if (v.minty_rock) or outside_rocks[k] then
-            MINTY.rocks[v.key] = true
-            table.insert(MINTY.rockbag, v.key)
+        if v.minty_rock and not (v.attributes and v.attributes.minty_rock_card) then
+            MINTY.say("Rock enhancement "..localize{type="Enhancement", key = k}.." from mod "..v.original_mod.display_name.." needs to be updated to attribute system! Legacy method will be removed in 1.2", "WARN ")
+            MINTY.rockbag[#MINTY.rockbag+1] = v
+            MINTY.rocks[v] = true
+            SMODS.add_attribute("minty_rock_card", {v.key})
         end
     end
 end
 
+---Takes a table in the form `{A, B, C}` and converts it to a map in the form `{A=true, B=true, C=true}`.
+---@param t any[]
+---@return table<any, true>
+MINTY.bag_to_map = function(t)
+    local ret = {}
+    for _,v in ipairs(t) do
+        ret[v] = true
+    end
+    return ret
+end
+
 ---Converts a map of enhancements into an info-queue tip
----@param table table A map (list of `key = true`) of the relevant enhancements
+---@param table table<string, true> A map (list of `key = true`) of the relevant enhancements
 ---@param name string The name of the enhancement list
 ---@return table
 function MINTY.enhancement_list(table, name)

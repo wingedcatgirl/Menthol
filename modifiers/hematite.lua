@@ -3,7 +3,6 @@ SMODS.Enhancement({
     name = "Hematite Card",
     atlas = "enhance",
     set = "Enhanced",
-    minty_rock = true,
     pos = {
         x = 0,
         y = 1
@@ -17,6 +16,7 @@ SMODS.Enhancement({
             gymboost = "hxmult"
         }
     },
+    attributes = { "minty_rock_card", "chips", "xmult" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

@@ -3,7 +3,6 @@ SMODS.Enhancement({
     name = "Crystal Card",
     atlas = "enhance",
     set = "Enhanced",
-    minty_rock = true,
     pos = {
         x = 3,
         y = 0
@@ -18,6 +17,7 @@ SMODS.Enhancement({
             gymboost = "cash"
         },
     },
+    attributes = { "minty_rock_card", "chips", "economy", "destroy_card", "chance" },
     loc_vars = function(self, info_queue, card)
         local luck, odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "minty_crystal_desc", false)
         return {

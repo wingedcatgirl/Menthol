@@ -3,7 +3,6 @@ SMODS.Enhancement({
     name = "Marble Card",
     atlas = "enhance",
     set = "Enhanced",
-    minty_rock = true,
     pos = {
         x = 0,
         y = 0
@@ -18,6 +17,7 @@ SMODS.Enhancement({
             gymboost = "cash"
         },
     },
+    attributes = { "minty_rock_card", "suit", "economy", "chips", "mult" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

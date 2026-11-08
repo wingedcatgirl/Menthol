@@ -28,7 +28,7 @@ SMODS.Joker {
 	loc_vars = function(self, info_queue, card)
         local key = self.key
         local main_end = MINTY.flavorize(self.key)
-		info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.rocks, "rock")
+		info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.bag_to_map(SMODS.get_attribute_pool("minty_rock_card")), "rock")
 		info_queue[#info_queue + 1] = { set = "Other", key = "minty_cement_seal", specific_vars = { self.config.seal.extra.chips } }
 		return {
             key = key,
@@ -40,14 +40,13 @@ SMODS.Joker {
 	end,
     calculate = function(self, card, context)
         if context.before then
-            for i = 1,#context.scoring_hand do
-                local enh = context.scoring_hand[i].config.center.key
-                if MINTY.rocks[enh] and not context.scoring_hand[i].seal then
-                    context.scoring_hand[i]:set_ability(G.P_CENTERS.c_base, nil, true)
-                    context.scoring_hand[i]:set_seal("minty_cement")
+            for i,v in ipairs(context.scoring_hand) do
+                if v:has_attribute("minty_rock_card") and not v.seal then
+                    v:set_ability(G.P_CENTERS.c_base, nil, true)
+                    v:set_seal("minty_cement")
                     G.E_MANAGER:add_event(Event({
                         func = function()
-                            context.scoring_hand[i]:juice_up()
+                            v:juice_up()
                             return true
                         end
                     }))

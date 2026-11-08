@@ -4,8 +4,7 @@ SMODS.PokerHandPart{ -- Handful of Rocks base
         local cards = {}
 
         for _, card in ipairs(hand) do
-            local enh = card.config.center.key
-            if MINTY.rocks[enh] then
+            if card:has_attribute("minty_rock_card") then
                 table.insert(cards, card)
             end
         end

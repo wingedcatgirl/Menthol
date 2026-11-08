@@ -25,7 +25,7 @@ SMODS.Joker {
 	loc_vars = function(self, info_queue, card)
         local key = self.key
         local main_end = MINTY.flavorize(self.key)
-        info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.rocks, "rock")
+        info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.bag_to_map(SMODS.get_attribute_pool("minty_rock_card")), "rock")
 		return {
             key = key,
             main_end = main_end,
@@ -38,7 +38,7 @@ SMODS.Joker {
         if context.before then
             for i = 1,#context.scoring_hand do
                 if context.scoring_hand[i].ability.set ~= "Enhanced" then
-                    local enh = SMODS.poll_enhancement({options = MINTY.rockbag, key = "minty_bucket", guaranteed = true})
+                    local enh = SMODS.poll_enhancement({options = SMODS.get_attribute_pool("minty_rock_card"), key = "minty_bucket", guaranteed = true})
                     MINTY.say(enh, "TRACE")
                     context.scoring_hand[i]:set_ability(G.P_CENTERS[enh], nil, true)
                     G.E_MANAGER:add_event(Event({

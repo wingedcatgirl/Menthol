@@ -14,6 +14,9 @@ SMODS.Enhancement({
             balancepct = 10
         },
     },
+    attributes = {
+        "balance"
+    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

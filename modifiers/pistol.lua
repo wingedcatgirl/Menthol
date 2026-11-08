@@ -18,6 +18,9 @@ SMODS.Enhancement({
             gymboost = "xmult"
         }
     },
+    attributes = {
+        "xmult", "chance", "meta"
+    },
     loc_vars = function(self, info_queue, card)
         local luck, odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "minty_pistol_desc", false)
         return {

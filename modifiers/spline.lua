@@ -18,6 +18,9 @@ SMODS.Enhancement({
             gymboost = "chips"
         },
     },
+    attributes = {
+        "chips", "scaling", "chance"
+    },
     valk_hand_buff = {
         title = "MECHANICAL",
         colour = HEX("777777"),

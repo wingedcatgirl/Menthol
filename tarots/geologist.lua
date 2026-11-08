@@ -13,7 +13,7 @@ SMODS.Consumable{
     },
 
     loc_vars = function (self, info_queue, card)
-		info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.rocks, "rock")
+		info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.bag_to_map(SMODS.get_attribute_pool("minty_rock_card")), "rock")
         key = self.key
         local plural = false
         if card.ability.max_highlighted ~= 1 then plural = true end
@@ -34,7 +34,7 @@ SMODS.Consumable{
 
     use = function(self)
         local used_tarot = copier or card
-        MINTY.tarotflip(used_tarot, { random_enhs = MINTY.rockbag, seed = "minty_geologist" })
+        MINTY.tarotflip(used_tarot, { random_enhs = SMODS.get_attribute_pool("minty_rock_card"), seed = "minty_geologist" })
     end,
 
     in_pool = function (self, args)

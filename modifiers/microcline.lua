@@ -3,7 +3,6 @@ SMODS.Enhancement({
     name = "Microcline Card",
     atlas = "enhance",
     set = "Enhanced",
-    minty_rock = true,
     pos = {
         x = 2,
         y = 0
@@ -16,6 +15,7 @@ SMODS.Enhancement({
             gymboost = "hchips"
         },
     },
+    attributes = { "minty_rock_card", "chips" },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

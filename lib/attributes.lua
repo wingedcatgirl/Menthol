@@ -52,12 +52,30 @@ SMODS.Attribute{ --Objects which care about the "Rock Card" classification
     key = "minty_rocks"
 }
 
+SMODS.Attribute{ --Enhancements which *are* rock cards
+    key = "minty_rock_card",
+    keys = {
+        "m_stone",
+        "m_akyrs_brick_card",
+        "m_artb_marble",
+        "m_mf_gemstone",
+        "m_ortalab_ore",
+    }
+}
+
 SMODS.Attribute{ --Objects which are stupid, and also suck bad
     key = "stupid"
 }
 
 SMODS.Attribute{ --Objects which care about unscored cards
     key = "unscored"
+}
+
+SMODS.Attribute{ --Objects which have or grant the ability to not get debuffed
+    key = "debuff_protection",
+    alias = {
+        "anti_debuff"
+    }
 }
 
 SMODS.Attribute{ --Objects which care about cards held in hand
