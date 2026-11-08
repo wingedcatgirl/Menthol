@@ -10,6 +10,9 @@ SMODS.Consumable({
         partial_rounds = 0,
         upgrade_rounds = 1,
     },
+    attributes = {
+        "modify_card", "suit", "minty_3s"
+    },
     cost = 4,
     unlocked = true,
     discovered = false,

@@ -31,6 +31,9 @@ SMODS.Consumable {
     cost = 0,
     order = 33,
     config = {extra = {cost = -3, amount = 1}},
+    attributes = {
+        "generation", "minty_3s"
+    },
     loc_vars = function(self, info_queue, card)
         return { vars = {G.FUNCS.format_cost(card.ability.extra.cost), card.ability.extra.amount} }
     end,
@@ -55,6 +58,9 @@ SMODS.Consumable {
     cost = 0,
     order = 1,
     config = {extra = {cost = 0, parcel_amount = 1, amount = 13}},
+    attributes = {
+        "generation", "minty_3s"
+    },
     loc_vars = function(self, info_queue, card)
         local amount = 0
         for key, value in pairs(G.P_CARDS) do
@@ -99,6 +105,9 @@ SMODS.Consumable {
             parcel_amount = 1,
             other_suit = "Hearts"
         }
+    },
+    attributes = {
+        "generation", "minty_3s", "hearts"
     },
     loc_vars = function(self, info_queue, card)
         local threeamount = 0
@@ -154,6 +163,9 @@ SMODS.Consumable {
             other_suit = "Diamonds"
         }
     },
+    attributes = {
+        "generation", "minty_3s", "diamonds"
+    },
     loc_vars = function(self, info_queue, card)
         local threeamount = 0
         local otheramount = 0
@@ -208,6 +220,9 @@ SMODS.Consumable {
             other_suit = "Clubs"
         }
     },
+    attributes = {
+        "generation", "minty_3s", "clubs"
+    },
     loc_vars = function(self, info_queue, card)
         local threeamount = 0
         local otheramount = 0
@@ -261,6 +276,9 @@ SMODS.Consumable {
             parcel_amount = 1,
             other_suit = "Spades"
         }
+    },
+    attributes = {
+        "generation", "minty_3s", "spades"
     },
     loc_vars = function(self, info_queue, card)
         local threeamount = 0

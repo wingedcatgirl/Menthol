@@ -25,6 +25,9 @@ Gemstones.GemstoneConsumable{
         max_highlighted = 1,
         sticker_id = "gemslot_catseye"
     },
+    attributes = {
+        "modify_card", "gemstone"
+    },
 
     loc_vars = function(self, info_queue)
         info_queue[#info_queue + 1] = { key = self.config.sticker_id, set = "Other", }

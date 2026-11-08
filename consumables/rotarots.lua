@@ -48,6 +48,9 @@ SMODS.Consumable({
         val = 3,
         suit = "minty_THREE"
     },
+	attributes = {
+		"generation", "minty_3s", "enhancements"
+	},
     cost = 3,
     atlas = "rotarots",
     unlocked = true,
@@ -74,6 +77,9 @@ SMODS.Consumable({
         max_highlighted = 1,
         mod_conv = "m_minty_garbled"
     },
+	attributes = {
+		"modify_card", "enhancements"
+	},
     cost = 3,
     atlas = "rotarots",
     unlocked = true,
@@ -103,6 +109,9 @@ SMODS.Consumable({
         max_highlighted = 1,
         mod_conv = "m_minty_pistol",
     },
+	attributes = {
+		"modify_card", "enhancements"
+	},
     cost = 3,
     atlas = "rotarots",
     unlocked = true,
@@ -132,6 +141,9 @@ SMODS.Consumable({
         max_highlighted = 1,
         mod_conv = "m_minty_spline",
     },
+	attributes = {
+		"modify_card", "enhancements"
+	},
     cost = 3,
     atlas = "rotarots",
     unlocked = true,
@@ -172,6 +184,9 @@ SMODS.Consumable({
         max_highlighted = 1,
         mod_conv = "m_minty_dynamite",
     },
+	attributes = {
+		"modify_card", "enhancements"
+	},
     cost = 3,
     atlas = "rotarots",
     unlocked = true,
@@ -211,6 +226,9 @@ SMODS.Consumable({
         max_highlighted = 1,
         mod_conv = "m_minty_emphatic",
     },
+	attributes = {
+		"modify_card", "enhancements"
+	},
     cost = 3,
     atlas = "rotarots",
     unlocked = true,
