@@ -28,6 +28,9 @@ SMODS.Blind{
             return true
         end)
     end,
+    attributes = {
+        "skip"
+    },
     loc_vars = function (self)
         if G.STAGE == G.STAGES.RUN then
             if G.GAME["minty_absence_alt_text"..(G.GAME.round_resets.ante)] == nil then

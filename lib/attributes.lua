@@ -78,6 +78,13 @@ SMODS.Attribute{ --Objects which have or grant the ability to not get debuffed
     }
 }
 
+SMODS.Attribute{ --Objects which disallow hands
+    key = "debuff_hand",
+    keys = {
+        "bl_eye", "bl_mouth", "bl_psychic"
+    }
+}
+
 SMODS.Attribute{ --Objects which care about cards held in hand
     key = "held_in_hand",
     keys = {

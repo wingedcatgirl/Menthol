@@ -27,7 +27,7 @@ SMODS.Joker {
         }
     },
     attributes = {
-        "rank", "suit", "mult", "minty_3s", "chance", "food"
+        "rank", "suit", "mult", "minty_3s", "chance", "food", "Paperback"
     },
     rarity = 1,
     atlas = 'jokerdoodles',
@@ -172,7 +172,7 @@ SMODS.Joker {
         }
     },
     attributes = {
-        "xmult"
+        "xmult", "Paperback"
     },
     rarity = 1,
     atlas = 'jokerdoodles',

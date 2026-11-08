@@ -10,6 +10,9 @@ SMODS.Blind {
     pos = { x=0, y=1 },
     discovered = false,
     config = {extra = {suit = 'minty_3s'}},
+    attributes = {
+        "debuff_hand", "minty_3s", "suit", "rank", "three"
+    },
     loc_vars = function(self)
         return {vars = {self.config.extra.suit}}
     end,

@@ -9,6 +9,9 @@ SMODS.Blind {
     atlas = 'blinds',
     pos = { x=0, y=3 },
     discovered = false,
+    attributes = {
+        "debuff", "suit", "rank", "minty_3s", "three"
+    },
     in_pool = function (self)
         if not (mf or MINTY.config.dev_mode or G.GAME.minty_crossover) then return false end
         if G.GAME.round_resets.ante < 9 then return false end

@@ -30,7 +30,7 @@ SMODS.Joker {
         again = 0
     } },
     attributes = {
-        "xmult", "scaling", "reset", "rank", "suit", "minty_3s"
+        "xmult", "scaling", "reset", "rank", "suit", "minty_3s", "Paperback"
     },
     loc_vars = function(self, info_queue, card)
         if MINTY.in_collection(card) and not (paperback or MINTY.config.dev_mode or G.GAME.minty_crossover) then

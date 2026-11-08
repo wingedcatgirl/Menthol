@@ -11,6 +11,9 @@ SMODS.Blind({
             flip = 2
         },
     },
+    attributes = {
+        "face_down"
+    },
     loc_vars = function (self)
         local plural = (self.config.extra.flip > 1)
         return {

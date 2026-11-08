@@ -24,7 +24,7 @@ SMODS.Joker {
     demicoloncompat = true,
     config = {extra = {Xmult = 4}},
     attributes = {
-        "xmult" --Poker hand size?
+        "xmult", "debuff_hand", "hand_size"
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key

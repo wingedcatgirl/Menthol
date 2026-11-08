@@ -12,6 +12,9 @@ SMODS.Blind {
             odds = 5
         }
     },
+    attributes = {
+        "debuff", "face_down", "chance"
+    },
     loc_vars = function (self)
         local luck, odds = SMODS.get_probability_vars(self, 1, self.config.extra.odds, "minty_calico_desc", false)
         return {

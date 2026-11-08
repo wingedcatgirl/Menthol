@@ -11,6 +11,9 @@ SMODS.Blind({
             debuff = 1
         },
     },
+    attributes = {
+        "debuff"
+    },
     loc_vars = function (self)
         local plural = self.config.extra.debuff > 1
         return {

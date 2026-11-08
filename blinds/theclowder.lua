@@ -10,6 +10,9 @@ SMODS.Blind{
     atlas = 'blinds',
     pos = { x=0, y=0 },
     --]]
+    attributes = {
+        "debuff", "joker"
+    },
     recalc_debuff = function (self, card, from_blind)
         if card.config.center.set == "Joker" and not card:is_kity() then return true end
     end,
