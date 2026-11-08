@@ -5,12 +5,14 @@ SMODS.Consumable{
     set_card_type_badge = function(self, card, badges)
         badges[1] = create_badge("Tarot?", get_type_colour(self or card.config, card), nil, 1.2)
     end,
-
-    config = {max_highlighted = 3},
     pos = {
         x = 0,
         y = 1
     },
+
+    config = {max_highlighted = 3},
+    
+    attributes = {"modify_card", "minty_rocks", "enhancements"},
 
     loc_vars = function (self, info_queue, card)
 		info_queue[#info_queue+1] = MINTY.enhancement_list(MINTY.bag_to_map(SMODS.get_attribute_pool("minty_rock_card")), "rock")

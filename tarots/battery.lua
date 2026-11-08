@@ -12,6 +12,8 @@ SMODS.Consumable{
     end,
 
     config = {max_highlighted = 2, enh_conv = 'm_minty_static'},
+    
+    attributes = {"modify_card", "enhancements"},
 
     loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.enh_conv]

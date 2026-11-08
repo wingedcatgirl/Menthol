@@ -12,6 +12,8 @@ SMODS.Consumable{
     end,
 
     config = {max_highlighted = 2, mod_conv = 'randomize_rank'},
+    
+    attributes = {"modify_card", "rank"},
 
     loc_vars = function(self, info_queue, card)
 		local key = self.key
