@@ -19,5 +19,3 @@ position = "after"
 pattern = 'G:init_item_prototypes()'
 payload = "if MINTY then MINTY.lastmoment() end"
 match_indent = true
-
-# This is all disabled for now on account of we don't have anything we need to do last-minute
