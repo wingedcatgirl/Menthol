@@ -1,10 +1,3 @@
---Hook: Drained cards have no suit
-local nosuitref = SMODS.has_no_suit
-function SMODS.has_no_suit(card)
-    if card.edition and card.edition.minty_drained then return true end
-    return nosuitref(card)
-end
-
 --Hook: Treat-o-vision
 local issuitref = Card.is_suit
 function Card:is_suit(suit, bypass_debuff, flush_calc)

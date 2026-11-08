@@ -1,4 +1,4 @@
-local values = {
+MINTY.edition_values = {
     e_foil = 1,
     e_holographic = 1,
     e_polychrome = 2,
@@ -63,15 +63,19 @@ SMODS.Joker {
                 end
             end
             if #targets > 1 then
+                local sounded = false
                 for i=1,math.min(#targets, card.ability.extra.amount) do
                     MINTY.event(function ()
-                        local nom = pseudorandom_element(targets, "minty_lazarus_draining")
+                        if not next(targets) then return true end
+                        ---@type Card
+                        local nom = table.remove(targets, pseudorandom("minty_lazarus_draining", 1, #targets))
                         if nom.edition then
-                            card.ability.extra.charge = card.ability.extra.charge + (values[nom.edition.key] or 1)
+                            card.ability.extra.charge = card.ability.extra.charge + (MINTY.edition_values[nom.edition.key] or 1)
                         end
                         if not (nom.edition and nom.edition.minty_drained) then
                             card.ability.extra.charge = card.ability.extra.charge + 1
-                            nom:set_edition("e_minty_drained", true, true)
+                            nom:set_edition("e_minty_drained", true, not sounded)
+                            sounded = true
                             nom:juice_up()
                             card:juice_up()
                         end

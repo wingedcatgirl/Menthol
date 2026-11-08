@@ -63,6 +63,13 @@ SMODS.Sound{ --https://freesound.org/people/SGAK/sounds/467762/ Could use a bett
     path = "lion roar.wav"
 }
 
+for i=1,4 do
+    SMODS.Sound{
+        key = "drain"..i,
+        path = "persona drain "..i..".wav"
+    }
+end
+
 do --Buttload of meme sounds grabbed from https://thirtydollar.website/ and also video games
     local path = SMODS.current_mod.path.."assets/sounds/thirty dollar memes"
     local info = NFS.getDirectoryItemsInfo(path)
