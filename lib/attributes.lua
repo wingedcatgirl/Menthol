@@ -44,6 +44,10 @@ SMODS.Attribute{ --Related to Cobalt cards (consumeable type)
     key = "cobalt"
 }
 
+SMODS.Attribute{ --Related to Treat cards. Not the kind from the other mod.
+    key = "minty_treat"
+}
+
 SMODS.Attribute{ --Objects which may do something when the ante changes
     key = "ante_change"
 }

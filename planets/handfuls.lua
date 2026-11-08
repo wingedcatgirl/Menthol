@@ -8,6 +8,9 @@ SMODS.Consumable{
     name = "Rock Planets",
     effect = 'Hand Upgrade',
     config = {hand_type = 'minty_Handful', softlock = true},
+    attributes = {
+        "hand_type", "hand_level", "space"
+    },
     process_loc_text = function(self)
         --use another planet's loc txt instead
         local target_text = G.localization.descriptions[self.set]['c_mercury'].text
@@ -47,6 +50,9 @@ SMODS.Consumable{
     name = "Twin Rock Planets",
     effect = 'Hand Upgrade',
     config = {hand_type = 'minty_flush_handful', softlock = true},
+    attributes = {
+        "hand_type", "hand_level", "space"
+    },
     process_loc_text = function(self)
         --use another planet's loc txt instead
         local target_text = G.localization.descriptions[self.set]['c_mercury'].text
@@ -86,6 +92,9 @@ SMODS.Consumable{
     name = "Different Rock Planets",
     effect = 'Hand Upgrade',
     config = {hand_type = 'minty_spec_handful', softlock = true},
+    attributes = {
+        "hand_type", "hand_level", "space"
+    },
     process_loc_text = function(self)
         --use another planet's loc txt instead
         local target_text = G.localization.descriptions[self.set]['c_mercury'].text
@@ -133,6 +142,9 @@ if not not next(SMODS.find_mod("Cryptid")) then
                 'minty_spec_handful',
             },
             softlock = true},
+        attributes = {
+            "hand_type", "hand_level", "space"
+        },
         set_card_type_badge = function(self, card, badges)
             badges[1] = create_badge("Planet?", get_type_colour(self or card.config, card), nil, 1.2)
         end,

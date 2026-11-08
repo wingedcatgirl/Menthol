@@ -121,6 +121,10 @@ local function modpack_loc_vars(self, info_queue, card)
     }
 end
 
+local function create_modpack_attributes()
+    return {"joker", "meta"}
+end
+
 SMODS.Booster {
     key = "mod_normal_1",
     kind = "mod_packs",
@@ -138,6 +142,7 @@ SMODS.Booster {
             name = localize("k_minty_random_mod"),
         }
     },
+    attributes = create_modpack_attributes(),
     cost = 5,
     weight = 1,
     set_ability = set_modpack_ability,
@@ -163,6 +168,7 @@ SMODS.Booster {
             name = localize("k_minty_random_mod"),
         }
     },
+    attributes = create_modpack_attributes(),
     cost = 5,
     weight = 1,
     set_ability = set_modpack_ability,
@@ -188,6 +194,7 @@ SMODS.Booster {
             name = localize("k_minty_random_mod"),
         }
     },
+    attributes = create_modpack_attributes(),
     cost = 7,
     weight = 0.5,
     set_ability = set_modpack_ability,
@@ -213,6 +220,7 @@ SMODS.Booster {
             name = localize("k_minty_random_mod"),
         }
     },
+    attributes = create_modpack_attributes(),
     cost = 9,
     weight = 0.125,
     set_ability = set_modpack_ability,

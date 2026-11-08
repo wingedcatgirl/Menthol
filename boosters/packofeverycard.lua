@@ -108,6 +108,11 @@ local function every_card_loc_vars(self, info_queue, card)
     }
 end
 
+local function create_every_card_attributes()
+    --Todo, figure out how to get all consumeable attributes
+    return {"joker", "tarot", "planet", "playing_card", "spectral", "voucher", "minty_treat"}
+end
+
 SMODS.Booster{
     key = "everycard_normal_1",
     group_key = "k_minty_everycard_packs",
@@ -121,6 +126,7 @@ SMODS.Booster{
         extra = 5,
         choose = 1,
     },
+    attributes = create_every_card_attributes(),
     loc_vars = every_card_loc_vars,
     cost = 10,
     weight = 2,
@@ -142,6 +148,7 @@ SMODS.Booster{
         extra = 5,
         choose = 1,
     },
+    attributes = create_every_card_attributes(),
     loc_vars = every_card_loc_vars,
     cost = 10,
     weight = 2,
@@ -163,6 +170,7 @@ SMODS.Booster{
         extra = 7,
         choose = 1,
     },
+    attributes = create_every_card_attributes(),
     loc_vars = every_card_loc_vars,
     cost = 13,
     weight = 1,
@@ -184,6 +192,7 @@ SMODS.Booster{
         extra = 7,
         choose = 2,
     },
+    attributes = create_every_card_attributes(),
     loc_vars = every_card_loc_vars,
     cost = 16,
     weight = 0.5,

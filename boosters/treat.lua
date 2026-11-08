@@ -11,6 +11,7 @@ SMODS.Booster{
         extra = 2,
         choose = 1
     },
+    attributes = {"minty_treat"},
     in_pool = function (self, args)
         return false
     end,
