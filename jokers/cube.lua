@@ -79,30 +79,4 @@ SMODS.Joker {
             }
         end
     end,
-
-
-    add_to_deck = function(self, card, from_debuff)
-        if not (card.ability and card.ability.eternal) then return end -- only if eternal
-        if G.GAME.bosses_used["bl_psychic"] >= 1e300 then return end -- not if already banned
-        for _,v in ipairs(counters) do
-            local boss = v.boss
-            local mod = v.mod
-            if (not mod) or next(SMODS.find_mod(mod)) then
-                G.GAME.bosses_used[boss] = G.GAME.bosses_used[boss] + 1e300
-            end
-        end
-    end,
-    remove_from_deck = function(self, card, from_debuff)
-        if (not next(SMODS.find_card('j_minty_cube'))) then
-            for _,v in ipairs(counters) do
-                local boss = v.boss
-                local mod = v.mod
-                if (not mod) or next(SMODS.find_mod(mod)) then
-                    if G.GAME.bosses_used[boss] >= 1e300 then
-                        G.GAME.bosses_used[boss] = G.GAME.bosses_used[boss] - 1e300
-                    end
-                end
-            end
-        end
-    end,
 }
