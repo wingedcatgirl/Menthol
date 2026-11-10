@@ -189,6 +189,17 @@ SMODS.Stake{
     end
 }
 
+MINTY.set_to_booster = {
+    Joker = "Buffoon",
+    Planet = "Celestial",
+    Tarot = "Arcana",
+    Spectral = "Spectral",
+    Default = "Standard",
+    Enhanced = "Standard",
+    --TARGET: Cross-mod sets and their associated booster. todo figure out a better solution to this
+
+}
+
 SMODS.Stake{
     key = "tungsten",
     atlas = "stakes",
@@ -209,25 +220,17 @@ SMODS.Stake{
     above_stake = "stake_orange",
     colour = HEX("667072"),
     calculate = function (self, context)
-        local set_to_booster = {
-            Joker = "Buffoon",
-            Planet = "Celestial",
-            Tarot = "Arcana",
-            Spectral = "Spectral",
-            Default = "Standard",
-            Enhanced = "Standard",
-            --TARGET: Cross-mod sets and their associated booster. todo figure out a better solution to this
-            
-        }
+        local set_to_booster = MINTY.set_to_booster
 
         if context.create_shop_card then
             local kind = set_to_booster[context.set]
-            if SMODS.pseudorandom_probability(self, "minty_tungsten_every_card", 1, 25) or not kind then
+            if kind == false then return end
+            if SMODS.pseudorandom_probability(self, "minty_tungsten_every_card", 1, 25) or kind == nil then
                 kind = "minty_everycard"
             end
 
             local key = get_pack("minty_tungsten_booster", kind).key
-            print(kind, key)
+            --print(kind, key)
 
             if G.P_CENTERS[key] and G.P_CENTERS[key].set == "Booster" then
                 return {

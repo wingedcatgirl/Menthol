@@ -14,6 +14,11 @@ Add `[your edition's key] = value` to `MINTY.edition_values` to change how much 
 > [!NOTE]
 > If your mod loads before Menthol, the table won't exist yet. You'll need to find a way to delay this code until the table does exist.
 
+### Tungsten stake
+Add `[your custom set] = "Booster Type"` to `MINTY.set_to_booster` to encase your custom cards in appropriate booster packs on Tungsten stake and higher. Alternately, set the value to `false` to exempt your custom type from this mechanic. Sets that don't appear in this table will be encased in a Pack of Every Card.
+> [!NOTE]
+> Guess what you need to account for if your mod loads before Menthol.
+
 ### [Attributes](https://docs.smods.dev/Game%20Objects/SMODS.Attributes/) with mechanical baggage
 See [attributes.lua](lib/attributes.lua) for complete details, but here are some worth noting.
 > [!NOTE]

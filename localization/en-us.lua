@@ -1762,7 +1762,7 @@ return {
 			["stake_minty_tungsten"] = {
 				["name"] = "Tungsten Stake",
 				["text"] = {
-					"Shop cards are replaced",
+					"Most Shop cards are replaced",
 					"with equivalent Boosters",
 					"{s:0.8}Applies Mint Stake"
 				}

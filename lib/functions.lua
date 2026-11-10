@@ -267,6 +267,17 @@ MINTY.bag_to_map = function(t)
     return ret
 end
 
+---Takes a map in the form `{A=true, B=true, C=true}` and converts it to a table in the form `{A, B, C}`.
+---@param t table<any, true>
+---@return any[]
+MINTY.map_to_bag = function (t)
+    local ret = {}
+    for k in pairs(t) do
+        ret[#ret+1] = k
+    end
+    return ret
+end
+
 ---Converts a map of enhancements into an info-queue tip
 ---@param table table<string, true> A map (list of `key = true`) of the relevant enhancements
 ---@param name string The name of the enhancement list
