@@ -62,7 +62,7 @@ SMODS.Consumable {
 					set = "Joker",
 					key_append = "minty_bitz"
 				}
-				SMODS.Stickers.minty_cat_ears:apply(newcat_with_headband)
+				SMODS.Stickers.minty_cat_ears:apply(newcat_with_headband, true)
 			end
 			return true end }))
 		delay(0.6)
