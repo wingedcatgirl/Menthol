@@ -28,7 +28,7 @@ SMODS.Consumable {
 	use = function(self, card, area, copier)
 		G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
 			play_sound('timpani')
-			if pseudorandom("minty_bitz_ears", 1, 10) ~= 10 then
+			if pseudorandom("minty_bitz_ears", 1, 10) ~= 10 and not G.GAME.used_vouchers.v_minty_mandate then
 				local newcat = SMODS.add_card({
 					attributes = {"kity"},
 					area = G.jokers,
