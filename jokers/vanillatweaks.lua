@@ -147,19 +147,25 @@ function Card:is_even(bypass_debuff)
     return nominal%2 == 0
 end
 
-local oldinpool = G.P_BLINDS.bl_psychic.in_pool or function (self)
-    return true
-end
-SMODS.Blind:take_ownership("bl_psychic", {
-    in_pool = function (self)
-        for i,v in ipairs(G.jokers.cards) do
-            if v.config.center.key == "j_minty_cube" and v.ability.eternal then
-                return false
-            end
-        end
-        return oldinpool(self)
+local cant_play_4_cards_blinds = {
+    "bl_psychic",
+}
+
+for _,v in ipairs(cant_play_4_cards_blinds) do
+    local oldinpool = G.P_BLINDS[v].in_pool or function (self)
+        return true
     end
-})
+    SMODS.Blind:take_ownership(v, {
+        in_pool = function (self)
+            for __,vv in ipairs((G.jokers or {}).cards or {}) do
+                if vv.config.center.key == "j_minty_cube" and vv.ability.eternal then
+                    return false
+                end
+            end
+            return oldinpool(self)
+        end
+    }, true)
+end
 
 SMODS.Enhancement:take_ownership("m_stone",{
     loc_vars = function (self, info_queue, card)
