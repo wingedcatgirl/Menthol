@@ -25,13 +25,10 @@ SMODS.Consumable {
 			return false
 		end
 	end,
-    in_pool = function (self, args) --Make this artificially rarer until we have more kity jokers for it to summon
-        if pseudorandom("bitzchance") > 1/3 then return false end
-        return true
-    end,
 	use = function(self, card, area, copier)
 		G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
 			play_sound('timpani')
+
 			local newcat = SMODS.add_card({
 				attributes = {"kity"},
 				area = G.jokers,
