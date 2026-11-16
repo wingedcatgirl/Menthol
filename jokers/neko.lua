@@ -78,6 +78,43 @@ SMODS.Joker {
             return true
         end, {blocking = false, blockable = false})
     end,
+    set_sprites = function (self, card, front)
+        local sprite = card.children.floating_sprite
+        sprite.minty_neko = {
+            x=0, y=0
+        }
+
+        local shade = sprite.draw_shader
+        function sprite:draw_shader(_shader, _shadow_height, _send, _no_tilt, other_obj, ms, mr, mx, my, custom_shader, tilt_shadow)
+            local multiplier = sprite.minty_neko.multiplier or 0.05
+
+            if _shader == "dissolve" then
+                mx = (mx or 0) + (sprite.minty_neko.x * multiplier)
+                my = (my or 0) + (sprite.minty_neko.y * multiplier)
+            end
+
+            shade(self, _shader, _shadow_height, _send, _no_tilt, other_obj, ms, mr, mx, my, custom_shader, tilt_shadow)
+        end
+    end,
+    draw = function (self, card, layer)
+        local sprite = card.children.floating_sprite
+        local state = card.children.floating_sprite.state.key
+
+        if string.find(state, "chase") then
+            local dirs = {
+                left = {x=-1, y=0},
+                right = {x=1, y=0},
+                up = {x=0, y=-1},
+                down = {x=0, y=1}
+            }
+            for k,v in pairs(dirs) do
+                if string.find(state,k) then
+                    sprite.minty_neko.x = sprite.minty_neko.x + v.x
+                    sprite.minty_neko.y = sprite.minty_neko.y + v.y
+                end
+            end
+        end
+    end,
     update = function (self, card, dt)
         local succ,vis = pcall(function ()return card.states.visible end)
         if not (succ and vis) then
@@ -89,13 +126,16 @@ SMODS.Joker {
         if area.config.collection then
             return --Neko can theoretically chase in collection but its timer doesn't update there, TODO fix this probably
         end
+        local sprite = card.children.floating_sprite
+        local state = sprite.state.key
+
         card.ability.extra.timer = (card.ability.extra.timer or 0) + dt
         --print(card.ability.extra.timer)
         if card.ability.extra.timer > (G.SETTINGS.GAMESPEED * 0.25) then
             card.ability.extra.timer = 0
             card.ability.extra.motion.duration = card.ability.extra.motion.duration + 1
         end
-        if card.children.floating_sprite.state.key == "alert" and card.ability.extra.motion.duration <= 4 then
+        if state == "alert" and card.ability.extra.motion.duration <= 4 then
             return
         end
 
@@ -120,17 +160,24 @@ SMODS.Joker {
             scratchu = 17,
             scratchl = 18,
         }
-        local jokerref = card.config.center
 
 
         -- get positions of mouse and joker
-        local mousepos = {}
-        mousepos.x, mousepos.y = math.floor(G.CURSOR.T.x*4)/4, math.floor(G.CURSOR.T.y*4)/4
-        local jokerpos = {}
-        jokerpos.x, jokerpos.y = math.floor((card.T.x+2.5)*4)/4, math.floor((card.T.y+2)*4)/4
+        local mousepos = {
+            x = math.floor(G.CURSOR.T.x*4)/4,
+            y = math.floor(G.CURSOR.T.y*4)/4
+        }
+        local nekopos = {
+            x = math.floor((sprite.VT.x)*4)/4,
+            y = math.floor((sprite.VT.y)*4)/4
+        }
+        nekopos.x, nekopos.y = nekopos.x + 1.25, nekopos.y + 2 --Todo, figure out why these offsets and get them directly
+        local location_multiplier = sprite.minty_neko.location_multiplier or 0.05
+        nekopos.x, nekopos.y = nekopos.x + (sprite.minty_neko.x * location_multiplier), nekopos.y + (sprite.minty_neko.y * location_multiplier)
+
         --math out the direction
-        local dx = jokerpos.x - mousepos.x
-        local dy = jokerpos.y - mousepos.y
+        local dx = nekopos.x - mousepos.x
+        local dy = nekopos.y - mousepos.y
 
         local angle_rad = math.atan2(dy, dx)
         local angle_deg = math.deg(angle_rad)
@@ -142,10 +189,15 @@ SMODS.Joker {
         if (math.abs(dx) <= 1 and math.abs(dy) <= 1.25) or card.highlighted then
             direction = "close"
         end
-        --MINTY.say("Joker position: "..jokerpos.x..", "..jokerpos.y.."; Mouse position: "..mousepos.x..", "..mousepos.y.."; Direction: "..direction, "TRACE")
 
-        if (card.children.floating_sprite.state.key == "nap" or card.children.floating_sprite.state.key == "yawn" or card.children.floating_sprite.state.key == "wait") and direction ~= "close" then
-            card.children.floating_sprite:set_state("alert")
+        local waiting_states = {
+            nap = true,
+            yawn = true,
+            wait = true,
+            wash = true,
+        }
+        if (waiting_states[state]) and direction ~= "close" then
+            sprite:set_state("alert")
             card.ability.extra.motion = {
                 dir = "none",
                 duration = 0
@@ -163,10 +215,9 @@ SMODS.Joker {
         end
         local leftmost = (joker_slot == 1)
         local rightmost = (joker_slot == #area.cards)
-        -- TBA
 
         do
-            local key = card.children.floating_sprite.state.key
+            local key = state
             local dirmap = {
                 up = "u",
                 down = "d",
@@ -183,36 +234,27 @@ SMODS.Joker {
                 and key ~= "wash"
                 and key ~= "nap")
                 then
-                    card.children.floating_sprite:set_state("wait")
+                    sprite:set_state("wait")
                 end
             elseif key ~= "chase"..direction and key ~= "scratch"..dirmap[direction] then
-                card.children.floating_sprite:set_state("chase"..direction)
+                sprite:set_state("chase"..direction)
             end
         end
-        --MINTY.say(tostring(jokerref.soul_pos.y), "TRACE")
 
         -- move joker to left or right if it's been in one of the lateral chase states long enough
         local lastdir = card.ability.extra.motion.dir
         --get current direction and reset tracking if it's changed
-        if string.find(card.children.floating_sprite.state.key, "left") then
+        if string.find(state, "left") then
             if lastdir ~= "left" then card.ability.extra.motion = {
                 dir = "left",
                 duration = 0
             }
             end
-            if leftmost and card.children.floating_sprite.state.key ~= "scratchl" then
-                card.children.floating_sprite:set_state("scratchl")
-                lastdir = "none"
-            end
-        elseif string.find(card.children.floating_sprite.state.key, "right") then
+        elseif string.find(state, "right") then
             if lastdir ~= "right" then card.ability.extra.motion = {
                 dir = "right",
                 duration = 0
             }
-            end
-            if rightmost and card.children.floating_sprite.state.key ~= "scratchr" then
-                card.children.floating_sprite:set_state("scratchr")
-                lastdir = "none"
             end
         else
             if lastdir ~= "none" then
@@ -221,13 +263,15 @@ SMODS.Joker {
                     duration = 0
                 }
             end
-            if direction == "up" and card.children.floating_sprite.state.key ~= "scratchu" then
-                card.children.floating_sprite:set_state("scratchu")
+            --[[
+            if direction == "up" and state ~= "scratchu" then
+                sprite:set_state("scratchu")
                 lastdir = "none"
-            elseif direction == "down" and card.children.floating_sprite.state.key ~= "scratchd" then
-                card.children.floating_sprite:set_state("scratchd")
+            elseif direction == "down" and state ~= "scratchd" then
+                sprite:set_state("scratchd")
                 lastdir = "none"
             end
+            --]]
         end
 
         if not joker_slot then
@@ -236,6 +280,8 @@ SMODS.Joker {
         end
 
         if card.ability.extra.motion.duration >= 5 and lastdir ~= "none" then --it's been running long enough
+            do return end --disable joker swapping for testing the change thingy
+        
             card.ability.extra.motion.duration = 0
             if not leftmost and lastdir == "left" then
                 area.cards[joker_slot-1], area.cards[joker_slot] = area.cards[joker_slot], area.cards[joker_slot-1]
@@ -243,11 +289,18 @@ SMODS.Joker {
                 area.cards[joker_slot], area.cards[joker_slot+1] = area.cards[joker_slot+1], area.cards[joker_slot]
             end
         elseif card.ability.extra.motion.duration >= 10 and lastdir == "none" then
-            if card.children.floating_sprite.state.key == "wait" then
-                card.children.floating_sprite:set_state("yawn")
+            if state == "wait" then
+                local newstate = ({"yawn", "wash"})[math.random(2)]
+
+                sprite:set_state(newstate)
+                card.ability.extra.motion.duration = newstate == "yawn" and 6 or 0
+            elseif state == "wash" then
+                local newstate = ({"yawn", "wait"})[math.random(2)]
+
+                sprite:set_state(newstate)
                 card.ability.extra.motion.duration = 6
-            elseif card.children.floating_sprite.state.key == "yawn" then
-                card.children.floating_sprite:set_state("nap")
+            elseif state == "yawn" then
+                sprite:set_state("nap")
                 card.ability.extra.motion.duration = 0
             end
         end
